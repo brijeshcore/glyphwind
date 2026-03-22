@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <script>
+    (function () {
+      var t = localStorage.getItem('theme');
+      if (t === 'light') document.documentElement.classList.remove('dark');
+      else if (t === 'dark') document.documentElement.classList.add('dark');
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Changelog — Glyphwind Design System by Brijesh Chowdary Lavu</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Changelog for Glyphwind — a Tailwind CSS design system by Brijesh Chowdary Lavu. Track releases, token updates, and component changes." />
+  <meta name="keywords" content="Glyphwind changelog, Tailwind CSS design system, design tokens, releases, Brijesh Chowdary Lavu" />
+  <meta name="author" content="Brijesh Chowdary Lavu" />
+  <link rel="canonical" href="https://brijeshcore.github.io/glyphwind/changelog.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://brijeshcore.github.io/glyphwind/changelog.html" />
+  <meta property="og:title" content="Changelog — Glyphwind Design System" />
+  <meta property="og:description" content="Track releases, token updates, and component changes for the Glyphwind Tailwind CSS design system." />
+  <meta property="og:site_name" content="Glyphwind" />
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Changelog — Glyphwind Design System" />
+  <meta name="twitter:description" content="Track releases, token updates, and component changes for the Glyphwind Tailwind CSS design system." />
+
+  <!-- Author identity -->
+  <meta name="creator" content="Brijesh Chowdary Lavu" />
+  <link rel="me" href="https://www.linkedin.com/in/brijeshcl/" />
+  <link rel="me" href="https://github.com/brijeshcore" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4L05CHV00B"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4L05CHV00B');
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Doto:wght@100..900&display=swap"
+    rel="stylesheet" />
+
+  <!-- Design System -->
+  <link rel="stylesheet" href="./globals.css" />
+
+  <!-- Tailwind CDN -->
+  <!-- Tailwind CSS v3.4.17 — pinned, matches tailwindVersion in versions/index.json -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Space Grotesk', 'system-ui', 'sans-serif'],
+            mono: ['Space Mono', 'monospace'],
+            dot: ['Doto', 'Space Mono', 'monospace'],
+          },
+          colors: {
+            background: 'hsl(var(--background))',
+            foreground: 'hsl(var(--foreground))',
+            surface: {
+              DEFAULT: 'hsl(var(--surface))',
+              low: 'hsl(var(--surface-low))',
+              card: 'hsl(var(--surface-card))',
+              high: 'hsl(var(--surface-high))',
+              highest: 'hsl(var(--surface-highest))',
+            },
+            ink: {
+              DEFAULT: 'hsl(var(--ink))',
+              muted: 'hsl(var(--ink-muted))',
+              subtle: 'hsl(var(--ink-subtle))',
+              ghost: 'hsl(var(--ink-ghost))',
+            },
+            signal: {
+              DEFAULT: 'hsl(var(--signal))',
+              foreground: 'hsl(var(--signal-foreground))',
+            },
+            border: 'hsl(var(--border))',
+          },
+          animation: {
+            'led': 'led 2.4s ease-in-out infinite',
+          },
+          keyframes: {
+            led: {
+              '0%,100%': { opacity: '1' },
+              '50%': { opacity: '0.2' },
+            },
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    @layer base, components, utilities;
+
+    :root,
+    .dark {
+      --bg: hsl(var(--background));
+      --bg-low: hsl(var(--surface-low));
+      --bg-card: hsl(var(--surface-card));
+      --bg-high: hsl(var(--surface-high));
+      --bg-highest: hsl(var(--surface-highest));
+      --fg: hsl(var(--foreground));
+      --fg-muted: hsl(var(--ink-muted));
+      --fg-subtle: hsl(var(--ink-subtle));
+      --fg-ghost: hsl(var(--ink-ghost));
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+
+    ::selection {
+      background: hsl(var(--signal));
+    }
+
+    ::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--bg-high);
+      border-radius: 2px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .hero-section {
+      padding: 7rem 0 5rem;
+    }
+
+    .cl-section {
+      padding: 5rem 0;
+      border-top: 1px solid hsl(var(--border));
+    }
+
+    .site-footer {
+      padding: 3rem 0;
+      border-top: 1px solid hsl(var(--border));
+    }
+
+    .navbar-brand {
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      font-size: 0.9375rem;
+    }
+
+    .section-sublabel {
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    /* Theme toggle */
+    #theme-toggle,
+    #theme-toggle-mob {
+      background: none;
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--radius);
+      cursor: pointer;
+      color: var(--fg-muted);
+      font-family: inherit;
+      font-size: 0.625rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.375rem 0.625rem;
+      transition: color 100ms, border-color 100ms;
+    }
+
+    #theme-toggle:hover,
+    #theme-toggle-mob:hover {
+      color: var(--fg);
+      border-color: var(--fg);
+    }
+
+    /* ─── Version entry ─────────────────────────────────────────────────── */
+    .version-entry {
+      padding: 2.5rem 0;
+      border-top: 1px solid hsl(var(--border));
+    }
+
+    .version-entry:first-child {
+      padding-top: 0;
+      border-top: none;
+    }
+
+    .version-number {
+      font-family: 'Space Mono', monospace;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .version-date {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--fg-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Change list */
+    .change-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0;
+    }
+
+    .change-list li {
+      position: relative;
+      padding: 0.5rem 0 0.5rem 1.25rem;
+      color: var(--fg-muted);
+      font-size: 0.875rem;
+      line-height: 1.55;
+      border-top: 1px solid hsl(var(--border));
+    }
+
+    .change-list li:first-child {
+      border-top: none;
+    }
+
+    .change-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: hsl(var(--signal));
+      flex-shrink: 0;
+    }
+
+    /* Download row */
+    .download-row {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      align-items: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid hsl(var(--border));
+    }
+
+    .download-label {
+      font-size: 0.625rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--fg-subtle);
+      font-weight: 500;
+      margin-right: 0.25rem;
+    }
+
+    /* Error / loading state */
+    .cl-state {
+      padding: 2rem;
+      background: var(--bg-low);
+      border-radius: 3px;
+      border: 1px solid hsl(var(--border));
+      max-width: 520px;
+    }
+
+    /* ─── Mobile nav ─────────────────────────────────────────────────────── */
+    .nav-mobile-actions {
+      display: none;
+      margin-left: auto;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-hamburger {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+      width: 2rem;
+      height: 2rem;
+      background: none;
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--radius);
+      cursor: pointer;
+      padding: 0.375rem;
+      flex-shrink: 0;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      height: 1.5px;
+      background: var(--fg-muted);
+      transition: opacity 120ms, transform 120ms;
+      border-radius: 1px;
+    }
+
+    .nav-hamburger.open span:nth-child(1) {
+      transform: translateY(5.5px) rotate(45deg);
+    }
+
+    .nav-hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-hamburger.open span:nth-child(3) {
+      transform: translateY(-5.5px) rotate(-45deg);
+    }
+
+    .nav-mobile-panel {
+      display: none;
+      position: fixed;
+      top: 3.5rem;
+      left: 0;
+      right: 0;
+      background: color-mix(in srgb, var(--bg-card) 97%, transparent);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid hsl(var(--border));
+      padding: 0.5rem 0;
+      flex-direction: column;
+      z-index: 49;
+    }
+
+    .nav-mobile-panel.open {
+      display: flex;
+    }
+
+    .nav-mobile-panel a {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--fg-muted);
+      text-decoration: none;
+      padding: 0.875rem 1.25rem;
+      border-bottom: 1px solid hsl(var(--border));
+      transition: color 80ms, background 80ms;
+    }
+
+    .nav-mobile-panel a:last-child {
+      border-bottom: none;
+    }
+
+    .nav-mobile-panel a:hover {
+      color: var(--fg);
+      background: var(--bg-low);
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 0 1.25rem;
+      }
+
+      .hero-section {
+        padding: 4rem 0 3rem;
+      }
+
+      .cl-section {
+        padding: 3rem 0;
+      }
+
+      #nav-links {
+        display: none !important;
+      }
+
+      .nav-mobile-actions {
+        display: flex !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════════════════════════════════════════ -->
+  <nav class="navbar">
+    <div class="row-sm">
+      <span class="dot dot-lg animate-led"></span>
+      <span class="navbar-brand">GLYPHWIND</span>
+    </div>
+
+    <div id="nav-links" class="flex items-center gap-7 ml-auto">
+      <a href="index.html" class="nav-link">← Showcase</a>
+      <button id="theme-toggle" onclick="toggleTheme()">
+        <span id="theme-label">LIGHT</span>
+      </button>
+    </div>
+
+    <div class="nav-mobile-actions">
+      <button id="theme-toggle-mob" onclick="toggleTheme()">
+        <span id="theme-label-mob">LIGHT</span>
+      </button>
+      <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="nav-mobile-panel" id="nav-mobile-panel">
+    <a href="index.html" onclick="closeMobileNav()">← Showcase</a>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════════════════════════════════ -->
+  <section class="hero-section bg-dots-signal bg-dots-pulse">
+    <div class="container">
+      <span class="t-label c-muted section-sublabel">Glyphwind / Changelog</span>
+      <h1 class="t-display mb-7">Release<br>Notes</h1>
+      <p class="t-body c-muted" style="max-width:520px;">
+        Version history for Glyphwind Design System. Download any release's
+        <code style="font-family:'Space Mono',monospace; font-size:0.85em;">globals.css</code>
+        and
+        <code style="font-family:'Space Mono',monospace; font-size:0.85em;">tailwind.config.js</code>
+        directly.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+     CHANGELOG LIST
+═══════════════════════════════════════════════════════════════════════════ -->
+  <section class="cl-section">
+    <div class="container">
+      <div id="changelog-list">
+        <p class="t-body-sm c-subtle" id="changelog-loading">Loading version history…</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="container flex justify-between items-center flex-wrap gap-4">
+      <div class="row-sm">
+        <span class="dot dot-sm"></span>
+        <span class="t-body font-semibold" style="letter-spacing:-0.01em;">GLYPHWIND</span>
+        <span class="t-label c-muted ml-2">Design System</span>
+      </div>
+      <a href="index.html" class="t-label c-muted" style="text-decoration:none; transition:color 100ms;"
+        onmouseover="this.style.color='var(--fg)'" onmouseout="this.style.color=''">← Back to Showcase</a>
+    </div>
+  </footer>
+
+
+  <script>
+    // ─── Theme ────────────────────────────────────────────────────────────────
+    const html = document.documentElement;
+    const label = document.getElementById('theme-label');
+    const labelMob = document.getElementById('theme-label-mob');
+
+    function syncThemeLabels(isDark) {
+      const txt = isDark ? 'LIGHT' : 'DARK';
+      if (label) label.textContent = txt;
+      if (labelMob) labelMob.textContent = txt;
+    }
+
+    function toggleTheme() {
+      const isDark = html.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      syncThemeLabels(isDark);
+    }
+
+    syncThemeLabels(html.classList.contains('dark'));
+
+    // ─── Mobile nav ───────────────────────────────────────────────────────────
+    function toggleMobileNav() {
+      document.getElementById('nav-hamburger').classList.toggle('open');
+      document.getElementById('nav-mobile-panel').classList.toggle('open');
+    }
+
+    function closeMobileNav() {
+      document.getElementById('nav-hamburger').classList.remove('open');
+      document.getElementById('nav-mobile-panel').classList.remove('open');
+    }
+
+    // ─── Changelog renderer ───────────────────────────────────────────────────
+    const TAG_BADGE = {
+      initial: 'badge badge-active',
+      major: 'badge badge-active',
+      minor: 'badge badge-default',
+      patch: 'badge badge-dim',
+    };
+
+    function renderChangelog(versions) {
+      const loadingEl = document.getElementById('changelog-loading');
+      if (loadingEl) loadingEl.remove();
+
+      const list = document.getElementById('changelog-list');
+
+      versions.forEach(v => {
+        const tag = v.tag || 'patch';
+        const badgeCls = TAG_BADGE[tag] || 'badge badge-default';
+        const changes = v.changes
+          .map(c => `<li>${c}</li>`)
+          .join('');
+
+        const entry = document.createElement('div');
+        entry.className = 'version-entry';
+        const twVer = v.tailwindVersion ? `Tailwind CSS v${v.tailwindVersion}` : '';
+
+        entry.innerHTML = `
+          <div class="flex items-baseline gap-4 flex-wrap mb-1">
+            <span class="version-number">v${v.version}</span>
+            <span class="${badgeCls}" style="text-transform:uppercase; align-self:center;">${tag}</span>
+            ${twVer ? `<span class="badge badge-dim" style="align-self:center; font-family:'Space Mono',monospace; font-size:0.6rem;">${twVer}</span>` : ''}
+            <span class="version-date ml-auto">${v.date}</span>
+          </div>
+
+          <ul class="change-list">${changes}</ul>
+
+          <div class="download-row">
+            <span class="download-label">Download</span>
+            <a href="./versions/v${v.version}/globals.css"
+               download="globals.css"
+               class="btn btn-secondary btn-sm">
+              ↓&nbsp;globals.css
+            </a>
+            <a href="./versions/v${v.version}/tailwind.config.js"
+               download="tailwind.config.js"
+               class="btn btn-secondary btn-sm">
+              ↓&nbsp;tailwind.config.js
+            </a>
+          </div>
+        `;
+
+        list.appendChild(entry);
+      });
+    }
+
+    async function loadChangelog() {
+      try {
+        const res = await fetch('./versions/index.json');
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        renderChangelog(await res.json());
+      } catch (e) {
+        document.getElementById('changelog-loading').outerHTML = `
+          <div class="cl-state">
+            <p class="t-body-sm c-muted mb-3">
+              Unable to load version data — this page requires a web server.
+            </p>
+            <p class="t-body-sm c-subtle mb-2">Run locally with:</p>
+            <pre style="font-family:'Space Mono',monospace; font-size:0.75rem; color:var(--fg-muted); margin:0;">npx serve .</pre>
+          </div>
+        `;
+      }
+    }
+
+    loadChangelog();
+  </script>
+
+</body>
+
+</html>

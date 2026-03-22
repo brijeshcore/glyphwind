@@ -1,0 +1,862 @@
+/* ============================================================================
+   GLYPHWIND DESIGN SYSTEM — Global CSS
+   Analog Digitalist × Nothing Tech
+   ============================================================================
+
+   Token naming follows shadcn/ui convention for drop-in compatibility with
+   shadcn components and React Aria primitives.
+
+   All color tokens are stored as raw HSL (no hsl() wrapper).
+   Usage: hsl(var(--token-name))
+   Opacity: hsl(var(--token-name) / 0.5)
+
+   Theme switching: add class="dark" to <html> for dark mode.
+   ============================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Doto:wght@100..900&display=swap');
+
+/* ─── Light Theme (Analog Precision) ──────────────────────────────────────── */
+/* .light forces light theme on any subtree regardless of page theme */
+:root, .light {
+  /* Backgrounds */
+  --background:    0 0% 99%;            /* #FCFCFC — near white canvas */
+  --foreground:    0 0% 11%;            /* #1B1B1B — deep black text */
+
+  /* Surface hierarchy — stacked technical sheets */
+  --surface:         0 0% 99%;          /* base */
+  --surface-low:     15 7% 96%;         /* sections */
+  --surface-card:    0 0% 100%;         /* cards, lifted */
+  --surface-high:    15 4% 91%;         /* interactive hover */
+  --surface-highest: 15 4% 89%;         /* highest layer */
+
+  /* Text scale */
+  --ink:        0 0% 11%;               /* #1B1B1B */
+  --ink-muted:  0 0% 37%;               /* #5E5E5E — secondary metadata */
+  --ink-subtle: 0 0% 60%;               /* #999999 — tertiary */
+  --ink-ghost:  0 0% 78%;               /* #C7C7C7 — barely visible */
+
+  /* Signal red — "The Recording Red" */
+  --signal:            359 97% 37%;     /* #BB0307 */
+  --signal-foreground: 0 0% 100%;       /* white on red */
+
+  /* Borders — ghost borders only, never 100% opaque */
+  --border: 0 0% 11% / 0.09;            /* rgba(27,27,27,0.09) */
+  --input:  15 4% 89%;                  /* #E5E2E1 */
+  --ring:   0 0% 11%;                   /* #1B1B1B — focus ring = foreground */
+
+  /* ── shadcn/ui aliases ─────────────────────────────────────────────────── */
+  --primary:             0 0% 11%;
+  --primary-foreground:  0 0% 100%;
+
+  --secondary:           15 7% 96%;
+  --secondary-foreground: 0 0% 11%;
+
+  --muted:               15 7% 96%;
+  --muted-foreground:    0 0% 37%;
+
+  --accent:              359 97% 37%;
+  --accent-foreground:   0 0% 100%;
+
+  --destructive:         359 97% 37%;
+  --destructive-foreground: 0 0% 100%;
+
+  --popover:             0 0% 100%;
+  --popover-foreground:  0 0% 11%;
+
+  --card:                0 0% 100%;
+  --card-foreground:     0 0% 11%;
+
+  /* Geometry */
+  --radius:      0.25rem;   /* 4px — default */
+  --radius-sm:   0.125rem;  /* 2px — badges, tight UI */
+  --radius-md:   0.25rem;   /* 4px — cards, default */
+  --radius-lg:   0.375rem;  /* 6px — max for containers */
+  --radius-full: 9999px;    /* full — dots only */
+
+  /* Motion */
+  --ease:             cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast:    80ms;   /* hover, focus, color flips */
+  --duration-default: 150ms;  /* state changes, backgrounds */
+  --duration-slow:    300ms;  /* layout shifts, panels */
+}
+
+/* ─── Dark Theme (Analog Digitalist) ──────────────────────────────────────── */
+.dark {
+  /* Backgrounds */
+  --background:  0 0% 0%;               /* #000000 — the Void */
+  --foreground:  0 0% 100%;             /* #FFFFFF — Pure Light */
+
+  /* Surface hierarchy — nested physical trays */
+  --surface:         0 0% 0%;           /* deep base */
+  --surface-low:     0 0% 5.5%;         /* #0E0E0E — foundation */
+  --surface-card:    0 0% 11%;          /* #1B1B1B — sections / sidebar */
+  --surface-high:    0 0% 12%;          /* #1F1F1F — cards / modules */
+  --surface-highest: 0 0% 14%;          /* #242424 — hover state */
+
+  /* Text scale */
+  --ink:        0 0% 100%;              /* #FFFFFF */
+  --ink-muted:  0 0% 60%;               /* #999999 — secondary */
+  --ink-subtle: 0 0% 30%;               /* #4D4D4D — tertiary */
+  --ink-ghost:  0 0% 16%;               /* #292929 — barely visible */
+
+  /* Signal red — "Critical Warning" */
+  --signal:            4 100% 60%;      /* #FF4132 */
+  --signal-foreground: 0 0% 100%;
+
+  /* Borders */
+  --border: 0 0% 100% / 0.08;           /* rgba(255,255,255,0.08) — ghost */
+  --input:  0 0% 12%;                   /* #1F1F1F */
+  --ring:   0 0% 83%;                   /* #D4D4D4 — focus ring */
+
+  /* ── shadcn/ui aliases ─────────────────────────────────────────────────── */
+  --primary:             0 0% 100%;
+  --primary-foreground:  0 0% 0%;
+
+  --secondary:           0 0% 11%;
+  --secondary-foreground: 0 0% 100%;
+
+  --muted:               0 0% 11%;
+  --muted-foreground:    0 0% 60%;
+
+  --accent:              4 100% 60%;
+  --accent-foreground:   0 0% 100%;
+
+  --destructive:         4 100% 60%;
+  --destructive-foreground: 0 0% 100%;
+
+  --popover:             0 0% 5.5%;
+  --popover-foreground:  0 0% 100%;
+
+  --card:                0 0% 11%;
+  --card-foreground:     0 0% 100%;
+
+  --radius:      0.25rem;   /* 4px — default */
+  --radius-sm:   0.125rem;  /* 2px — badges, tight UI */
+  --radius-md:   0.25rem;   /* 4px — cards, default */
+  --radius-lg:   0.375rem;  /* 6px — max for containers */
+  --radius-full: 9999px;    /* full — dots only */
+}
+
+/* ─── Base Styles ─────────────────────────────────────────────────────────── */
+* {
+  border-color: hsl(var(--border));
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1;
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: "Space Grotesk", Inter, system-ui, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  /* Smooth theme transitions */
+  transition: background-color var(--duration-default) var(--ease), color var(--duration-default) var(--ease);
+}
+
+/* Mono numbers for data/clocks — prevents layout jitter */
+.mono-nums {
+  font-family: "Space Mono", monospace;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* Headings — tight tracking */
+h1, h2, h3, h4 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: hsl(var(--foreground));
+}
+
+/* Links */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Selection */
+::selection {
+  background-color: hsl(var(--signal));
+  color: #fff;
+}
+
+/* Focus ring — precision, not default browser blue */
+:focus-visible {
+  outline: 1.5px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar        { width: 4px; height: 4px; }
+::-webkit-scrollbar-track  { background: hsl(var(--surface)); }
+::-webkit-scrollbar-thumb  { background: hsl(var(--surface-high)); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--ink-subtle)); }
+
+/* ─── Component Layer ─────────────────────────────────────────────────────── */
+
+/* ── Glyphwind Indicator — Signature LED dot ───────────────────────────────── */
+/* The hardware LED. Use for: active states, new notifications, live status. */
+.glyphwind-dot {
+  display: inline-block;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  background-color: hsl(var(--signal));
+}
+.glyphwind-dot-sm  { width: 4px;  height: 4px;  }   /* default indicator */
+.glyphwind-dot-md  { width: 6px;  height: 6px;  }
+.glyphwind-dot-lg  { width: 8px;  height: 8px;  }   /* header REC indicator */
+
+/* Dot aliases — shorthand for .glyphwind-dot */
+.dot    { display: inline-block; flex-shrink: 0; border-radius: 9999px; background-color: hsl(var(--signal)); }
+.dot-sm { width: 4px; height: 4px; }
+.dot-md { width: 6px; height: 6px; }
+.dot-lg { width: 8px; height: 8px; }
+
+/* ── Section Tag — dot-matrix label above headings ─────────────────────── */
+.section-tag {
+  display: block;
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: hsl(var(--ink-muted));
+  margin-bottom: 0.25rem;
+}
+
+/* ── Buttons ────────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4375rem;
+  padding: 0.5625rem 1.125rem;
+  border-radius: 3px; /* Deliberately sharper than card radius */
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.025em;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: opacity    var(--duration-fast) var(--ease),
+              background var(--duration-fast) var(--ease),
+              border-color var(--duration-fast) var(--ease),
+              color      var(--duration-fast) var(--ease),
+              box-shadow var(--duration-fast) var(--ease),
+              transform  var(--duration-fast) var(--ease);
+  border: none;
+  outline: none;
+  text-decoration: none;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.btn:disabled {
+  opacity: 0.38;
+  pointer-events: none;
+}
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+/* Primary — solid foreground/background inversion */
+.btn-primary {
+  background-color: hsl(var(--foreground));
+  color: hsl(var(--background));
+}
+.btn-primary:hover:not(:disabled) { opacity: 0.88; }
+.btn-primary:focus-visible {
+  outline: 1.5px solid hsl(var(--foreground));
+  outline-offset: 2px;
+}
+
+/* Secondary — ghost border */
+.btn-secondary {
+  background-color: transparent;
+  color: hsl(var(--foreground));
+  box-shadow: inset 0 0 0 1px hsl(var(--border));
+}
+.btn-secondary:hover:not(:disabled) {
+  background-color: hsl(var(--surface-high));
+  box-shadow: inset 0 0 0 1px hsl(var(--foreground) / 0.15);
+}
+
+/* Ghost — no background, no border */
+.btn-ghost {
+  background-color: transparent;
+  color: hsl(var(--ink-muted));
+}
+.btn-ghost:hover:not(:disabled) {
+  background-color: hsl(var(--surface-card));
+  color: hsl(var(--foreground));
+}
+
+/* Critical — signal red, destructive actions only */
+.btn-critical {
+  background-color: hsl(var(--signal));
+  color: hsl(var(--signal-foreground));
+}
+.btn-critical:hover:not(:disabled) { opacity: 0.88; }
+.btn-critical:active:not(:disabled) { opacity: 0.8; }
+
+/* Sizes */
+.btn-xs  { padding: 0.3125rem 0.625rem; font-size: 0.75rem; gap: 0.375rem; }
+.btn-sm  { padding: 0.4375rem 0.875rem; font-size: 0.8125rem; gap: 0.375rem; }
+.btn-lg  { padding: 0.6875rem 1.5rem;   font-size: 0.9375rem; gap: 0.5rem; }
+.btn-xl  { padding: 0.875rem 2rem;      font-size: 1rem; gap: 0.5rem; }
+
+/* Icon button */
+.btn-icon {
+  padding: 0.5625rem;
+  aspect-ratio: 1;
+  gap: 0;
+}
+.btn-icon.btn-xs { padding: 0.3125rem; }
+.btn-icon.btn-sm { padding: 0.4375rem; }
+.btn-icon.btn-lg { padding: 0.6875rem; }
+
+/* Loading state */
+.btn-loading { pointer-events: none; opacity: 0.7; }
+.btn-loading .btn-spinner {
+  width: 0.875rem; height: 0.875rem;
+  border: 1.5px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 9999px;
+  animation: spin 0.6s linear infinite;
+}
+
+/* Toggle state */
+.btn-toggle-on {
+  background: hsl(var(--surface-highest));
+  color: hsl(var(--foreground));
+  box-shadow: inset 0 0 0 1px hsl(var(--foreground) / 0.15);
+}
+
+/* ── Inputs ─────────────────────────────────────────────────────────────── */
+.input {
+  display: block;
+  width: 100%;
+  background-color: hsl(var(--surface-card));
+  color: hsl(var(--foreground));
+  border-radius: var(--radius);
+  border: 1px solid hsl(var(--border));
+  padding: 0.625rem 0.875rem;
+  font-family: inherit;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  transition: border-color var(--duration-default) var(--ease);
+  outline: none;
+  -webkit-appearance: none;
+}
+.input::placeholder { color: hsl(var(--ink-subtle)); }
+.input:focus        { border-color: hsl(var(--foreground)); }
+.input:disabled     { opacity: 0.4; cursor: not-allowed; }
+.input.error        { border-color: hsl(var(--signal)); }
+.input.error:focus  { border-color: hsl(var(--signal)); }
+
+/* Input label */
+.input-label {
+  display: block;
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: hsl(var(--ink-muted));
+  margin-bottom: 0.375rem;
+}
+.input-hint {
+  font-size: 0.75rem;
+  color: hsl(var(--ink-subtle));
+  margin-top: 0.375rem;
+}
+.input-error-msg {
+  font-size: 0.75rem;
+  color: hsl(var(--signal));
+  margin-top: 0.375rem;
+}
+
+/* ── Cards ──────────────────────────────────────────────────────────────── */
+/* No dividers inside. Use spacing-6 / spacing-8 between items. */
+.card {
+  background-color: hsl(var(--surface-card));
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  /* Ghost border — suggestion of a boundary, not a wall */
+  box-shadow: inset 0 0 0 1px hsl(var(--border));
+}
+
+.card-hover {
+  transition: background-color var(--duration-fast) var(--ease);
+  cursor: pointer;
+}
+.card-hover:hover {
+  background-color: hsl(var(--surface-high));
+}
+
+/* Float card — ambient shadow for dark, subtle for light */
+.card-float {
+  box-shadow: 0 0 64px 0 hsl(var(--foreground) / 0.05),
+              inset 0 0 0 1px hsl(var(--border));
+}
+
+/* Signal card — critical/error state, signal red border + ambient glow */
+.card-signal {
+  box-shadow: inset 0 0 0 1px hsl(var(--signal) / 0.35),
+              0 0 32px 0 hsl(var(--signal) / 0.07);
+}
+
+/* ── Badges & Tags ──────────────────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: var(--radius);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+.badge-default  {
+  background-color: hsl(var(--surface-high));
+  color: hsl(var(--ink-muted));
+}
+.badge-outline  {
+  background-color: transparent;
+  color: hsl(var(--foreground));
+  box-shadow: inset 0 0 0 1px hsl(var(--border));
+}
+.badge-active   {
+  background-color: hsl(var(--signal));
+  color: hsl(var(--signal-foreground));
+}
+.badge-dim      {
+  background-color: hsl(var(--signal) / 0.12);
+  color: hsl(var(--signal));
+}
+
+/* ── Navigation ─────────────────────────────────────────────────────────── */
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0 2rem;
+  height: 3.5rem;
+  background-color: hsl(var(--surface-card) / 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid hsl(var(--border));
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.nav-link {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: hsl(var(--ink-muted));
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease);
+  padding: 0.25rem 0;
+}
+.nav-link:hover    { color: hsl(var(--foreground)); }
+.nav-link.active   {
+  color: hsl(var(--foreground));
+  border-bottom: 1px solid hsl(var(--foreground));
+}
+
+/* ── Table ──────────────────────────────────────────────────────────────── */
+/* No dividers — row hover provides separation. Numeric columns right-aligned. */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.table th {
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: hsl(var(--ink-muted));
+  text-align: left;
+  padding: 0 0.75rem 0.875rem;
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 0.625rem 0.75rem;
+  white-space: nowrap;
+}
+
+/* Row separation via tonal hover — no border-bottom between rows */
+.table tr {
+  border-top: 1px solid hsl(var(--border));
+  transition: background var(--duration-fast) var(--ease);
+}
+
+.table tr:hover td {
+  background: hsl(var(--surface-high));
+}
+
+/* Right-align numeric columns: add class="col-num" to <th> and <td> */
+.table th.col-num,
+.table td.col-num {
+  text-align: right;
+}
+
+/* First column inset — breathing room on the left edge */
+.table .th-inset-l,
+.table .td-inset-l {
+  padding-left: 1.5rem;
+}
+
+/* Last column inset — breathing room on the right edge */
+.table .td-inset-r {
+  padding-right: 1.5rem;
+}
+
+/* Remove top border on first thead row */
+.table tr.tr-no-border {
+  border-top: none;
+}
+
+/* Scroll container — horizontal scroll on mobile */
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ── Toast / Notification ───────────────────────────────────────────────── */
+.toast {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius);
+  background-color: hsl(var(--surface-card));
+  box-shadow: inset 0 0 0 1px hsl(var(--border));
+  font-size: 0.875rem;
+  max-width: 22rem;
+  animation: fade-up 0.18s ease-out;
+}
+.toast-signal {
+  box-shadow: inset 0 0 0 1px hsl(var(--signal) / 0.30),
+              0 0 24px 0 hsl(var(--signal) / 0.08);
+}
+
+/* ── Dot Display — Doto font, special components only ──────────────────── */
+/* Use for: clocks, counters, build stamps, metric readouts. Never body copy. */
+.dot-display {
+  font-family: 'Doto', 'Space Mono', monospace;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+
+/* Variant: muted data readout (default) */
+.dot-display-muted {
+  color: hsl(var(--ink-muted));
+}
+
+/* Variant: signal — use for live/critical/active states only */
+.dot-display-signal {
+  color: hsl(var(--signal));
+}
+
+/* Size scale */
+.dot-display-xs  { font-size: 0.75rem;  }   /* 12px — inline labels */
+.dot-display-sm  { font-size: 1rem;     }   /* 16px — compact metrics */
+.dot-display-md  { font-size: 1.5rem;   }   /* 24px — dashboard values */
+.dot-display-lg  { font-size: 2.5rem;   }   /* 40px — hero clock/counter */
+.dot-display-xl  { font-size: 4rem;     }   /* 64px — full display */
+
+/* ── Glass panel — for floating overlays ───────────────────────────────── */
+.glass {
+  background-color: hsl(var(--surface-card) / 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+}
+
+/* ── Dividers ────────────────────────────────────────────────────────────── */
+.divider {
+  height: 1px;
+  background: hsl(var(--border));
+}
+
+.section-divider {
+  height: 1px;
+  background: transparent;
+  margin: 3rem 0;
+  /* The 1px gap is formed by the layout, background shift does the rest. */
+}
+
+/* ─── Utility Overrides ───────────────────────────────────────────────────── */
+/* Ghost border as utility */
+.border-ghost {
+  border: 1px solid hsl(var(--border));
+}
+
+/* Signal glow */
+.shadow-signal {
+  box-shadow: 0 0 32px 0 hsl(var(--signal) / 0.12);
+}
+
+/* Frosted glass backdrop */
+.backdrop-frosted {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Tonal layer shifts — use for hover states instead of opacity */
+.hover\:surface-shift:hover {
+  background-color: hsl(var(--surface-high));
+}
+
+/* Label utility — Space Grotesk uppercase tracking */
+.label {
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: hsl(var(--ink-muted));
+}
+.label-md {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: hsl(var(--ink-muted));
+}
+
+/* Prevent text selection on UI chrome */
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Typography scale utilities */
+.t-display { font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
+.t-h1 { font-size: 2rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; }
+.t-h2 { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.018em; line-height: 1.2; }
+.t-h3 { font-size: 1.25rem; font-weight: 600; letter-spacing: -0.01em; line-height: 1.25; }
+.t-h4 { font-size: 1.0625rem; font-weight: 500; letter-spacing: -0.005em; line-height: 1.3; }
+.t-body-lg { font-size: 1rem; font-weight: 400; line-height: 1.65; }
+.t-body { font-size: 0.875rem; font-weight: 400; line-height: 1.6; }
+.t-body-sm { font-size: 0.8rem; font-weight: 400; line-height: 1.55; }
+.t-label { font-size: 0.625rem; font-weight: 500; letter-spacing: 0.10em; text-transform: uppercase; }
+.t-label-md { font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase; }
+.t-mono { font-family: 'Space Mono', monospace; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+
+/* Foreground color utilities */
+.c-fg     { color: hsl(var(--foreground)); }
+.c-muted  { color: hsl(var(--ink-muted)); }
+.c-subtle { color: hsl(var(--ink-subtle)); }
+.c-signal { color: hsl(var(--signal)); }
+
+/* Background utilities — surface scale (short aliases) */
+.bg-base    { background-color: hsl(var(--background)); }
+.bg-low     { background-color: hsl(var(--surface-low)); }
+.bg-card    { background-color: hsl(var(--surface-card)); }
+.bg-high    { background-color: hsl(var(--surface-high)); }
+.bg-highest { background-color: hsl(var(--surface-highest)); }
+.bg-signal  { background-color: hsl(var(--signal)); }
+
+/* Background utilities — verbose aliases (match Tailwind config names) */
+.bg-surface         { background-color: hsl(var(--surface)); }
+.bg-surface-low     { background-color: hsl(var(--surface-low)); }
+.bg-surface-card    { background-color: hsl(var(--surface-card)); }
+.bg-surface-high    { background-color: hsl(var(--surface-high)); }
+.bg-surface-highest { background-color: hsl(var(--surface-highest)); }
+.bg-foreground      { background-color: hsl(var(--foreground)); }
+.bg-background      { background-color: hsl(var(--background)); }
+
+/* Ink background utilities — for LED dot color overrides */
+.bg-ink-subtle { background-color: hsl(var(--ink-subtle)); }
+.bg-ink-ghost  { background-color: hsl(var(--ink-ghost)); }
+
+/* Animation utilities */
+.animate-led      { animation: led-pulse 2.4s ease-in-out infinite; }
+.animate-led-fast { animation: led-pulse 1s ease-in-out infinite; }
+.animate-fade-up  { animation: fade-up 0.18s ease-out; }
+.animate-scale-in { animation: scale-in 0.15s ease-out; }
+
+/* ─── Border Radius Utilities ────────────────────────────────────────────── */
+.radius-sm   { border-radius: var(--radius-sm);   }  /* 2px — badges, tight UI */
+.radius-md   { border-radius: var(--radius-md);   }  /* 4px — cards, default */
+.radius-lg   { border-radius: var(--radius-lg);   }  /* 6px — max for containers */
+.radius-full { border-radius: var(--radius-full); }  /* 9999px — dots only */
+
+/* ─── Transition Utilities ───────────────────────────────────────────────── */
+/* Apply to any element that needs timed state changes                        */
+.transition-fast    { transition: background var(--duration-fast)    var(--ease),
+                                  color      var(--duration-fast)    var(--ease),
+                                  transform  var(--duration-fast)    var(--ease),
+                                  opacity    var(--duration-fast)    var(--ease); }
+.transition-default { transition: background var(--duration-default) var(--ease),
+                                  color      var(--duration-default) var(--ease),
+                                  transform  var(--duration-default) var(--ease),
+                                  opacity    var(--duration-default) var(--ease); }
+.transition-slow    { transition: background var(--duration-slow)    var(--ease),
+                                  color      var(--duration-slow)    var(--ease),
+                                  transform  var(--duration-slow)    var(--ease),
+                                  opacity    var(--duration-slow)    var(--ease); }
+
+/* ─── Layout Primitives ───────────────────────────────────────────────────── */
+
+/* Card variant — flush (no padding, overflow hidden; for tables/images inside cards) */
+.card-flush { padding: 0; overflow: hidden; }
+
+/* Row — flex row, vertically centered */
+.row         { display: flex; align-items: center; gap: 1rem; }
+.row-sm      { display: flex; align-items: center; gap: 0.625rem; }
+.row-between { display: flex; align-items: center; justify-content: space-between; }
+
+/* Stack — vertical flex */
+.stack    { display: flex; flex-direction: column; }
+.stack-sm { display: flex; flex-direction: column; gap: 0.5rem; }
+
+/* Cluster — flex wrap (button groups, badge lists, tag clouds) */
+.cluster    { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.cluster-sm { display: flex; flex-wrap: wrap; gap: 0.625rem; }
+
+/* ── Dot Pattern — Nothing-inspired dot matrix backgrounds ─────────────── */
+/*                                                                           */
+/*  Usage:                                                                   */
+/*    <div class="bg-dots">                       default                    */
+/*    <div class="bg-dots bg-dots-tight">         tighter grid               */
+/*    <div class="bg-dots bg-dots-signal">        red dots                   */
+/*    <div class="bg-dots bg-dots-loose bg-dots-md bg-dots-subtle">         */
+/*                                                                           */
+/*  Override directly:                                                       */
+/*    style="--dot-gap:24px; --dot-size:1.5px; --dot-color:#FF4132"         */
+
+.bg-dots {
+  --dot-size:  1px;
+  --dot-gap:   20px;
+  --dot-color: hsl(var(--ink-ghost));
+  background-image: radial-gradient(
+    circle,
+    var(--dot-color) var(--dot-size),
+    transparent var(--dot-size)
+  );
+  background-size: var(--dot-gap) var(--dot-gap);
+}
+
+/* ── Spacing variants ─── */
+.bg-dots-tight  { --dot-gap:  8px; }
+.bg-dots-dense  { --dot-gap: 12px; }
+.bg-dots-loose  { --dot-gap: 32px; }
+.bg-dots-sparse { --dot-gap: 56px; }
+
+/* ── Dot size variants ─── */
+.bg-dots-xs { --dot-size: 0.5px; }
+.bg-dots-sm { --dot-size: 1px;   }
+.bg-dots-md { --dot-size: 1.5px; }
+.bg-dots-lg { --dot-size: 2px;   }
+
+/* ── Color variants ─── */
+.bg-dots-ghost  { --dot-color: hsl(var(--ink-ghost));  }   /* default */
+.bg-dots-subtle { --dot-color: hsl(var(--ink-subtle)); }
+.bg-dots-muted  { --dot-color: hsl(var(--ink-muted));  }
+.bg-dots-fg     { --dot-color: hsl(var(--foreground)); }
+.bg-dots-signal { --dot-color: hsl(var(--signal));     }
+
+/* ── Animation speed ─── */
+/* Override: style="--dot-speed:2s"                                          */
+.bg-dots-slow   { --dot-speed: 10s; }
+.bg-dots-fast   { --dot-speed: 1.5s; }
+
+/* ── Animation variants ─── */
+/* Scrolling: animates background-position — GPU-accelerated, safe for content */
+.bg-dots-scroll-x    { animation: dots-scroll-x    var(--dot-speed, 4s) linear infinite; }
+.bg-dots-scroll-y    { animation: dots-scroll-y    var(--dot-speed, 4s) linear infinite; }
+.bg-dots-scroll-diag { animation: dots-scroll-diag var(--dot-speed, 6s) linear infinite; }
+
+/* Alt: reverses direction each cycle. Combine with any scroll variant.      */
+.bg-dots-alt { animation-direction: alternate; animation-timing-function: ease-in-out; }
+
+@keyframes dots-scroll-x {
+  from { background-position: 0 0; }
+  to   { background-position: var(--dot-gap) 0; }
+}
+@keyframes dots-scroll-y {
+  from { background-position: 0 0; }
+  to   { background-position: 0 var(--dot-gap); }
+}
+@keyframes dots-scroll-diag {
+  from { background-position: 0 0; }
+  to   { background-position: var(--dot-gap) var(--dot-gap); }
+}
+/* ── Per-group animatable opacity for .bg-dots-pulse ───────────────────── */
+/* Each @property controls one quadrant of the 2×2 sub-grid.               */
+/* Slightly different durations + irrational offsets → never fully in sync. */
+@property --dot-pa { syntax: '<percentage>'; inherits: false; initial-value: 5%;  }
+@property --dot-pb { syntax: '<percentage>'; inherits: false; initial-value: 5%;  }
+@property --dot-pc { syntax: '<percentage>'; inherits: false; initial-value: 5%;  }
+@property --dot-pd { syntax: '<percentage>'; inherits: false; initial-value: 5%;  }
+
+.bg-dots-pulse {
+  /* Override the base bg-dots gradient with 4 independent sub-grid layers. */
+  /* Each layer covers 1/4 of the dots (2× gap, offset to tile without gaps). */
+  background-image:
+    radial-gradient(circle, color-mix(in srgb, var(--dot-color, hsl(var(--ink-ghost))) var(--dot-pa), transparent) var(--dot-size, 1px), transparent var(--dot-size, 1px)),
+    radial-gradient(circle, color-mix(in srgb, var(--dot-color, hsl(var(--ink-ghost))) var(--dot-pb), transparent) var(--dot-size, 1px), transparent var(--dot-size, 1px)),
+    radial-gradient(circle, color-mix(in srgb, var(--dot-color, hsl(var(--ink-ghost))) var(--dot-pc), transparent) var(--dot-size, 1px), transparent var(--dot-size, 1px)),
+    radial-gradient(circle, color-mix(in srgb, var(--dot-color, hsl(var(--ink-ghost))) var(--dot-pd), transparent) var(--dot-size, 1px), transparent var(--dot-size, 1px));
+  background-size:
+    calc(var(--dot-gap, 20px) * 2) calc(var(--dot-gap, 20px) * 2),
+    calc(var(--dot-gap, 20px) * 2) calc(var(--dot-gap, 20px) * 2),
+    calc(var(--dot-gap, 20px) * 2) calc(var(--dot-gap, 20px) * 2),
+    calc(var(--dot-gap, 20px) * 2) calc(var(--dot-gap, 20px) * 2);
+  background-position:
+    0px                         0px,
+    var(--dot-gap, 20px)        0px,
+    0px                         var(--dot-gap, 20px),
+    var(--dot-gap, 20px)        var(--dot-gap, 20px);
+  animation:
+    dot-pa calc(var(--dot-speed, 4s) * 0.93) ease-in-out infinite 0s,
+    dot-pb calc(var(--dot-speed, 4s) * 1.03) ease-in-out infinite calc(var(--dot-speed, 4s) * -0.27),
+    dot-pc calc(var(--dot-speed, 4s) * 0.98) ease-in-out infinite calc(var(--dot-speed, 4s) * -0.58),
+    dot-pd calc(var(--dot-speed, 4s) * 1.08) ease-in-out infinite calc(var(--dot-speed, 4s) * -0.79);
+}
+
+@keyframes dot-pa { 0%, 15%  { --dot-pa: 5%;   } 35%, 55% { --dot-pa: 100%; } 75%, 100% { --dot-pa: 5%;   } }
+@keyframes dot-pb { 0%, 15%  { --dot-pb: 5%;   } 35%, 55% { --dot-pb: 100%; } 75%, 100% { --dot-pb: 5%;   } }
+@keyframes dot-pc { 0%, 15%  { --dot-pc: 5%;   } 35%, 55% { --dot-pc: 100%; } 75%, 100% { --dot-pc: 5%;   } }
+@keyframes dot-pd { 0%, 15%  { --dot-pd: 5%;   } 35%, 55% { --dot-pd: 100%; } 75%, 100% { --dot-pd: 5%;   } }
+
+/* ─── Keyframes (non-Tailwind fallback) ───────────────────────────────────── */
+@keyframes led-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.25; }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes scan {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

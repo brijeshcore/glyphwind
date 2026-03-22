@@ -1,0 +1,19 @@
+[
+  {
+    "version": "1.0.0",
+    "date": "2026-03-22",
+    "tag": "initial",
+    "tailwindVersion": "3.4.17",
+    "changes": [
+      "Initial release — color system (dark + light themes), full surface scale",
+      "Signal red tokens — #FF4132 dark mode / #BB0307 light mode with foreground pair",
+      "Typography — Space Grotesk + Space Mono + Doto dot-matrix display scale",
+      "4px base grid — spacing, radius, elevation tokens (tonal layering, no drop shadows)",
+      "Component classes: buttons (4 variants × 5 sizes), inputs, cards, badges, navbar, toasts, glass panel",
+      "Dot pattern utilities (bg-dots-*) — size, density, and color variants",
+      "Tailwind CSS v3 config with full token mapping via CSS custom properties",
+      "shadcn/ui and React Aria compatibility — zero config",
+      "Standalone showcase — open in browser, no build step required"
+    ]
+  }
+]

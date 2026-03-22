@@ -1,0 +1,3319 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="icon.png" />
+  <script>
+    (function () {
+      var t = localStorage.getItem('theme');
+      if (t === 'light') document.documentElement.classList.remove('dark');
+      else if (t === 'dark') document.documentElement.classList.add('dark');
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glyphwind Design System - Tailwind CSS Design System by Brijesh Chowdary Lavu</title>
+
+  <!-- SEO -->
+  <meta name="description"
+    content="Glyphwind is a precision-crafted Tailwind CSS design system featuring semantic color tokens, dot-matrix typography, and a strict 4px grid. Built by Brijesh Chowdary Lavu." />
+  <meta name="keywords"
+    content="Glyphwind, Tailwind CSS design system, design tokens, UI kit, component library, dark mode, CSS variables, Brijesh Chowdary Lavu" />
+  <meta name="author" content="Brijesh Chowdary Lavu" />
+  <link rel="canonical" href="https://brijeshcore.github.io/glyphwind/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://brijeshcore.github.io/glyphwind/" />
+  <meta property="og:title" content="Glyphwind Design System" />
+  <meta property="og:description"
+    content="A precision-crafted Tailwind CSS design system with semantic tokens, dot-matrix typography, and a strict 4px grid." />
+  <meta property="og:site_name" content="Glyphwind" />
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Glyphwind Design System" />
+  <meta name="twitter:description"
+    content="A precision-crafted Tailwind CSS design system with semantic tokens, dot-matrix typography, and a strict 4px grid." />
+
+  <!-- Author identity -->
+  <meta name="creator" content="Brijesh Chowdary Lavu" />
+  <link rel="me" href="https://www.linkedin.com/in/brijeshcl/" />
+  <link rel="me" href="https://github.com/brijeshcore" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4L05CHV00B"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-4L05CHV00B');
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Doto:wght@100..900&display=swap"
+    rel="stylesheet" />
+
+  <!-- Design System -->
+  <link rel="stylesheet" href="./globals.css" />
+
+  <!-- Tailwind CDN -->
+  <!-- Tailwind CSS v3.4.17 — pinned, matches tailwindVersion in versions/index.json -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Space Grotesk', 'system-ui', 'sans-serif'],
+            mono: ['Space Mono', 'monospace'],
+            dot: ['Doto', 'Space Mono', 'monospace'],
+          },
+          // Mirror of tailwind.config.js — keep in sync
+          colors: {
+            background: 'hsl(var(--background))',
+            foreground: 'hsl(var(--foreground))',
+            surface: {
+              DEFAULT: 'hsl(var(--surface))',
+              low: 'hsl(var(--surface-low))',
+              card: 'hsl(var(--surface-card))',
+              high: 'hsl(var(--surface-high))',
+              highest: 'hsl(var(--surface-highest))',
+            },
+            ink: {
+              DEFAULT: 'hsl(var(--ink))',
+              muted: 'hsl(var(--ink-muted))',
+              subtle: 'hsl(var(--ink-subtle))',
+              ghost: 'hsl(var(--ink-ghost))',
+            },
+            signal: {
+              DEFAULT: 'hsl(var(--signal))',
+              foreground: 'hsl(var(--signal-foreground))',
+            },
+            border: 'hsl(var(--border))',
+            input: 'hsl(var(--input))',
+            ring: 'hsl(var(--ring))',
+            primary: {
+              DEFAULT: 'hsl(var(--primary))',
+              foreground: 'hsl(var(--primary-foreground))',
+            },
+            secondary: {
+              DEFAULT: 'hsl(var(--secondary))',
+              foreground: 'hsl(var(--secondary-foreground))',
+            },
+            muted: {
+              DEFAULT: 'hsl(var(--muted))',
+              foreground: 'hsl(var(--muted-foreground))',
+            },
+            accent: {
+              DEFAULT: 'hsl(var(--accent))',
+              foreground: 'hsl(var(--accent-foreground))',
+            },
+            destructive: {
+              DEFAULT: 'hsl(var(--destructive))',
+              foreground: 'hsl(var(--destructive-foreground))',
+            },
+          },
+          animation: {
+            'led': 'led 2.4s ease-in-out infinite',
+            'led-fast': 'led 1s ease-in-out infinite',
+            'fade-up': 'fadeUp 0.18s ease-out',
+          },
+          keyframes: {
+            led: {
+              '0%,100%': { opacity: '1' },
+              '50%': { opacity: '0.2' },
+            },
+            fadeUp: {
+              from: { opacity: '0', transform: 'translateY(6px)' },
+              to: { opacity: '1', transform: 'translateY(0)' },
+            },
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    /* Establish layer order so Tailwind's utilities stay below globals.css unlayered styles */
+    @layer base, components, utilities;
+
+    /* ─── Showcase token aliases ──────────────────────────────────────────── */
+    /* Maps convenience shorthand vars to globals.css semantic tokens.        */
+    /* These aliases let existing inline styles continue to work.             */
+    :root,
+    .dark {
+      --bg: hsl(var(--background));
+      --bg-low: hsl(var(--surface-low));
+      --bg-card: hsl(var(--surface-card));
+      --bg-high: hsl(var(--surface-high));
+      --bg-highest: hsl(var(--surface-highest));
+      --fg: hsl(var(--foreground));
+      --fg-muted: hsl(var(--ink-muted));
+      --fg-subtle: hsl(var(--ink-subtle));
+      --fg-ghost: hsl(var(--ink-ghost));
+      --signal-dim: hsl(var(--signal) / 0.10);
+      /* --signal, --border, --radius, --ring already defined in globals.css */
+    }
+
+    /* ─── Base ──────────────────────────────────────────────────────────── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+
+    ::selection {
+      background: hsl(var(--signal));
+    }
+
+    ::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--bg-high);
+      border-radius: 2px;
+    }
+
+    /* ─── Showcase layout ───────────────────────────────────────────────── */
+    .showcase-section {
+      padding: 5rem 0;
+      border-top: 1px solid hsl(var(--border));
+    }
+
+    .showcase-section:first-of-type {
+      border-top: none;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .swatch {
+      aspect-ratio: 3/2;
+      border-radius: var(--radius);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0.625rem;
+      overflow: hidden;
+    }
+
+    .spec-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-top: 1px solid hsl(var(--border));
+    }
+
+    /* Theme toggle */
+    #theme-toggle,
+    #theme-toggle-mob {
+      background: none;
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--radius);
+      cursor: pointer;
+      color: var(--fg-muted);
+      font-family: inherit;
+      font-size: 0.625rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.375rem 0.625rem;
+      transition: color 100ms, border-color 100ms;
+    }
+
+    #theme-toggle:hover,
+    #theme-toggle-mob:hover {
+      color: var(--fg);
+      border-color: var(--fg);
+    }
+
+    /* Code block */
+    .codeblock {
+      background: var(--bg-low);
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      line-height: 1.7;
+      color: var(--fg-muted);
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    .codeblock .token-key {
+      color: var(--fg);
+    }
+
+    .codeblock .token-val {
+      color: hsl(var(--signal));
+    }
+
+    .codeblock .token-str {
+      color: var(--fg-muted);
+    }
+
+    /* ─── Mobile nav ─────────────────────────────────────────────────────── */
+    .nav-mobile-actions {
+      display: none;
+      margin-left: auto;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-hamburger {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+      width: 2rem;
+      height: 2rem;
+      background: none;
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--radius);
+      cursor: pointer;
+      padding: 0.375rem;
+      flex-shrink: 0;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      height: 1.5px;
+      background: var(--fg-muted);
+      transition: opacity 120ms, transform 120ms;
+      border-radius: 1px;
+    }
+
+    .nav-hamburger.open span:nth-child(1) {
+      transform: translateY(5.5px) rotate(45deg);
+    }
+
+    .nav-hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-hamburger.open span:nth-child(3) {
+      transform: translateY(-5.5px) rotate(-45deg);
+    }
+
+    .nav-mobile-panel {
+      display: none;
+      position: fixed;
+      top: 3.5rem;
+      left: 0;
+      right: 0;
+      background: color-mix(in srgb, var(--bg-card) 97%, transparent);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid hsl(var(--border));
+      padding: 0.5rem 0;
+      flex-direction: column;
+      z-index: 49;
+      animation: fade-up 0.15s ease-out;
+    }
+
+    .nav-mobile-panel.open {
+      display: flex;
+    }
+
+    .nav-mobile-panel a {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--fg-muted);
+      text-decoration: none;
+      padding: 0.875rem 1.25rem;
+      border-bottom: 1px solid hsl(var(--border));
+      transition: color 80ms, background 80ms;
+    }
+
+    .nav-mobile-panel a:last-child {
+      border-bottom: none;
+    }
+
+    .nav-mobile-panel a:hover {
+      color: var(--fg);
+      background: var(--bg-low);
+    }
+
+    /* ─── Grid layout classes ────────────────────────────────────────────── */
+    .g-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    /* Prevent grid children from blowing past their 1fr allocation */
+    .g-2>*,
+    .g-2-wide>*,
+    .g-3>*,
+    .g-4>* {
+      min-width: 0;
+    }
+
+    .g-2-wide {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+
+    .g-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .g-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .g-6 {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 3px;
+    }
+
+    .g-auto {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .g-dot-display {
+      display: grid;
+      gap: 2.5rem;
+    }
+
+    .g-dot-sizes {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    /* Hero */
+    .hero-section {
+      padding: 7rem 0 5rem;
+    }
+
+    /* Site footer */
+    .site-footer {
+      padding: 3rem 0;
+      border-top: 1px solid hsl(var(--border));
+    }
+
+    /* Section with tinted background */
+    .section-tinted {
+      background-color: var(--bg-low);
+    }
+
+    /* Signal card variant — critical state */
+    .card-signal {
+      border-color: rgba(255, 65, 50, 0.2);
+      box-shadow: 0 0 24px 0 rgba(255, 65, 50, 0.06);
+    }
+
+    /* Install tabs bar */
+    .install-tabs {
+      gap: 0;
+      border-bottom: 1px solid hsl(var(--border));
+      margin-bottom: 0;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Focused input — active/selected state */
+    .input-active {
+      border-color: var(--fg);
+    }
+
+    /* Table first row — no top border */
+    .tr-no-border {
+      border-top: none;
+    }
+
+    /* Overflow card wrapper (e.g. glass panel) */
+    .card-overflow {
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    /* ─── Responsive grid classes ────────────────────────────────────────── */
+    .tab-bar {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      white-space: nowrap;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* ─── Breakpoint: tablet ≤ 900px ─────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .g-3 {
+        grid-template-columns: 1fr 1fr !important;
+      }
+
+      .g-6 {
+        grid-template-columns: repeat(3, 1fr) !important;
+      }
+    }
+
+    /* ─── Breakpoint: mobile ≤ 860px ─────────────────────────────────────── */
+    @media (max-width: 860px) {
+
+      /* Layout */
+      .showcase-section {
+        padding: 3rem 0;
+      }
+
+      .container {
+        padding: 0 1.25rem;
+      }
+
+      /* All multi-col grids collapse */
+      .g-2,
+      .g-2-wide,
+      .g-3 {
+        grid-template-columns: 1fr !important;
+      }
+
+      .g-4,
+      .g-6 {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+
+      /* Spec rows collapse */
+      .spec-row {
+        grid-template-columns: 1fr !important;
+        gap: 0.25rem !important;
+      }
+
+      .spec-row>*:last-child {
+        color: var(--fg-subtle);
+      }
+
+      /* Navbar */
+      #nav-links {
+        display: none !important;
+      }
+
+      .nav-mobile-actions {
+        display: flex !important;
+      }
+
+      /* Hero */
+      .stats-row {
+        gap: 1.5rem !important;
+        flex-wrap: wrap !important;
+      }
+
+      /* Dot display scale down */
+      .dot-display-xl {
+        font-size: 2.25rem;
+      }
+
+      .dot-display-lg {
+        font-size: 1.75rem;
+      }
+
+      /* Section heading */
+      .t-h1 {
+        font-size: 1.625rem;
+      }
+
+      /* Reduce hero padding */
+      section[style*="7rem"] {
+        padding-top: 4rem !important;
+        padding-bottom: 3rem !important;
+      }
+
+      /* Motion section rules cards */
+      .motion-rules {
+        flex-direction: column !important;
+      }
+    }
+
+    /* ─── Showcase-specific classes ─────────────────────────────────────── */
+
+    /* Section label above headings — "Section_01" style */
+    .section-label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Sub-labels within sections */
+    .section-sublabel {
+      display: block;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-sublabel-lg {
+      display: block;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Section h2 bottom margin */
+    .section-heading {
+      margin-bottom: 3rem;
+    }
+
+    .section-heading-sm {
+      margin-bottom: 0.75rem;
+    }
+
+    /* Swatch grids */
+    .swatch-grid-6 {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 3px;
+      margin-bottom: 2.5rem;
+    }
+
+    .swatch-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3px;
+    }
+
+    /* Swatch labels — name describes the bg, not the theme context */
+    .swatch-label-dark {
+      color: rgba(255, 255, 255, 0.70);
+    }
+
+    .swatch-label-dark-sm {
+      color: rgba(255, 255, 255, 0.50);
+      font-size: 0.55rem;
+    }
+
+    .swatch-label-light {
+      color: rgba(0, 0, 0, 0.65);
+    }
+
+    .swatch-label-light-sm {
+      color: rgba(0, 0, 0, 0.45);
+      font-size: 0.55rem;
+    }
+
+    .swatch-label-signal {
+      color: hsl(var(--signal));
+    }
+
+    .dark .swatch-label-signal,
+    .light .swatch-label-signal {
+      color: color-mix(in srgb, hsl(var(--signal-foreground)) 70%, transparent);
+    }
+
+    .dark .swatch-label-signal-sm,
+    .light .swatch-label-signal-sm {
+      color: color-mix(in srgb, hsl(var(--signal-foreground)) 50%, transparent);
+    }
+
+    .swatch-label-signal-sm {
+      color: color-mix(in srgb, hsl(var(--signal)) 70%, transparent);
+      font-size: 0.55rem;
+    }
+
+    .swatch-signal-dim {
+      background: color-mix(in srgb, hsl(var(--signal)) 10%, transparent);
+      border: 1px solid color-mix(in srgb, hsl(var(--signal)) 20%, transparent);
+    }
+
+    .swatch-glow-only {
+      background: transparent;
+      border: 1px solid color-mix(in srgb, hsl(var(--signal)) 35%, transparent);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .swatch-glow-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 60%, color-mix(in srgb, hsl(var(--signal)) 8%, transparent) 100%);
+      pointer-events: none;
+    }
+
+    /* Elevation row inside spacing section */
+    .elevation-row {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid hsl(var(--border));
+    }
+
+    .elevation-item {
+      padding: 0.75rem 1rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Component blocks — consistent bottom margin between component demos */
+    .component-block {
+      margin-bottom: 4rem;
+    }
+
+    /* Sub-label for button group labels (VARIANTS, SIZES, etc.) */
+    .group-label {
+      display: block;
+      margin-bottom: 0.875rem;
+      font-size: 0.55rem;
+      letter-spacing: 0.12em;
+    }
+
+    /* Extra-tiny label — icon size annotations */
+    .t-xxs {
+      font-size: 0.55rem;
+    }
+
+    /* Type scale specimen row */
+    .type-row {
+      padding: 1.25rem 0;
+      border-top: 1px solid hsl(var(--border));
+    }
+
+    /* Motion demo row — card layout for motion demos */
+    .demo-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 1.5rem;
+    }
+
+    /* Motion demo — size/cursor only; transition comes from .transition-* globals */
+    .motion-demo {
+      width: 2.5rem;
+      height: 2.5rem;
+      background: var(--fg);
+      border-radius: var(--radius);
+      cursor: pointer;
+    }
+
+    .motion-demo:hover {
+      background: hsl(var(--signal));
+      transform: scale(0.92);
+    }
+
+    .motion-entrance-box {
+      width: 2.5rem;
+      height: 2.5rem;
+      background: var(--fg);
+      border-radius: var(--radius);
+    }
+
+    /* Spacing section — demo bars */
+    .spacing-swatch {
+      background: var(--fg);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .spacing-track {
+      height: 16px;
+      background: var(--fg);
+      border-radius: 2px;
+      flex: 1;
+      opacity: 0.12;
+    }
+
+    .spacing-label {
+      width: 3.5rem;
+      text-align: right;
+    }
+
+    /* Dot pattern — demo cards */
+    .dot-demo {
+      min-height: 120px;
+      position: relative;
+    }
+
+    .dot-demo-label {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+    }
+
+    .dot-demo-sub {
+      position: absolute;
+      bottom: 0.35rem;
+      left: 1rem;
+    }
+
+    /* Token table max-width */
+    .token-table {
+      max-width: 400px;
+    }
+
+    /* Install panels — hidden by default, shown by switchTab() */
+    .install-panel {
+      padding-top: 2rem;
+      display: none;
+    }
+
+    .install-panel.active {
+      display: block;
+    }
+
+    /* Install tab button */
+    .install-tab-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 0.75rem 1.25rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .install-tab-btn.active {
+      color: var(--fg);
+      box-shadow: inset 0 -1px 0 0 var(--fg);
+    }
+
+    .install-tab-btn:not(.active) {
+      color: var(--fg-muted);
+    }
+
+    /* Install step header */
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Info note callout box */
+    .info-note {
+      padding: 1rem 1.25rem;
+      background: var(--bg-low);
+      border-radius: 3px;
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .info-note-icon {
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* Inline code in prose */
+    .inline-code {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8em;
+      background: var(--bg-low);
+      padding: 0.15em 0.4em;
+      border-radius: 2px;
+    }
+
+    /* Vertical divider (1px bar) */
+    .vr {
+      width: 1px;
+      background: hsl(var(--border));
+    }
+
+    /* Table first/last column inset padding */
+    .td-inset-l {
+      padding-left: 1.25rem !important;
+    }
+
+    .td-inset-r {
+      padding-right: 1.25rem !important;
+    }
+
+    .th-inset-l {
+      padding-left: 1.25rem !important;
+      padding-top: 1rem !important;
+    }
+
+    /* Navbar logo text */
+    .navbar-brand {
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      font-size: 0.9375rem;
+    }
+
+    /* Toast icon nudge */
+    .toast-icon {
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ─── Code toggle (per-component) ─────────────────────────────────────── */
+    .component-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+
+    .component-header .section-sublabel-lg {
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+
+    .code-toggle {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.06em;
+      color: var(--fg-muted);
+      background: none;
+      border: 1px solid hsl(var(--border));
+      border-radius: 2px;
+      padding: 0.3rem 0.6rem;
+      cursor: pointer;
+      transition: color 100ms, border-color 100ms;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .code-toggle:hover,
+    .code-toggle.active {
+      color: var(--fg);
+      border-color: var(--fg);
+    }
+
+    .code-panel {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 220ms cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+    }
+
+    .code-panel.open {
+      grid-template-rows: 1fr;
+      margin-top: 1.5rem;
+    }
+
+    .code-panel>div {
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════════════════════════════════════════ -->
+  <nav class="navbar">
+    <div class="row-sm">
+      <span class="dot dot-lg animate-led"></span>
+      <span class="navbar-brand">GLYPHWIND</span>
+    </div>
+
+    <!-- Desktop nav links -->
+    <div id="nav-links" class="flex items-center gap-7 ml-auto">
+      <a href="#colors" class="nav-link">Colors</a>
+      <a href="#typography" class="nav-link">Type</a>
+      <a href="#spacing" class="nav-link">Space</a>
+      <a href="#components" class="nav-link">Components</a>
+      <a href="#motion" class="nav-link">Motion</a>
+      <a href="#dot-pattern" class="nav-link">Dot Pattern</a>
+      <a href="#install" class="nav-link">Install</a>
+      <a href="changelog.html" class="nav-link">Changelog</a>
+      <button id="theme-toggle" onclick="toggleTheme()">
+        <span id="theme-label">LIGHT</span>
+      </button>
+    </div>
+
+    <!-- Mobile: theme toggle + hamburger -->
+    <div class="nav-mobile-actions">
+      <button id="theme-toggle-mob" onclick="toggleTheme()">
+        <span id="theme-label-mob">LIGHT</span>
+      </button>
+      <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile nav panel -->
+  <div class="nav-mobile-panel" id="nav-mobile-panel">
+    <a href="#colors" class="nav-link" onclick="closeMobileNav()">Colors</a>
+    <a href="#typography" class="nav-link" onclick="closeMobileNav()">Type</a>
+    <a href="#spacing" class="nav-link" onclick="closeMobileNav()">Space</a>
+    <a href="#components" class="nav-link" onclick="closeMobileNav()">Components</a>
+    <a href="#motion" class="nav-link" onclick="closeMobileNav()">Motion</a>
+    <a href="#dot-pattern" class="nav-link" onclick="closeMobileNav()">Dot Pattern</a>
+    <a href="#install" class="nav-link" onclick="closeMobileNav()">Install</a>
+    <a href="changelog.html" class="nav-link" onclick="closeMobileNav()">Changelog</a>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════════════════════════════════ -->
+  <section class="hero-section bg-dots bg-dots-pulse">
+    <div class="container">
+      <span class="t-label c-muted section-sublabel">Analog Digitalist Design System</span>
+
+      <h1 class="t-display mb-7" style="max-width:680px;">
+        Glyphwind<br>Design<br>System
+      </h1>
+
+      <div class="cluster mb-6">
+        <a href="#components" class="btn btn-primary">Explore Components</a>
+        <a href="#colors" class="btn btn-secondary">View Tokens</a>
+      </div>
+
+      <p class="t-body c-muted">Inspired by Nothing's design language.</p>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════════════════
+     COLORS
+═══════════════════════════════════════════════════════════════════════════ -->
+  <section id="colors" class="showcase-section">
+    <div class="container">
+      <h2 class="t-h1 section-heading">Color System</h2>
+
+      <!-- Dark theme swatches — forced dark context -->
+      <span class="t-label c-muted section-sublabel">Dark Mode — Surface Scale</span>
+      <div class="dark g-6 swatch-grid-6">
+        <div class="swatch bg-background">
+          <span class="t-label swatch-label-dark">background</span>
+          <span class="t-label swatch-label-dark-sm">#000000</span>
+        </div>
+        <div class="swatch bg-surface-low">
+          <span class="t-label swatch-label-dark">surface-low</span>
+          <span class="t-label swatch-label-dark-sm">#0E0E0E</span>
+        </div>
+        <div class="swatch bg-surface-card">
+          <span class="t-label swatch-label-dark">surface-card</span>
+          <span class="t-label swatch-label-dark-sm">#1B1B1B</span>
+        </div>
+        <div class="swatch bg-surface-high">
+          <span class="t-label swatch-label-dark">surface-high</span>
+          <span class="t-label swatch-label-dark-sm">#1F1F1F</span>
+        </div>
+        <div class="swatch bg-surface-highest">
+          <span class="t-label swatch-label-dark">surface-highest</span>
+          <span class="t-label swatch-label-dark-sm">#242424</span>
+        </div>
+        <div class="swatch bg-foreground">
+          <span class="t-label swatch-label-light">ink</span>
+          <span class="t-label swatch-label-light-sm">#FFFFFF</span>
+        </div>
+      </div>
+
+      <!-- Light theme swatches — forced light context -->
+      <span class="t-label c-muted section-sublabel">Light Mode — Surface Scale</span>
+      <div class="light g-6 swatch-grid-6">
+        <div class="swatch bg-surface-card border border-black/5">
+          <span class="t-label swatch-label-light">surface-card</span>
+          <span class="t-label swatch-label-light-sm">#FFFFFF</span>
+        </div>
+        <div class="swatch bg-surface border border-black/5">
+          <span class="t-label swatch-label-light">surface</span>
+          <span class="t-label swatch-label-light-sm">#FCFCFC</span>
+        </div>
+        <div class="swatch bg-surface-low">
+          <span class="t-label swatch-label-light">surface-low</span>
+          <span class="t-label swatch-label-light-sm">#F6F3F2</span>
+        </div>
+        <div class="swatch bg-surface-high">
+          <span class="t-label swatch-label-light">surface-high</span>
+          <span class="t-label swatch-label-light-sm">#E8E5E4</span>
+        </div>
+        <div class="swatch bg-surface-highest">
+          <span class="t-label swatch-label-light">surface-highest</span>
+          <span class="t-label swatch-label-light-sm">#E5E2E1</span>
+        </div>
+        <div class="swatch bg-foreground">
+          <span class="t-label swatch-label-dark">ink</span>
+          <span class="t-label swatch-label-dark-sm">#1B1B1B</span>
+        </div>
+      </div>
+
+      <!-- Accent — signal red shown in both contexts -->
+      <span class="t-label c-muted section-sublabel">Signal Red — Functional Accent</span>
+      <div class="g-4 swatch-grid-4" style="max-width:540px;">
+        <div class="dark swatch bg-signal">
+          <span class="t-label swatch-label-signal">dark mode</span>
+          <span class="t-label swatch-label-signal-sm">#FF4132</span>
+        </div>
+        <div class="light swatch bg-signal">
+          <span class="t-label swatch-label-signal">light mode</span>
+          <span class="t-label swatch-label-signal-sm">#BB0307</span>
+        </div>
+        <div class="swatch swatch-signal-dim">
+          <span class="t-label swatch-label-signal">signal-dim</span>
+          <span class="t-label swatch-label-signal-sm">10% opacity</span>
+        </div>
+        <div class="swatch swatch-glow-only">
+          <div class="swatch-glow-overlay"></div>
+          <span class="t-label swatch-label-signal" style="position:relative;">glow only</span>
+          <span class="t-label swatch-label-signal-sm" style="position:relative;">box-shadow</span>
+        </div>
+      </div>
+
+      <span class="t-label c-muted section-sublabel">Elevation — Tonal Layering</span>
+      <div class="elevation-row">
+        <div class="elevation-item" style="background:#000000;">
+          <span class="t-label" style="color:rgba(255,255,255,0.65);">Level 0 — Base</span>
+          <span class="t-label t-mono" style="color:rgba(255,255,255,0.55);">#000000</span>
+        </div>
+        <div class="elevation-item" style="background:#0E0E0E;">
+          <span class="t-label" style="color:rgba(255,255,255,0.65);">Level 1 — Foundation</span>
+          <span class="t-label t-mono" style="color:rgba(255,255,255,0.55);">#0E0E0E</span>
+        </div>
+        <div class="elevation-item" style="background:#1B1B1B;">
+          <span class="t-label" style="color:rgba(255,255,255,0.75);">Level 2 — Sections</span>
+          <span class="t-label t-mono" style="color:rgba(255,255,255,0.6);">#1B1B1B</span>
+        </div>
+        <div class="elevation-item" style="background:#1F1F1F;">
+          <span class="t-label" style="color:rgba(255,255,255,0.4);">Level 3 — Cards</span>
+          <span class="t-label t-mono" style="color:rgba(255,255,255,0.65);">#1F1F1F</span>
+        </div>
+        <div class="elevation-item" style="background:#353535;">
+          <span class="t-label" style="color:rgba(255,255,255,0.5);">Level 4 — Hover / Highest</span>
+          <span class="t-label t-mono" style="color:rgba(255,255,255,0.75);">#353535</span>
+        </div>
+      </div>
+
+      <div style="margin-top:3rem; padding-top:2rem; border-top:1px solid hsl(var(--border));">
+        <div class="component-header">
+          <span class="t-label c-muted section-sublabel-lg">Code Reference</span>
+          <button class="code-toggle" onclick="toggleCode('colors-ref', this)" aria-expanded="false">&lt;/&gt;</button>
+        </div>
+        <div class="code-panel" id="code-colors-ref">
+          <div>
+            <pre
+              class="codeblock"><span class="token-str">/* CSS custom properties — always wrap in hsl() */</span>
+background: <span class="token-val">hsl(var(--background))</span>;
+color:      <span class="token-val">hsl(var(--foreground))</span>;
+
+<span class="token-str">/* Full surface scale — dark mode values */</span>
+background: <span class="token-val">hsl(var(--background))</span>;        <span class="token-str">/* #000 void */</span>
+background: <span class="token-val">hsl(var(--surface-low))</span>;        <span class="token-str">/* #0E0E0E foundation */</span>
+background: <span class="token-val">hsl(var(--surface))</span>;            <span class="token-str">/* #131313 base */</span>
+background: <span class="token-val">hsl(var(--surface-card))</span>;       <span class="token-str">/* #1B1B1B card */</span>
+background: <span class="token-val">hsl(var(--surface-high))</span>;       <span class="token-str">/* #1F1F1F raised */</span>
+background: <span class="token-val">hsl(var(--surface-highest))</span>;    <span class="token-str">/* #353535 hover */</span>
+
+<span class="token-str">/* Text scale */</span>
+color: <span class="token-val">hsl(var(--foreground))</span>;     <span class="token-str">/* #FFF primary */</span>
+color: <span class="token-val">hsl(var(--ink-muted))</span>;      <span class="token-str">/* #999 secondary */</span>
+color: <span class="token-val">hsl(var(--ink-subtle))</span>;     <span class="token-str">/* #4D4D4D tertiary */</span>
+color: <span class="token-val">hsl(var(--ink-ghost))</span>;      <span class="token-str">/* barely visible */</span>
+
+<span class="token-str">/* Signal red — LED dots, destructive actions, critical states only */</span>
+color:      <span class="token-val">hsl(var(--signal))</span>;
+background: <span class="token-val">hsl(var(--signal) / 0.1)</span>;    <span class="token-str">/* dim tint */</span>
+color:      <span class="token-val">hsl(var(--signal-foreground))</span>; <span class="token-str">/* white on red */</span>
+
+<span class="token-str">/* Borders — ghost only, never 100% opaque */</span>
+border: 1px solid <span class="token-val">hsl(var(--border))</span>;     <span class="token-str">/* rgba auto-themed */</span>
+outline: 2px solid <span class="token-val">hsl(var(--ring))</span>;       <span class="token-str">/* focus ring */</span>
+background: <span class="token-val">hsl(var(--input))</span>;             <span class="token-str">/* input fill */</span>
+
+<span class="token-str">/* Opacity shorthand */</span>
+background: <span class="token-val">hsl(var(--surface-card) / 0.8)</span>;
+
+<span class="token-str">/* Tailwind color classes */</span>
+&lt;div class="<span class="token-val">bg-background text-foreground</span>"&gt;
+&lt;div class="<span class="token-val">bg-surface-low</span>"&gt;
+&lt;div class="<span class="token-val">bg-surface-card</span>"&gt;
+&lt;div class="<span class="token-val">bg-surface-high</span>"&gt;
+&lt;span class="<span class="token-val">text-signal</span>"&gt;
+&lt;div class="<span class="token-val">border border-border</span>"&gt;
+
+<span class="token-str">/* Convenience shorthand (showcase aliases) */</span>
+background: <span class="token-val">var(--bg)</span>;          <span class="token-str">/* = hsl(--background) */</span>
+background: <span class="token-val">var(--bg-low)</span>;       <span class="token-str">/* = hsl(--surface-low) */</span>
+background: <span class="token-val">var(--bg-card)</span>;      <span class="token-str">/* = hsl(--surface-card) */</span>
+background: <span class="token-val">var(--bg-high)</span>;      <span class="token-str">/* = hsl(--surface-high) */</span>
+color:      <span class="token-val">var(--fg)</span>;           <span class="token-str">/* = hsl(--foreground) */</span>
+color:      <span class="token-val">var(--fg-muted)</span>;     <span class="token-str">/* = hsl(--ink-muted) */</span>
+color:      <span class="token-val">var(--fg-subtle)</span>;    <span class="token-str">/* = hsl(--ink-subtle) */</span></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════════════════
+     TYPOGRAPHY
+═══════════════════════════════════════════════════════════════════════════ -->
+  <section id="typography" class="showcase-section">
+    <div class="container">
+      <h2 class="t-h1 section-heading-sm">Typography</h2>
+
+      <!-- Typefaces -->
+      <div class="g-3 mb-14">
+
+        <div class="card" style="border-radius:3px;">
+          <div class="flex justify-between items-center mb-4">
+            <div class="t-label c-subtle" style="letter-spacing:0.08em;">font-sans · Space Grotesk</div>
+            <a href="https://fonts.google.com/specimen/Space+Grotesk" target="_blank" rel="noopener"
+              class="t-label c-subtle" style="text-decoration:none; transition:color 100ms;"
+              onmouseover="this.style.color='var(--fg)'" onmouseout="this.style.color=''">↗ Google Fonts</a>
+          </div>
+          <div
+            style="font-family:'Space Grotesk',sans-serif; font-size:2rem; font-weight:600; letter-spacing:-0.025em; line-height:1; margin-bottom:1.25rem;">
+            Aa Bb Cc
+          </div>
+          <div class="t-label c-muted" style="margin-bottom:0.375rem;">All UI text</div>
+          <div class="t-label c-subtle">Labels · body · titles · headlines · display</div>
+        </div>
+
+        <div class="card" style="border-radius:3px;">
+          <div class="flex justify-between items-center mb-4">
+            <div class="t-label c-subtle" style="letter-spacing:0.08em;">font-mono · Space Mono</div>
+            <a href="https://fonts.google.com/specimen/Space+Mono" target="_blank" rel="noopener"
+              class="t-label c-subtle" style="text-decoration:none; transition:color 100ms;"
+              onmouseover="this.style.color='var(--fg)'" onmouseout="this.style.color=''">↗ Google Fonts</a>
+          </div>
+          <div
+            style="font-family:'Space Mono',monospace; font-size:2rem; font-weight:700; letter-spacing:-0.02em; line-height:1; margin-bottom:1.25rem; font-variant-numeric:tabular-nums;">
+            01:23:45
+          </div>
+          <div class="t-label c-muted" style="margin-bottom:0.375rem;">Data & numbers only</div>
+          <div class="t-label c-subtle">Clocks · metrics · code · addresses · IDs</div>
+        </div>
+
+        <div class="card" style="border-radius:3px;">
+          <div class="flex justify-between items-center mb-4">
+            <div class="t-label c-subtle" style="letter-spacing:0.08em;">font-dot · Doto</div>
+            <a href="https://fonts.google.com/specimen/Doto" target="_blank" rel="noopener" class="t-label c-subtle"
+              style="text-decoration:none; transition:color 100ms;" onmouseover="this.style.color='var(--fg)'"
+              onmouseout="this.style.color=''">↗ Google Fonts</a>
+          </div>
+          <div
+            style="font-family:'Doto',monospace; font-size:2rem; font-weight:700; line-height:1; margin-bottom:1.25rem;">
+            GLYPH
+          </div>
+          <div class="t-label c-muted" style="margin-bottom:0.375rem;">Display headlines only</div>
+          <div class="t-label c-subtle">Max 3 words · never body copy · never labels</div>
+        </div>
+
+      </div>
+
+      <div class="g-2-wide">
+        <!-- Scale -->
+        <div>
+          <span class="t-label c-muted section-sublabel-lg">Type Scale</span>
+
+          <div class="type-row">
+            <div class="t-label c-muted mb-2">display-lg · 4.5rem · −0.03em</div>
+            <div style="font-size:clamp(2rem,5vw,4.5rem); font-weight:700; letter-spacing:-0.03em; line-height:1;">
+              Glyphwind</div>
+          </div>
+
+          <div class="type-row">
+            <div class="t-label c-muted mb-2">headline-lg · 2rem · −0.02em</div>
+            <div style="font-size:2rem; font-weight:600; letter-spacing:-0.02em; line-height:1.15;">System Design</div>
+          </div>
+
+          <div class="type-row">
+            <div class="t-label c-muted mb-2">headline-md · 1.5rem · −0.018em</div>
+            <div style="font-size:1.5rem; font-weight:600; letter-spacing:-0.018em; line-height:1.2;">Component Library
+            </div>
+          </div>
+
+          <div class="type-row">
+            <div class="t-label c-muted mb-2">title-lg · 1.125rem · 500</div>
+            <div style="font-size:1.125rem; font-weight:500; line-height:1.4;">Section Navigation</div>
+          </div>
+
+          <div class="type-row">
+            <div class="t-label c-muted mb-2">body-md · 0.875rem · 400 · 1.6</div>
+            <div class="t-body">The primary reading size.</div>
+          </div>
+
+          <div class="type-row">
+            <div class="t-label c-muted mb-2">label-md · 0.6875rem · +0.09em · uppercase</div>
+            <div class="t-label-md">
+              SECTION_01 · STATUS_ACTIVE · V1.0.4</div>
+          </div>
+        </div>
+
+        <!-- Mono -->
+        <div>
+          <span class="t-label c-muted section-sublabel-lg">Mono Data Display</span>
+          <div class="card mb-6">
+            <div class="t-label c-muted mb-4">Space Mono — tabular-nums</div>
+            <div class="t-mono">
+              <div style="font-size:2rem; font-weight:700;">23:41:07</div>
+              <div style="font-size:1.25rem;" class="c-muted mt-1">+2.4% · 1,204,891</div>
+              <div class="t-body c-subtle mt-1">0xA3F2·4·B1·9E</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div style="margin-top:3rem; padding-top:2rem; border-top:1px solid hsl(var(--border));">
+        <div class="component-header">
+          <span class="t-label c-muted section-sublabel-lg">Code Reference</span>
+          <button class="code-toggle" onclick="toggleCode('typography-ref', this)"
+            aria-expanded="false">&lt;/&gt;</button>
+        </div>
+        <div class="code-panel" id="code-typography-ref">
+          <div>
+            <pre
+              class="codeblock"><span class="token-str">/* Load from Google Fonts — already in globals.css */</span>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Doto:wght@100..900&display=swap');
+
+<span class="token-str">/* Font families */</span>
+font-family: <span class="token-val">var(--font-sans)</span>;   <span class="token-str">/* Space Grotesk — all UI text */</span>
+font-family: <span class="token-val">var(--font-mono)</span>;   <span class="token-str">/* Space Mono — data & numbers only */</span>
+font-family: <span class="token-val">var(--font-dot)</span>;    <span class="token-str">/* Doto — display headlines, max 3 words */</span>
+
+<span class="token-str">/* Type scale — t-* classes */</span>
+&lt;h1 class="<span class="token-val">t-display</span>"&gt;...&lt;/h1&gt;        <span class="token-str">/* clamp(2rem,5vw,4.5rem) · 700 · -0.03em */</span>
+&lt;h1 class="<span class="token-val">t-h1</span>"&gt;...&lt;/h1&gt;           <span class="token-str">/* 2rem · 600 · -0.02em */</span>
+&lt;h2 class="<span class="token-val">t-h2</span>"&gt;...&lt;/h2&gt;           <span class="token-str">/* 1.5rem · 600 · -0.018em */</span>
+&lt;h3 class="<span class="token-val">t-h3</span>"&gt;...&lt;/h3&gt;           <span class="token-str">/* 1.125rem · 500 */</span>
+&lt;h4 class="<span class="token-val">t-h4</span>"&gt;...&lt;/h4&gt;           <span class="token-str">/* 0.9375rem · 600 */</span>
+&lt;p class="<span class="token-val">t-body-lg</span>"&gt;...&lt;/p&gt;        <span class="token-str">/* 1rem · 400 · 1.65 */</span>
+&lt;p class="<span class="token-val">t-body</span>"&gt;...&lt;/p&gt;           <span class="token-str">/* 0.875rem · 400 · 1.6 */</span>
+&lt;p class="<span class="token-val">t-body-sm</span>"&gt;...&lt;/p&gt;        <span class="token-str">/* 0.8125rem · 400 */</span>
+&lt;span class="<span class="token-val">t-label</span>"&gt;LABEL&lt;/span&gt;     <span class="token-str">/* 0.6875rem · 500 · uppercase · +0.09em */</span>
+&lt;span class="<span class="token-val">t-label-md</span>"&gt;LABEL&lt;/span&gt;  <span class="token-str">/* 0.75rem · 500 · uppercase · +0.07em */</span>
+&lt;code class="<span class="token-val">t-mono</span>"&gt;0xA3F2&lt;/code&gt;   <span class="token-str">/* Space Mono, tabular-nums */</span>
+
+<span class="token-str">/* Color utilities — c-* classes */</span>
+&lt;span class="<span class="token-val">c-fg</span>"&gt;...&lt;/span&gt;       <span class="token-str">/* foreground */</span>
+&lt;span class="<span class="token-val">c-muted</span>"&gt;...&lt;/span&gt;    <span class="token-str">/* ink-muted */</span>
+&lt;span class="<span class="token-val">c-subtle</span>"&gt;...&lt;/span&gt;   <span class="token-str">/* ink-subtle */</span>
+&lt;span class="<span class="token-val">c-signal</span>"&gt;...&lt;/span&gt;   <span class="token-str">/* signal red */</span></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════════════════
+     DOT DISPLAY
+═══════════════════════════════════════════════════════════════════════════ -->
+  <section class="showcase-section section-tinted">
+    <div class="container">
+      <h2 class="t-h1 section-heading">Dot Display</h2>
+
+      <!-- Size scale -->
+      <div class="g-dot-display mb-12">
+
+        <div class="flex items-baseline gap-8 flex-wrap">
+          <div style="min-width:120px;">
+            <span class="t-label c-muted section-label">XL — 64px</span>
+            <span class="dot-display dot-display-xl">23:59</span>
+          </div>
+          <div>
+            <span class="t-label c-muted section-label">Weights</span>
+            <div class="flex items-baseline gap-6 flex-wrap">
+              <span class="dot-display dot-display-xl" style="font-weight:100; opacity:0.4;">23:59</span>
+              <span class="dot-display dot-display-xl" style="font-weight:400;">23:59</span>
+              <span class="dot-display dot-display-xl" style="font-weight:700;">23:59</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Size ramp -->
+        <div class="g-dot-sizes">
+          <div class="flex items-center gap-8">
+            <span class="t-label c-muted" style="min-width:80px;">LG — 40px</span>
+            <span class="dot-display dot-display-lg">99.98%</span>
+            <span class="dot-display dot-display-lg dot-display-signal">LIVE</span>
+          </div>
+          <div class="flex items-center gap-8">
+            <span class="t-label c-muted" style="min-width:80px;">MD — 24px</span>
+            <span class="dot-display dot-display-md">1,204 req/s</span>
+            <span class="dot-display dot-display-md dot-display-muted">v2.4.1</span>
+          </div>
+          <div class="flex items-center gap-8">
+            <span class="t-label c-muted" style="min-width:80px;">SM — 16px</span>
+            <span class="dot-display dot-display-sm">142ms</span>
+            <span class="dot-display dot-display-sm dot-display-muted">BUILD 4821</span>
+          </div>
+          <div class="flex items-center gap-8">
+            <span class="t-label c-muted" style="min-width:80px;">XS — 12px</span>
+            <span class="dot-display dot-display-xs">00:00:00</span>
+            <span class="dot-display dot-display-xs dot-display-muted">UTC+5:30</span>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- In-context examples -->
+        <div>
+          <span class="t-label c-muted section-sublabel-lg">In Context</span>
+          <div class="g-auto">
+
+            <!-- Clock card -->
+            <div class="card stack-sm">
+              <span class="t-label c-muted">System Time</span>
+              <span class="dot-display dot-display-lg" id="dot-clock">--:--:--</span>
+              <span class="dot-display dot-display-xs dot-display-muted" id="dot-date">--- -- ----</span>
+            </div>
+
+            <!-- Uptime -->
+            <div class="card stack-sm">
+              <span class="t-label c-muted">Uptime</span>
+              <span class="dot-display dot-display-lg">99.98<span
+                  style="font-size:1.25rem; opacity:0.5;">%</span></span>
+              <span class="dot-display dot-display-xs dot-display-muted">30d avg</span>
+            </div>
+
+            <!-- Request rate -->
+            <div class="card stack-sm">
+              <span class="t-label c-muted">Requests</span>
+              <span class="dot-display dot-display-lg">1,204<span style="font-size:1rem; opacity:0.5;"> /s</span></span>
+              <span class="dot-display dot-display-xs dot-display-signal">LIVE</span>
+            </div>
+
+            <!-- Build stamp -->
+            <div class="card stack-sm">
+              <span class="t-label c-muted">Build</span>
+              <span class="dot-display dot-display-md">v2.4.1</span>
+              <span class="dot-display dot-display-xs dot-display-muted">BUILD 4821</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <div style="margin-top:3rem; padding-top:2rem; border-top:1px solid hsl(var(--border));">
+        <div class="component-header">
+          <span class="t-label c-muted section-sublabel-lg">Code Reference</span>
+          <button class="code-toggle" onclick="toggleCode('dot-display-ref', this)"
+            aria-expanded="false">&lt;/&gt;</button>
+        </div>
+        <div class="code-panel" id="code-dot-display-ref">
+          <div>
+            <pre class="codeblock"><span class="token-str">/* Base class + size — always pair both */</span>
+&lt;span class="<span class="token-val">dot-display dot-display-xl</span>"&gt;23:59&lt;/span&gt;        <span class="token-str">/* 64px */</span>
+&lt;span class="<span class="token-val">dot-display dot-display-lg</span>"&gt;99.98%&lt;/span&gt;      <span class="token-str">/* 40px */</span>
+&lt;span class="<span class="token-val">dot-display dot-display-md</span>"&gt;1,204 req/s&lt;/span&gt; <span class="token-str">/* 24px */</span>
+&lt;span class="<span class="token-val">dot-display dot-display-sm</span>"&gt;142ms&lt;/span&gt;        <span class="token-str">/* 16px */</span>
+&lt;span class="<span class="token-val">dot-display dot-display-xs</span>"&gt;00:00:00&lt;/span&gt;     <span class="token-str">/* 12px */</span>
+
+<span class="token-str">/* Color modifiers */</span>
+&lt;span class="<span class="token-val">dot-display dot-display-lg dot-display-signal</span>"&gt;LIVE&lt;/span&gt;   <span class="token-str">/* signal red */</span>
+&lt;span class="<span class="token-val">dot-display dot-display-md dot-display-muted</span>"&gt;v2.4.1&lt;/span&gt; <span class="token-str">/* ink-muted */</span>
+
+<span class="token-str">/* Weight variants — passed via style */</span>
+&lt;span class="<span class="token-val">dot-display dot-display-xl</span>" style="font-weight:100; opacity:0.4;"&gt;23:59&lt;/span&gt;
+&lt;span class="<span class="token-val">dot-display dot-display-xl</span>" style="font-weight:400;"&gt;23:59&lt;/span&gt;
+&lt;span class="<span class="token-val">dot-display dot-display-xl</span>" style="font-weight:700;"&gt;23:59&lt;/span&gt;
+
+<span class="token-str">/* In a card — typical dashboard pattern */</span>
+&lt;div class="<span class="token-val">card stack-sm</span>"&gt;
+  &lt;span class="<span class="token-val">t-label c-muted</span>"&gt;System Time&lt;/span&gt;
+  &lt;span class="<span class="token-val">dot-display dot-display-lg</span>"&gt;23:41:07&lt;/span&gt;
+  &lt;span class="<span class="token-val">dot-display dot-display-xs dot-display-muted</span>"&gt;UTC+05:30&lt;/span&gt;
+&lt;/div&gt;
+
+<span class="token-str">/* Rules: display only — no body copy, no labels, max 3 words */</span></pre>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+      (function () {
+        function updateClock() {
+          var now = new Date();
+          var h = String(now.getHours()).padStart(2, '0');
+          var m = String(now.getMinutes()).padStart(2, '0');
+          var s = String(now.getSeconds()).padStart(2, '0');
+          var days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+          var months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+          var el = document.getElementById('dot-clock');
+          var del = document.getElementById('dot-date');
+          if (el) el.textContent = h + ':' + m + ':' + s;
+          if (del) del.textContent = days[now.getDay()] + ' ' + String(now.getDate()).padStart(2, '0') + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
+        }
+        updateClock();
+        setInterval(updateClock, 1000);
+      })();
+  </script>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════════════════
+     SPACING
+═══════════════════════════════════════════════════════════════════════════ -->
+  <section id="spacing" class="showcase-section">
+    <div class="container">
+      <h2 class="t-h1 section-heading">Spacing & Grid</h2>
+
+      <div class="g-2-wide">
+        <div>
+          <span class="t-label c-muted section-sublabel-lg">4px Base Grid</span>
+          <div class="stack gap-2">
+            <!-- spacing rows -->
+            <div class="row">
+              <span class="t-label c-muted spacing-label">4px</span>
+              <div class="spacing-swatch" style="width:4px; height:4px;"></div>
+              <div class="spacing-track"></div>
+              <span class="t-label c-muted">spacing-1</span>
+            </div>
+            <div class="row">
+              <span class="t-label c-muted spacing-label">8px</span>
+              <div class="spacing-swatch" style="width:8px; height:8px;"></div>
+              <div class="spacing-track"></div>
+              <span class="t-label c-muted">spacing-2</span>
+            </div>
+            <div class="row">
+              <span class="t-label c-muted spacing-label">16px</span>
+              <div class="spacing-swatch" style="width:16px; height:16px;"></div>
+              <div class="spacing-track"></div>
+              <span class="t-label c-muted">spacing-4</span>
+            </div>
+            <div class="row">
+              <span class="t-label c-muted spacing-label">24px</span>
+              <div class="spacing-swatch" style="width:24px; height:16px;"></div>
+              <div class="spacing-track"></div>
+              <span class="t-label c-muted">spacing-6 · card padding</span>
+            </div>
+            <div class="row">
+              <span class="t-label c-muted spacing-label">32px</span>
+              <div class="spacing-swatch" style="width:32px; height:16px;"></div>
+              <div class="spacing-track"></div>
+              <span class="t-label c-muted">spacing-8 · section internal</span>
+            </div>
+            <div class="row">
+              <span class="t-label c-muted spacing-label">64px</span>
+              <div class="spacing-swatch" style="width:64px; height:16px;"></div>
+              <div class="spacing-track"></div>
+              <span class="t-label c-muted">spacing-16 · section gap</span>
+            </div>
+            <div class="row">
+              <span class="t-label c-muted spacing-label">128px</span>
+              <div class="spacing-swatch" style="width:128px; height:16px;"></div>
+              <span class="t-label c-muted">spacing-32 · hero room</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <span class="t-label c-muted section-sublabel-lg">Border Radius</span>
+          <div class="flex items-end gap-6 mb-8">
+            <div>
+              <div class="radius-sm" style="width:48px;height:48px;background:var(--fg);"></div>
+              <div class="t-label c-muted mt-2">2px</div>
+              <div class="t-label c-subtle">.radius-sm</div>
+            </div>
+            <div>
+              <div class="radius-md" style="width:64px;height:64px;background:var(--fg);"></div>
+              <div class="t-label c-muted mt-2">4px</div>
+              <div class="t-label c-subtle">.radius-md ✦ default</div>
+            </div>
+            <div>
+              <div class="radius-lg" style="width:80px;height:80px;background:var(--fg);"></div>
+              <div class="t-label c-muted mt-2">6px</div>
+              <div class="t-label c-subtle">.radius-lg · max</div>
+            </div>
+            <div>
+              <div class="radius-full" style="width:24px;height:24px;background:hsl(var(--signal));"></div>
+              <div class="t-label c-muted mt-2">∞</div>
+              <div class="t-label c-subtle">.radius-full · dots only</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:3rem; padding-top:2rem; border-top:1px solid hsl(var(--border));">
+        <div class="component-header">
+          <span class="t-label c-muted section-sublabel-lg">Code Reference</span>
+          <button class="code-toggle" onclick="toggleCode('spacing-ref', this)" aria-expanded="false">&lt;/&gt;</button>
+        </div>
+        <div class="code-panel" id="code-spacing-ref">
+          <div>
+            <pre
+              class="codeblock"><span class="token-str">/* 4px base grid — all spacing is a multiple of 4px */</span>
+<span class="token-str">/* Use Tailwind spacing utilities: p-1=4px, p-2=8px, p-4=16px, p-6=24px ... */</span>
+padding: <span class="token-val">0.25rem</span>;   <span class="token-str">/* 4px  — spacing-1 */</span>
+padding: <span class="token-val">0.5rem</span>;    <span class="token-str">/* 8px  — spacing-2 */</span>
+padding: <span class="token-val">0.75rem</span>;   <span class="token-str">/* 12px — spacing-3 */</span>
+padding: <span class="token-val">1rem</span>;      <span class="token-str">/* 16px — spacing-4 */</span>
+padding: <span class="token-val">1.5rem</span>;    <span class="token-str">/* 24px — spacing-6 */</span>
+padding: <span class="token-val">2rem</span>;      <span class="token-str">/* 32px — spacing-8 */</span>
+padding: <span class="token-val">3rem</span>;      <span class="token-str">/* 48px — spacing-12 */</span>
+padding: <span class="token-val">4rem</span>;      <span class="token-str">/* 64px — spacing-16 */</span>
+
+<span class="token-str">/* Border radius — never exceed 6px on containers */</span>
+border-radius: <span class="token-val">2px</span>;     <span class="token-str">/* radius-sm — badges, tight UI */</span>
+border-radius: <span class="token-val">3px</span>;     <span class="token-str">/* buttons — sharper than cards */</span>
+border-radius: <span class="token-val">4px</span>;     <span class="token-str">/* radius-md — default, cards */</span>
+border-radius: <span class="token-val">6px</span>;     <span class="token-str">/* radius-lg — max for containers */</span>
+border-radius: <span class="token-val">9999px</span>;  <span class="token-str">/* full — dots only */</span>
+
+<span class="token-str">/* Layout primitives */</span>
+&lt;div class="<span class="token-val">row</span>"&gt;...&lt;/div&gt;          <span class="token-str">/* flex row, 1rem gap */</span>
+&lt;div class="<span class="token-val">row-sm</span>"&gt;...&lt;/div&gt;       <span class="token-str">/* flex row, 0.625rem gap */</span>
+&lt;div class="<span class="token-val">row-between</span>"&gt;...&lt;/div&gt;  <span class="token-str">/* flex row, space-between */</span>
+&lt;div class="<span class="token-val">stack</span>"&gt;...&lt;/div&gt;         <span class="token-str">/* flex column */</span>
+&lt;div class="<span class="token-val">stack-sm</span>"&gt;...&lt;/div&gt;      <span class="token-str">/* flex column, 0.5rem gap */</span>
+&lt;div class="<span class="token-val">cluster</span>"&gt;...&lt;/div&gt;       <span class="token-str">/* flex wrap, 0.75rem gap */</span>
+&lt;div class="<span class="token-val">cluster-sm</span>"&gt;...&lt;/div&gt;    <span class="token-str">/* flex wrap, 0.625rem gap */</span>
+
+<span class="token-str">/* Tonal elevation — no drop shadows, background shifting only */</span>
+background: <span class="token-val">hsl(var(--background))</span>;     <span class="token-str">/* level 0 — void */</span>
+background: <span class="token-val">hsl(var(--surface-low))</span>;    <span class="token-str">/* level 1 — foundation */</span>
+background: <span class="token-val">hsl(var(--surface-card))</span>;   <span class="token-str">/* level 2 — sections */</span>
+background: <span class="token-val">hsl(var(--surface-high))</span>;   <span class="token-str">/* level 3 — cards */</span>
+background: <span class="token-val">hsl(var(--surface-highest))</span>; <span class="token-str">/* level 4 — hover / topmost */</span>
+
+<span class="token-str">/* Dividers */</span>
+&lt;hr class="<span class="token-val">divider</span>"&gt;          <span class="token-str">/* 1px border line */</span>
+&lt;hr class="<span class="token-val">section-divider</span>"&gt;  <span class="token-str">/* wider section break */</span></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════════════════
+     COMPONENTS
+═══════════════════════════════════════════════════════════════════════════ -->
+  <section id="components" class="showcase-section">
+    <div class="container">
+      <h2 class="t-h1 mb-14">Components</h2>
+
+
+      <!-- ── Glyphwind Indicator ─────────────────────────────────────────────── -->
+      <div class="component-block">
+        <div class="component-header">
+          <span class="t-label c-muted section-sublabel-lg">04.01 — Glyphwind Indicator</span>
+          <button class="code-toggle" onclick="toggleCode('indicator', this)" aria-expanded="false">&lt;/&gt;</button>
+        </div>
+
+        <div class="flex items-center flex-wrap gap-12">
+          <div class="row-sm">
+            <span class="dot dot-sm animate-led"></span>
+            <span class="t-label">LIVE · 4px</span>
+          </div>
+          <div class="row">
+            <span class="dot dot-md animate-led"></span>
+            <span class="t-label">ACTIVE · 6px</span>
+          </div>
+          <div class="row">
+            <span class="dot dot-lg animate-led-fast"></span>
+            <span class="t-label t-mono">REC · 8px</span>
+          </div>
+          <div class="row">
+            <span class="dot dot-lg bg-ink-subtle"></span>
+            <span class="t-label c-muted">OFFLINE</span>
+          </div>
+        </div>
+        <div class="code-panel" id="code-indicator">
+          <div>
+            <pre class="codeblock"><span class="token-str">/* sizes */</span>
+&lt;span class="<span class="token-val">dot dot-sm</span>"&gt;&lt;/span&gt;  <span class="token-str">/* 4px */</span>
+&lt;span class="<span class="token-val">dot dot-md</span>"&gt;&lt;/span&gt;  <span class="token-str">/* 6px */</span>
+&lt;span class="<span class="token-val">dot dot-lg</span>"&gt;&lt;/span&gt;  <span class="token-str">/* 8px */</span>
+
+<span class="token-str">/* animation */</span>
+&lt;span class="<span class="token-val">dot dot-sm animate-led</span>"&gt;&lt;/span&gt;       <span class="token-str">/* 2.4s pulse */</span>
+&lt;span class="<span class="token-val">dot dot-lg animate-led-fast</span>"&gt;&lt;/span&gt;   <span class="token-str">/* 1s pulse — recording */</span>
+
+<span class="token-str">/* color — default is signal red; override for offline */</span>
+&lt;span class="<span class="token-val">dot dot-lg bg-ink-subtle</span>"&gt;&lt;/span&gt;  <span class="token-str">/* offline / inactive */</span>
+&lt;span class="<span class="token-val">dot dot-lg bg-ink-ghost</span>"&gt;&lt;/span&gt;   <span class="token-str">/* disabled */</span>
+
+<span class="token-str">/* pair with label */</span>
+&lt;div class="<span class="token-val">row-sm</span>"&gt;
+  &lt;span class="<span class="token-val">dot dot-sm animate-led</span>"&gt;&lt;/span&gt;
+  &lt;span class="<span class="token-val">t-label</span>"&gt;LIVE&lt;/span&gt;
+&lt;/div&gt;
+
+<span class="token-str">/* section-tag — label + LED used for section status */</span>
+&lt;span class="<span class="token-val">section-tag</span>"&gt;
+  &lt;span class="<span class="token-val">dot dot-sm animate-led</span>"&gt;&lt;/span&gt;
+  SYSTEM_ACTIVE
+&lt;/span&gt;</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Buttons ─────────────────────────────────────────────────────── -->
+      <div class="component-block">
+        <div class="component-header">
+          <span class="t-label c-muted section-sublabel-lg">04.02 — Buttons</span>
+          <button class="code-toggle" onclick="toggleCode('buttons', this)" aria-expanded="false">&lt;/&gt;</button>
+        </div>
+
+        <!-- Variants -->
+        <span class="t-label c-muted group-label">VARIANTS</span>
+        <div class="cluster-sm mb-8">
+          <button class="btn btn-primary">Primary</button>
+          <button class="btn btn-secondary">Secondary</button>
+          <button class="btn btn-ghost">Ghost</button>
+          <button class="btn btn-critical">Destructive</button>
+          <button class="btn btn-primary" disabled>Disabled</button>
+        </div>
+
+        <!-- Sizes -->
+        <span class="t-label c-muted group-label">SIZES</span>
+        <div class="cluster-sm mb-8">
+          <button class="btn btn-secondary btn-xs">Extra Small</button>
+          <button class="btn btn-secondary btn-sm">Small</button>
+          <button class="btn btn-secondary">Default</button>
+          <button class="btn btn-secondary btn-lg">Large</button>
+        </div>
+
+        <!-- With icons — leading + trailing -->
+        <span class="t-label c-muted group-label">WITH ICONS — LEADING
+          &amp; TRAILING</span>
+        <div class="cluster-sm mb-8">
+          <!-- Leading icon -->
+          <button class="btn btn-primary">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+              <path d="M12 5v14m-7-7h14" />
+            </svg>
+            New Project
+          </button>
+          <!-- Trailing icon -->
+          <button class="btn btn-secondary">
+            Deploy
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M5 12h14m-7-7 7 7-7 7" />
+            </svg>
+          </button>
+          <!-- Status dot -->
+          <button class="btn btn-secondary">
+            <span class="dot dot-sm animate-led"></span>
+            Live Preview
+          </button>
+          <!-- Ghost with icon -->
+          <button class="btn btn-ghost">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" />
+              <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" />
+            </svg>
+            Copy Link
+          </button>
+          <!-- Critical with icon -->
+          <button class="btn btn-critical">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+              <path d="M3 6h18m-2 0v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2" />
+            </svg>
+            Delete Resource
+          </button>
+        </div>
+
+        <!-- Icon-only buttons -->
+        <span class="t-label c-muted group-label">ICON-ONLY — ALL
+          VARIANTS &amp; SIZES</span>
+        <div class="flex items-end flex-wrap gap-8 mb-8">
+          <!-- Sizes column — secondary -->
+          <div class="stack items-center gap-3">
+            <span class="t-label c-muted t-xxs">xs</span>
+            <button class="btn btn-secondary btn-icon btn-xs" title="Settings">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="3" />
+                <path
+                  d="M12 2v3m0 14v3M2 12h3m14 0h3m-3.22-7.07-2.12 2.12M7.34 16.66l-2.12 2.12m0-14.14 2.12 2.12m9.22 9.22 2.12 2.12" />
+              </svg>
+            </button>
+            <span class="t-label c-muted t-xxs">24px</span>
+          </div>
+          <div class="stack items-center gap-3">
+            <span class="t-label c-muted t-xxs">sm</span>
+            <button class="btn btn-secondary btn-icon btn-sm" title="Settings">
+              <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="3" />
+                <path
+                  d="M12 2v3m0 14v3M2 12h3m14 0h3m-3.22-7.07-2.12 2.12M7.34 16.66l-2.12 2.12m0-14.14 2.12 2.12m9.22 9.22 2.12 2.12" />
+              </svg>
+            </button>
+            <span class="t-label c-muted t-xxs">29px</span>
+          </div>
+          <div class="stack items-center gap-3">
+            <span class="t-label c-muted t-xxs">default</span>
+            <button class="btn btn-secondary btn-icon" title="Settings">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="3" />
+                <path
+                  d="M12 2v3m0 14v3M2 12h3m14 0h3m-3.22-7.07-2.12 2.12M7.34 16.66l-2.12 2.12m0-14.14 2.12 2.12m9.22 9.22 2.12 2.12" />
+              </svg>
+            </button>
+            <span class="t-label c-muted t-xxs">33px</span>
+          </div>
+          <div class="stack items-center gap-3">
+            <span class="t-label c-muted t-xxs">lg</span>
+            <button class="btn btn-secondary btn-icon btn-lg" title="Settings">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="3" />
+                <path
+                  d="M12 2v3m0 14v3M2 12h3m14 0h3m-3.22-7.07-2.12 2.12M7.34 16.66l-2.12 2.12m0-14.14 2.12 2.12m9.22 9.22 2.12 2.12" />
+              </svg>
+            </button>
+            <span class="t-label c-muted t-xxs">41px</span>
+          </div>
+
+          <!-- Spacer -->
+          <div class="vr h-12"></div>
+
+          <!-- All variants -->
+          <div class="stack gap-2">
+            <span class="t-label c-muted mb-1 t-xxs">All variants</span>
+            <div class="flex items-center gap-2">
+              <button class="btn btn-primary btn-icon" title="Add">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M12 5v14m-7-7h14" />
+                </svg>
+              </button>
+              <button class="btn btn-secondary btn-icon" title="Edit">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                  <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
+                  <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+                </svg>
+              </button>
+              <button class="btn btn-ghost btn-icon" title="Share">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                  <circle cx="18" cy="5" r="3" />
+                  <circle cx="6" cy="12" r="3" />
+                  <circle cx="18" cy="19" r="3" />
+                  <path d="M8.59 13.51l6.83 3.98M15.41 6.51L8.59 10.49" />
+                </svg>
+              </button>
+              <button class="btn btn-critical btn-icon" title="Delete">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                  <path d="M3 6h18m-2 0v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Spacer -->
+          <div class="vr h-12"></div>
+
+          <!-- Toggle -->
+          <div class="stack gap-2">
+            <span class="t-label c-muted mb-1 t-xxs">Toggle (on / off)</span>
+            <div class="flex items-center gap-2">
+              <button class="btn btn-secondary btn-icon btn-toggle-on" title="Bold — active"
+                onclick="this.classList.toggle('btn-toggle-on')">
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M6 4h8a4 4 0 014 4 4 4 0 01-4 4H6z" />
+                  <path d="M6 12h9a4 4 0 014 4 4 4 0 01-4 4H6z" />
+                </svg>
+              </button>
+              <button class="btn btn-secondary btn-icon" title="Italic — inactive"
+                onclick="this.classList.toggle('btn-toggle-on')">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+                  <line x1="19" y1="4" x2="10" y2="4" />
+                  <line x1="14" y1="20" x2="5" y2="20" />
+                  <line x1="15" y1="4" x2="9" y2="20" />
+                </svg>
+              </button>
+              <button class="btn btn-secondary btn-icon" title="Underline — inactive"
+                onclick="this.classList.toggle('btn-toggle-on')">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+                  <path d="M6 4v6a6 6 0 0012 0V4" />
+                  <line x1="4" y1="20" x2="20" y2="20" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Loading state -->
+        <span class="t-label c-muted group-label">LOADING STATE</span>
+        <div class="cluster-sm">
+          <button class="btn btn-primary btn-loading">
+            <span class="btn-spinner"></span>
+            Deploying...
+          </button>
+          <button class="btn btn-secondary btn-loading">
+            <span class="btn-spinner"></span>
+            Saving
+          </button>
+          <button class="btn btn-primary btn-icon btn-loading" title="Loading">
+            <span class="btn-spinner"></span>
+          </button>
+        </div>
+        <div class="code-panel" id="code-buttons">
+          <div>
+            <pre class="codeblock"><span class="token-str">/* variants */</span>
+&lt;button class="<span class="token-val">btn btn-primary</span>"&gt;Primary&lt;/button&gt;
+&lt;button class="<span class="token-val">btn btn-secondary</span>"&gt;Secondary&lt;/button&gt;
+&lt;button class="<span class="token-val">btn btn-ghost</span>"&gt;Ghost&lt;/button&gt;
+&lt;button class="<span class="token-val">btn btn-critical</span>"&gt;Destructive&lt;/button&gt;
+&lt;button class="<span class="token-val">btn btn-primary</span>" disabled&gt;Disabled&lt;/button&gt;
+
+<span class="token-str">/* sizes — all 5, append to any variant */</span>
+&lt;button class="<span class="token-val">btn btn-secondary btn-xs</span>"&gt;XS&lt;/button&gt;   <span class="token-str">/* 24px h */</span>
+&lt;button class="<span class="token-val">btn btn-secondary btn-sm</span>"&gt;SM&lt;/button&gt;   <span class="token-str">/* 29px h */</span>
+&lt;button class="<span class="token-val">btn btn-secondary</span>"&gt;Default&lt;/button&gt;        <span class="token-str">/* 33px h */</span>
+&lt;button class="<span class="token-val">btn btn-secondary btn-lg</span>"&gt;LG&lt;/button&gt;   <span class="token-str">/* 41px h */</span>
+&lt;button class="<span class="token-val">btn btn-secondary btn-xl</span>"&gt;XL&lt;/button&gt;   <span class="token-str">/* 48px h */</span>
+
+<span class="token-str">/* with leading icon */</span>
+&lt;button class="<span class="token-val">btn btn-primary</span>"&gt;
+  &lt;svg width="13" height="13" ...&gt;&lt;/svg&gt;
+  New Project
+&lt;/button&gt;
+
+<span class="token-str">/* with trailing icon */</span>
+&lt;button class="<span class="token-val">btn btn-secondary</span>"&gt;
+  Deploy
+  &lt;svg width="12" height="12" ...&gt;&lt;/svg&gt;
+&lt;/button&gt;
+
+<span class="token-str">/* with status dot */</span>
+&lt;button class="<span class="token-val">btn btn-secondary</span>"&gt;
+  &lt;span class="<span class="token-val">dot dot-sm animate-led</span>"&gt;&lt;/span&gt;
+  Live Preview
+&lt;/button&gt;
+
+<span class="token-str">/* icon-only — always include title for accessibility */</span>
+&lt;button class="<span class="token-val">btn btn-primary btn-icon</span>" title="Add"&gt;&lt;svg ...&gt;&lt;/svg&gt;&lt;/button&gt;
+&lt;button class="<span class="token-val">btn btn-secondary btn-icon</span>" title="Edit"&gt;&lt;svg ...&gt;&lt;/svg&gt;&lt;/button&gt;
+&lt;button class="<span class="token-val">btn btn-ghost btn-icon</span>" title="Share"&gt;&lt;svg ...&gt;&lt;/svg&gt;&lt;/button&gt;
+&lt;button class="<span class="token-val">btn btn-critical btn-icon</span>" title="Delete"&gt;&lt;svg ...&gt;&lt;/svg&gt;&lt;/button&gt;
+
+<span class="token-str">/* icon-only sizes */</span>
+&lt;button class="<span class="token-val">btn btn-secondary btn-icon btn-xs</span>" title="..."&gt;&lt;svg ...&gt;&lt;/svg&gt;&lt;/button&gt;
+&lt;button class="<span class="token-val">btn btn-secondary btn-icon btn-sm</span>" title="..."&gt;&lt;svg ...&gt;&lt;/svg&gt;&lt;/button&gt;
+&lt;button class="<span class="token-val">btn btn-secondary btn-icon btn-lg</span>" title="..."&gt;&lt;svg ...&gt;&lt;/svg&gt;&lt;/button&gt;
+
+<span class="token-str">/* toggle state */</span>
+&lt;button class="<span class="token-val">btn btn-secondary btn-icon btn-toggle-on</span>"
+  onclick="this.classList.toggle('btn-toggle-on')" title="Bold"&gt;
+  &lt;svg ...&gt;&lt;/svg&gt;
+&lt;/button&gt;
+
+<span class="token-str">/* loading state */</span>
+&lt;button class="<span class="token-val">btn btn-primary btn-loading</span>"&gt;
+  &lt;span class="<span class="token-val">btn-spinner</span>"&gt;&lt;/span&gt;
+  Deploying...
+&lt;/button&gt;
+&lt;button class="<span class="token-val">btn btn-primary btn-icon btn-loading</span>" title="Loading"&gt;
+  &lt;span class="<span class="token-val">btn-spinner</span>"&gt;&lt;/span&gt;
+&lt;/button&gt;</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Inputs ──────────────────────────────────────────────────────── -->
+      <div class="component-block">
+        <div class="component-header">
+          <span class="t-label c-muted section-sublabel-lg">04.03 — Input Fields</span>
+          <button class="code-toggle" onclick="toggleCode('inputs', this)" aria-expanded="false">&lt;/&gt;</button>
+        </div>
+
+        <div class="g-3" style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; max-width:860px;">
+          <!-- Default -->
+          <div>
+            <label class="t-label c-muted input-label">Default</label>
+            <input class="input" type="text" placeholder="System identifier..." />
+            <span class="input-hint">Optional hint text</span>
+          </div>
+          <!-- Focus (simulated) -->
+          <div>
+            <label class="t-label c-muted input-label">Focus State</label>
+            <input class="input input-active" type="text" value="glyphwind-v1" />
+            <span class="input-hint">Border shifts to foreground</span>
+          </div>
+          <!-- Error -->
+          <div>
+            <label class="input-label c-signal">Error State</label>
+            <input class="input error" type="text" value="invalid@#$" />
+            <span class="input-error-msg">Invalid format</span>
+          </div>
+        </div>
+        <div class="code-panel" id="code-inputs">
+          <div>
+            <pre class="codeblock"><span class="token-str">/* default */</span>
+&lt;label class="<span class="token-val">input-label</span>"&gt;Label&lt;/label&gt;
+&lt;input class="<span class="token-val">input</span>" type="text" placeholder="Placeholder..." /&gt;
+&lt;span class="<span class="token-val">input-hint</span>"&gt;Hint text&lt;/span&gt;
+
+<span class="token-str">/* error state */</span>
+&lt;label class="<span class="token-val">input-label c-signal</span>"&gt;Label&lt;/label&gt;
+&lt;input class="<span class="token-val">input error</span>" type="text" value="invalid value" /&gt;
+&lt;span class="<span class="token-val">input-error-msg</span>"&gt;Error message&lt;/span&gt;
+
+<span class="token-str">/* monospace — for API keys, tokens */</span>
+&lt;input class="<span class="token-val">input t-mono</span>" type="text"
+  placeholder="sk_live_..." style="letter-spacing:0.04em;" /&gt;</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Cards ──────────────────────────────────────────────────────── -->
+      <div class="component-block">
+        <div class="component-header">
+          <span class="t-label c-muted section-sublabel-lg">04.04 — Cards</span>
+          <button class="code-toggle" onclick="toggleCode('cards', this)" aria-expanded="false">&lt;/&gt;</button>
+        </div>
+
+        <div class="g-3">
+          <!-- Basic card -->
+          <div class="card">
+            <span class="t-label c-muted block mb-3">Service Status</span>
+            <div style="font-size:1.5rem; font-weight:600; letter-spacing:-0.015em;" class="mb-1">API Gateway
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="dot dot-sm animate-led"></span>
+              <span class="t-label c-muted">Healthy</span>
+            </div>
+          </div>
+
+          <!-- Hover card -->
+          <div class="card card-hover">
+            <span class="t-label c-muted block mb-3">Memory Usage</span>
+            <div style="font-size:1.5rem; font-weight:600; letter-spacing:-0.015em; font-family:'Space Mono',monospace;"
+              class="mb-2">
+              3.7 GB</div>
+            <div class="bg-surface-high" style="height:3px; border-radius:2px; overflow:hidden;">
+              <div class="bg-foreground" style="height:100%; width:47%;"></div>
+            </div>
+            <div class="flex justify-between mt-2">
+              <span class="t-label c-muted">In use</span>
+              <span class="t-label c-muted">8 GB total</span>
+            </div>
+          </div>
+
+          <!-- Signal card -->
+          <div class="card card-signal">
+            <div class="row-sm mb-3">
+              <span class="dot dot-sm animate-led-fast"></span>
+              <span class="t-label c-signal">Critical</span>
+            </div>
+            <div class="font-medium mb-1">Disk Pressure</div>
+            <div class="t-body c-muted">Node storage at 94%. Eviction policy will trigger soon.</div>
+            <button class="btn btn-critical btn-sm mt-4">Acknowledge</button>
+          </div>
+        </div>
+        <div class="code-panel" id="code-cards">
+          <div>
+            <pre class="codeblock"><span class="token-str">/* basic */</span>
+&lt;div class="<span class="token-val">card</span>"&gt;
+  &lt;span class="<span class="token-val">t-label c-muted</span>"&gt;Label&lt;/span&gt;
+  &lt;div class="<span class="token-val">font-semibold</span>"&gt;Content&lt;/div&gt;
+&lt;/div&gt;
+
+<span class="token-str">/* hoverable */</span>
+&lt;div class="<span class="token-val">card card-hover</span>"&gt;...&lt;/div&gt;
+
+<span class="token-str">/* flush — no padding, wraps a table or image */</span>
+&lt;div class="<span class="token-val">card card-flush</span>"&gt;...&lt;/div&gt;
+
+<span class="token-str">/* float — elevated with light-leak, for overlays and panels */</span>
+&lt;div class="<span class="token-val">card card-float</span>"&gt;...&lt;/div&gt;
+
+<span class="token-str">/* critical / signal state */</span>
+&lt;div class="<span class="token-val">card card-signal</span>"&gt;
+  &lt;div class="<span class="token-val">row-sm</span>"&gt;
+    &lt;span class="<span class="token-val">dot dot-sm animate-led-fast</span>"&gt;&lt;/span&gt;
+    &lt;span class="<span class="token-val">t-label c-signal</span>"&gt;Critical&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="<span class="token-val">t-body c-muted</span>"&gt;Alert description.&lt;/div&gt;
+  &lt;button class="<span class="token-val">btn btn-critical btn-sm mt-4</span>"&gt;Acknowledge&lt;/button&gt;
+&lt;/div&gt;</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Badges ─────────────────────────────────────────────────────── -->
+      <div class="component-block">
+        <div class="component-header">
+          <span class="t-label c-muted section-sublabel-lg">04.05 — Badges & Tags</span>
+          <button class="code-toggle" onclick="toggleCode('badges', this)" aria-expanded="false">&lt;/&gt;</button>
+        </div>
+        <div class="cluster items-center">
+          <span class="badge badge-default">Default</span>
+          <span class="badge badge-outline">Outline</span>
+          <span class="badge badge-active">
+            <span class="dot dot-sm" class="bg-white"></span>
+            Active
+          </span>
+          <span class="badge badge-dim">
+            <span class="dot dot-sm"></span>
+            Signal
+          </span>
+          <span class="badge badge-default t-mono">v1.0.4</span>
+          <span class="badge badge-default">BETA</span>
+          <span class="badge badge-outline">New</span>
+        </div>
+        <div class="code-panel" id="code-badges">
+          <div>
+            <pre class="codeblock">&lt;span class="<span class="token-val">badge badge-default</span>"&gt;Default&lt;/span&gt;
+&lt;span class="<span class="token-val">badge badge-outline</span>"&gt;Outline&lt;/span&gt;
+
+<span class="token-str">/* with LED dot */</span>
+&lt;span class="<span class="token-val">badge badge-active</span>"&gt;
+  &lt;span class="<span class="token-val">dot dot-sm</span>"&gt;&lt;/span&gt;
+  Active
+&lt;/span&gt;
+
+<span class="token-str">/* degraded / signal */</span>
+&lt;span class="<span class="token-val">badge badge-dim</span>"&gt;
+  &lt;span class="<span class="token-val">dot dot-sm animate-led</span>"&gt;&lt;/span&gt;
+  Degraded
+&lt;/span&gt;
+
+<span class="token-str">/* monospace version tag */</span>
+&lt;span class="<span class="token-val">badge badge-default t-mono</span>"&gt;v1.0.4&lt;/span&gt;</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Data Table ─────────────────────────────────────────────────── -->
+      <div class="component-block">
+        <div class="component-header">
+          <span class="t-label c-muted section-sublabel-lg">04.06 — Data Table</span>
+          <button class="code-toggle" onclick="toggleCode('table', this)" aria-expanded="false">&lt;/&gt;</button>
+        </div>
+
+        <div class="table-wrap">
+          <div class="card card-flush">
+            <table class="table">
+              <thead>
+                <tr class="tr-no-border">
+                  <th class="th-inset-l" style="width:40%;">Service</th>
+                  <th style="width:18%;">Status</th>
+                  <th class="col-num" style="width:14%;">Uptime</th>
+                  <th class="col-num" style="width:14%;">Latency</th>
+                  <th class="col-num td-inset-r" style="width:14%;">Last Check</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="td-inset-l font-medium">api.glyphwind.dev</td>
+                  <td><span class="badge badge-active"><span class="dot dot-sm" class="bg-white"></span>Healthy</span>
+                  </td>
+                  <td class="t-mono col-num c-fg">99.98%</td>
+                  <td class="t-mono col-num c-fg">42 ms</td>
+                  <td class="t-mono col-num c-muted td-inset-r">00:00:04</td>
+                </tr>
+                <tr>
+                  <td class="td-inset-l font-medium">auth.glyphwind.dev</td>
+                  <td><span class="badge badge-active"><span class="dot dot-sm" class="bg-white"></span>Healthy</span>
+                  </td>
+                  <td class="t-mono col-num c-fg">99.91%</td>
+                  <td class="t-mono col-num c-fg">78 ms</td>
+                  <td class="t-mono col-num c-muted td-inset-r">00:01:12</td>
+                </tr>
+                <tr>
+                  <td class="td-inset-l font-medium">cdn.glyphwind.dev</td>
+                  <td><span class="badge badge-dim"><span class="dot dot-sm animate-led"></span>Degraded</span></td>
+                  <td class="t-mono col-num c-signal">97.40%</td>
+                  <td class="t-mono col-num c-fg">214 ms</td>
+                  <td class="t-mono col-num c-muted td-inset-r">00:00:47</td>
+                </tr>
+                <tr>
+                  <td class="td-inset-l font-medium c-muted">ws.glyphwind.dev</td>
+                  <td><span class="badge badge-default">Offline</span></td>
+                  <td class="t-mono col-num c-muted">—</td>
+                  <td class="t-mono col-num c-muted">—</td>
+                  <td class="t-mono col-num c-muted td-inset-r">02:14:33</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="code-panel" id="code-table">
+          <div>
+            <pre class="codeblock"><span class="token-str">/* wrap in .table-wrap for horizontal scroll on mobile */</span>
+&lt;div class="<span class="token-val">table-wrap</span>"&gt;
+  &lt;div class="<span class="token-val">card card-flush</span>"&gt;
+    &lt;table class="<span class="token-val">table</span>"&gt;
+      &lt;thead&gt;
+        &lt;tr class="<span class="token-val">tr-no-border</span>"&gt;  <span class="token-str">/* removes top border on first row */</span>
+          &lt;th class="<span class="token-val">th-inset-l</span>"&gt;Service&lt;/th&gt;   <span class="token-str">/* first col inset */</span>
+          &lt;th&gt;Status&lt;/th&gt;
+          &lt;th class="<span class="token-val">col-num</span>"&gt;Uptime&lt;/th&gt;      <span class="token-str">/* right-align numbers */</span>
+          &lt;th class="<span class="token-val">col-num td-inset-r</span>"&gt;Latency&lt;/th&gt;  <span class="token-str">/* last col inset */</span>
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        <span class="token-str">/* healthy row */</span>
+        &lt;tr&gt;
+          &lt;td class="<span class="token-val">td-inset-l font-medium</span>"&gt;api.example.dev&lt;/td&gt;
+          &lt;td&gt;&lt;span class="<span class="token-val">badge badge-active</span>"&gt;&lt;span class="<span class="token-val">dot dot-sm</span>"&gt;&lt;/span&gt; Healthy&lt;/span&gt;&lt;/td&gt;
+          &lt;td class="<span class="token-val">t-mono col-num c-fg</span>"&gt;99.98%&lt;/td&gt;
+          &lt;td class="<span class="token-val">t-mono col-num c-fg td-inset-r</span>"&gt;42 ms&lt;/td&gt;
+        &lt;/tr&gt;
+        <span class="token-str">/* degraded row — signal color on metric */</span>
+        &lt;tr&gt;
+          &lt;td class="<span class="token-val">td-inset-l font-medium</span>"&gt;cdn.example.dev&lt;/td&gt;
+          &lt;td&gt;&lt;span class="<span class="token-val">badge badge-dim</span>"&gt;&lt;span class="<span class="token-val">dot dot-sm animate-led</span>"&gt;&lt;/span&gt; Degraded&lt;/span&gt;&lt;/td&gt;
+          &lt;td class="<span class="token-val">t-mono col-num c-signal</span>"&gt;97.40%&lt;/td&gt;
+          &lt;td class="<span class="token-val">t-mono col-num c-fg td-inset-r</span>"&gt;214 ms&lt;/td&gt;
+        &lt;/tr&gt;
+        <span class="token-str">/* offline row — muted all values */</span>
+        &lt;tr&gt;
+          &lt;td class="<span class="token-val">td-inset-l font-medium c-muted</span>"&gt;ws.example.dev&lt;/td&gt;
+          &lt;td&gt;&lt;span class="<span class="token-val">badge badge-default</span>"&gt;Offline&lt;/span&gt;&lt;/td&gt;
+          &lt;td class="<span class="token-val">t-mono col-num c-muted</span>"&gt;—&lt;/td&gt;
+          &lt;td class="<span class="token-val">t-mono col-num c-muted td-inset-r</span>"&gt;—&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Toast ──────────────────────────────────────────────────────── -->
+      <div class="component-block">
+        <div class="component-header">
+          <span class="t-label c-muted section-sublabel-lg">04.07 — Toasts & Notifications</span>
+          <button class="code-toggle" onclick="toggleCode('toast', this)" aria-expanded="false">&lt;/&gt;</button>
+        </div>
+        <div class="cluster">
+          <!-- Default toast -->
+          <div class="toast">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+              class="toast-icon">
+              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <div>
+              <div class="font-medium mb-1">Update complete</div>
+              <div class="t-body-sm c-muted">System firmware 1.4.2 installed.</div>
+            </div>
+          </div>
+
+          <!-- Signal toast -->
+          <div class="toast toast-signal">
+            <span class="dot dot-md animate-led-fast toast-icon" style="margin-top:2px;"></span>
+            <div>
+              <div class="font-medium c-signal mb-1">Critical Warning</div>
+              <div class="t-body-sm c-muted">Storage at 97%. Free up space now.</div>
+            </div>
+          </div>
+        </div>
+        <div class="code-panel" id="code-toast">
+          <div>
+            <pre class="codeblock"><span class="token-str">/* default */</span>
+&lt;div class="<span class="token-val">toast</span>"&gt;
+  &lt;!-- icon svg --&gt;
+  &lt;div&gt;
+    &lt;div class="<span class="token-val">font-medium mb-1</span>"&gt;Title&lt;/div&gt;
+    &lt;div class="<span class="token-val">t-body-sm c-muted</span>"&gt;Supporting message.&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+<span class="token-str">/* critical */</span>
+&lt;div class="<span class="token-val">toast toast-signal</span>"&gt;
+  &lt;span class="<span class="token-val">dot dot-md animate-led-fast</span>"&gt;&lt;/span&gt;
+  &lt;div&gt;
+    &lt;div class="<span class="token-val">font-medium c-signal mb-1</span>"&gt;Critical Warning&lt;/div&gt;
+    &lt;div class="<span class="token-val">t-body-sm c-muted</span>"&gt;Supporting message.&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Nav Example ────────────────────────────────────────────────── -->
+      <div class="component-block">
+        <div class="component-header">
+          <span class="t-label c-muted section-sublabel-lg">04.08 — Navigation Bar</span>
+          <button class="code-toggle" onclick="toggleCode('navbar', this)" aria-expanded="false">&lt;/&gt;</button>
+        </div>
+
+        <div class="card-overflow">
+          <div class="navbar" style="position:relative; border-bottom:1px solid hsl(var(--border));">
+            <div class="row-sm">
+              <span class="dot dot-md animate-led"></span>
+              <span class="navbar-brand">STUDIO</span>
+            </div>
+            <div class="flex gap-7 ml-8">
+              <a class="nav-link active" href="#">Overview</a>
+              <a class="nav-link" href="#">Components</a>
+              <a class="nav-link" href="#">Tokens</a>
+              <a class="nav-link" href="#">Changelog</a>
+            </div>
+            <div class="flex items-center gap-3 ml-auto">
+              <button class="btn btn-ghost btn-sm">Log in</button>
+              <button class="btn btn-primary btn-sm">Get Access</button>
+            </div>
+          </div>
+        </div>
+        <div class="code-panel" id="code-navbar">
+          <div>
+            <pre class="codeblock">&lt;nav class="<span class="token-val">navbar</span>"&gt;
+  &lt;div class="<span class="token-val">row-sm</span>"&gt;
+    &lt;span class="<span class="token-val">dot dot-md animate-led</span>"&gt;&lt;/span&gt;
+    &lt;span class="<span class="token-val">font-semibold</span>" style="letter-spacing:-0.01em;"&gt;BRAND&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="<span class="token-val">flex gap-7 ml-8</span>"&gt;
+    &lt;a class="<span class="token-val">nav-link active</span>" href="#"&gt;Overview&lt;/a&gt;
+    &lt;a class="<span class="token-val">nav-link</span>" href="#"&gt;Components&lt;/a&gt;
+    &lt;a class="<span class="token-val">nav-link</span>" href="#"&gt;Tokens&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class="<span class="token-val">flex items-center gap-3 ml-auto</span>"&gt;
+    &lt;button class="<span class="token-val">btn btn-ghost btn-sm</span>"&gt;Log in&lt;/button&gt;
+    &lt;button class="<span class="token-val">btn btn-primary btn-sm</span>"&gt;Get Access&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Glass Panel ────────────────────────────────────────────────── -->
+      <div class="component-block">
+        <div class="component-header">
+          <span class="t-label c-muted section-sublabel-lg">04.09 — Glass Panel</span>
+          <button class="code-toggle" onclick="toggleCode('glass', this)" aria-expanded="false">&lt;/&gt;</button>
+        </div>
+        <div
+          style="position:relative; padding:3rem; background:var(--bg-low); border-radius:var(--radius); overflow:hidden;">
+          <!-- Background texture hint -->
+          <div
+            style="position:absolute; inset:0; background:radial-gradient(circle at 30% 50%, rgba(255,65,50,0.04) 0%, transparent 60%); pointer-events:none;">
+          </div>
+
+          <!-- Floating glass panel -->
+          <div class="glass" style="max-width:320px; padding:1.5rem; position:relative;">
+            <div class="row-sm mb-5">
+              <span class="dot dot-sm animate-led"></span>
+              <span class="t-label c-signal">LIVE FEED</span>
+            </div>
+            <div
+              style="font-size:1.75rem; font-weight:700; letter-spacing:-0.02em; font-family:'Space Mono',monospace; margin-bottom:0.25rem;">
+              23:41:07</div>
+            <div class="t-body c-muted">System uptime · Node 04</div>
+            <div class="cluster mt-4">
+              <button class="btn btn-primary btn-sm">View Details</button>
+              <button class="btn btn-ghost btn-sm">Dismiss</button>
+            </div>
+          </div>
+        </div>
+        <div class="code-panel" id="code-glass">
+          <div>
+            <pre class="codeblock"><span class="token-str">/* .glass works best over a textured/tinted background */</span>
+&lt;div style="background:hsl(var(--surface-low)); padding:3rem;"&gt;
+  &lt;div class="<span class="token-val">glass</span>" style="padding:1.5rem; max-width:320px;"&gt;
+    &lt;div class="<span class="token-val">row-sm mb-4</span>"&gt;
+      &lt;span class="<span class="token-val">dot dot-sm animate-led</span>"&gt;&lt;/span&gt;
+      &lt;span class="<span class="token-val">t-label c-signal</span>"&gt;LIVE FEED&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="<span class="token-val">t-mono</span>" style="font-size:1.75rem; font-weight:700;"&gt;
+      23:41:07
+    &lt;/div&gt;
+    &lt;div class="<span class="token-val">t-body c-muted</span>"&gt;System uptime · Node 04&lt;/div&gt;
+    &lt;div class="<span class="token-val">cluster mt-4</span>"&gt;
+      &lt;button class="<span class="token-val">btn btn-primary btn-sm</span>"&gt;View Details&lt;/button&gt;
+      &lt;button class="<span class="token-val">btn btn-ghost btn-sm</span>"&gt;Dismiss&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Form Example ───────────────────────────────────────────────── -->
+      <div class="component-block">
+        <div class="component-header">
+          <span class="t-label c-muted section-sublabel-lg">04.10 — Form Composition</span>
+          <button class="code-toggle" onclick="toggleCode('form', this)" aria-expanded="false">&lt;/&gt;</button>
+        </div>
+
+        <div class="card" style="max-width:420px;">
+          <span class="t-label c-muted section-sublabel-lg">Create New Project</span>
+
+          <div class="stack gap-4">
+            <div>
+              <label class="input-label c-muted">Project Name</label>
+              <input class="input" type="text" placeholder="e.g. glyphwind-core" />
+            </div>
+            <div>
+              <label class="input-label c-muted">API Key</label>
+              <input class="input t-mono" type="text" placeholder="sk_live_..." style="letter-spacing:0.04em;" />
+            </div>
+            <div class="cluster mt-2">
+              <button class="btn btn-primary" style="flex:1;">Create Project</button>
+              <button class="btn btn-ghost">Cancel</button>
+            </div>
+          </div>
+        </div>
+        <div class="code-panel" id="code-form">
+          <div>
+            <pre class="codeblock">&lt;div class="<span class="token-val">card</span>" style="max-width:420px;"&gt;
+  &lt;span class="<span class="token-val">t-label c-muted section-sublabel-lg</span>"&gt;Create New Project&lt;/span&gt;
+
+  &lt;div class="<span class="token-val">stack gap-4</span>"&gt;
+    &lt;div&gt;
+      &lt;label class="<span class="token-val">input-label c-muted</span>"&gt;Project Name&lt;/label&gt;
+      &lt;input class="<span class="token-val">input</span>" type="text" placeholder="e.g. my-project" /&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;label class="<span class="token-val">input-label c-muted</span>"&gt;API Key&lt;/label&gt;
+      &lt;input class="<span class="token-val">input t-mono</span>" type="text"
+        placeholder="sk_live_..." style="letter-spacing:0.04em;" /&gt;
+    &lt;/div&gt;
+    &lt;div class="<span class="token-val">cluster mt-2</span>"&gt;
+      &lt;button class="<span class="token-val">btn btn-primary</span>" style="flex:1;"&gt;Create Project&lt;/button&gt;
+      &lt;button class="<span class="token-val">btn btn-ghost</span>"&gt;Cancel&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════════════════
+     MOTION
+═══════════════════════════════════════════════════════════════════════════ -->
+  <section id="motion" class="showcase-section">
+    <div class="container">
+      <h2 class="t-h1 section-heading">Motion</h2>
+
+      <!-- Live demos -->
+      <div class="stack mb-12 gap-6">
+
+        <!-- Fast 80ms -->
+        <div class="card demo-row">
+          <div>
+            <span class="t-body font-medium">Fast</span>
+            <span class="t-mono t-body c-muted ml-4">80ms · .transition-fast</span>
+          </div>
+          <div class="motion-demo transition-fast"></div>
+        </div>
+
+        <!-- Default 150ms -->
+        <div class="card demo-row">
+          <div>
+            <span class="t-body font-medium">Default</span>
+            <span class="t-mono t-body c-muted ml-4">150ms · .transition-default</span>
+          </div>
+          <div class="motion-demo transition-default"></div>
+        </div>
+
+        <!-- Slow 300ms -->
+        <div class="card demo-row">
+          <div>
+            <span class="t-body font-medium">Slow</span>
+            <span class="t-mono t-body c-muted ml-4">300ms · .transition-slow</span>
+          </div>
+          <div class="motion-demo transition-slow"></div>
+        </div>
+
+        <!-- Fade-up entrance -->
+        <div class="card demo-row">
+          <div>
+            <span class="t-body font-medium">Entrance</span>
+            <span class="t-mono t-body c-muted ml-4">fade-up · 180ms</span>
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="
+            var el=document.getElementById('fade-target');
+            el.style.animation='none';
+            el.offsetHeight;
+            el.style.animation='fade-up 0.18s ease-out';
+          ">Replay</button>
+          <div id="fade-target" class="motion-entrance-box animate-fade-up"></div>
+        </div>
+
+        <!-- LED pulse -->
+        <div class="card demo-row">
+          <div>
+            <span class="t-body font-medium">LED Pulse</span>
+            <span class="t-mono t-body c-muted ml-4">2.4s ease-in-out infinite</span>
+          </div>
+          <span class="glyphwind-dot glyphwind-dot-lg animate-led"></span>
+        </div>
+
+      </div>
+
+      <!-- Token reference -->
+      <div>
+        <span class="t-label c-muted section-sublabel-lg">Timing Tokens</span>
+        <div class="token-table">
+          <div class="spec-row">
+            <span class="t-body c-muted">Fast</span>
+            <span class="t-mono t-body">80ms</span>
+          </div>
+          <div class="spec-row">
+            <span class="t-body c-muted">Default</span>
+            <span class="t-mono t-body">150ms</span>
+          </div>
+          <div class="spec-row">
+            <span class="t-body c-muted">Slow</span>
+            <span class="t-mono t-body">300ms</span>
+          </div>
+          <div class="spec-row">
+            <span class="t-body c-muted">Easing</span>
+            <span class="t-mono t-body">cubic-bezier(0.4, 0, 0.2, 1)</span>
+          </div>
+          <div class="spec-row">
+            <span class="t-body c-muted">LED Pulse</span>
+            <span class="t-mono t-body">2.4s ease-in-out infinite</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:3rem; padding-top:2rem; border-top:1px solid hsl(var(--border));">
+        <div class="component-header">
+          <span class="t-label c-muted section-sublabel-lg">Code Reference</span>
+          <button class="code-toggle" onclick="toggleCode('motion-ref', this)" aria-expanded="false">&lt;/&gt;</button>
+        </div>
+        <div class="code-panel" id="code-motion-ref">
+          <div>
+            <pre class="codeblock"><span class="token-str">/* Timing tokens — always use this easing */</span>
+transition: color      <span class="token-val">80ms</span>  cubic-bezier(0.4, 0, 0.2, 1);  <span class="token-str">/* fast — hover, focus */</span>
+transition: background <span class="token-val">150ms</span> cubic-bezier(0.4, 0, 0.2, 1);  <span class="token-str">/* default — state changes */</span>
+transition: transform  <span class="token-val">300ms</span> cubic-bezier(0.4, 0, 0.2, 1);  <span class="token-str">/* slow — layout shifts */</span>
+
+<span class="token-str">/* Hover — shift background up the surface scale, never opacity */</span>
+.card:hover    { background: <span class="token-val">hsl(var(--surface-high))</span>; }
+.nav-link:hover { background: <span class="token-val">hsl(var(--surface-low))</span>; }
+
+<span class="token-str">/* Button press — tactile 1px drop */</span>
+.btn:active { transform: <span class="token-val">translateY(1px)</span>; }
+
+<span class="token-str">/* Entrance animations */</span>
+animation: <span class="token-val">fadeUp 0.18s ease-out</span>;          <span class="token-str">/* fade up from 6px */</span>
+animation: <span class="token-val">scaleIn 0.15s ease-out</span>;         <span class="token-str">/* scale from 0.95 */</span>
+
+<span class="token-str">/* LED pulse animations */</span>
+animation: <span class="token-val">led 2.4s ease-in-out infinite</span>;   <span class="token-str">/* standard pulse */</span>
+animation: <span class="token-val">led 1s ease-in-out infinite</span>;     <span class="token-str">/* fast — recording */</span>
+
+<span class="token-str">/* Tailwind animation classes */</span>
+&lt;span class="<span class="token-val">animate-led</span>"&gt;        <span class="token-str">/* LED pulse 2.4s */</span>
+&lt;span class="<span class="token-val">animate-led-fast</span>"&gt;   <span class="token-str">/* LED pulse 1s */</span>
+&lt;div class="<span class="token-val">animate-fade-up</span>"&gt;    <span class="token-str">/* entrance fade-up 180ms */</span>
+
+<span class="token-str">/* Rules */</span>
+<span class="token-str">/* ✓  Only animate transform and opacity */</span>
+<span class="token-str">/* ✓  Use exponential deceleration — ease-out-quart or cubic-bezier above */</span>
+<span class="token-str">/* ✗  Never animate width, height, padding, margin (causes layout thrash) */</span>
+<span class="token-str">/* ✗  No bounce or elastic easing — real objects decelerate smoothly */</span>
+<span class="token-str">/* ✗  No opacity hover on surfaces — shift background instead */</span></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════════════════
+     DOT PATTERN
+═══════════════════════════════════════════════════════════════════════════ -->
+  <section id="dot-pattern" class="showcase-section section-tinted">
+    <div class="container">
+      <h2 class="t-h1 section-heading">Dot Pattern</h2>
+
+      <!-- Spacing variants -->
+      <span class="t-label c-muted section-sublabel">Spacing</span>
+      <div class="g-4 mb-12">
+
+        <div class="card bg-dots bg-dots-tight dot-demo">
+          <span class="t-label c-muted dot-demo-label">.bg-dots-tight</span>
+          <span class="t-xxs c-subtle dot-demo-sub">--dot-gap: 8px</span>
+        </div>
+
+        <div class="card bg-dots bg-dots-dense dot-demo">
+          <span class="t-label c-muted dot-demo-label">.bg-dots-dense</span>
+          <span class="t-xxs c-subtle dot-demo-sub">--dot-gap: 12px</span>
+        </div>
+
+        <div class="card bg-dots dot-demo">
+          <span class="t-label c-muted dot-demo-label">.bg-dots</span>
+          <span class="t-xxs c-subtle dot-demo-sub">--dot-gap: 20px (default)</span>
+        </div>
+
+        <div class="card bg-dots bg-dots-loose dot-demo">
+          <span class="t-label c-muted dot-demo-label">.bg-dots-loose</span>
+          <span class="t-xxs c-subtle dot-demo-sub">--dot-gap: 32px</span>
+        </div>
+
+      </div>
+
+      <!-- Size variants -->
+      <span class="t-label c-muted section-sublabel">Dot Size</span>
+      <div class="g-4 mb-12">
+
+        <div class="card bg-dots bg-dots-xs dot-demo">
+          <span class="t-label c-muted dot-demo-label">.bg-dots-xs</span>
+          <span class="t-xxs c-subtle dot-demo-sub">--dot-size: 0.5px</span>
+        </div>
+
+        <div class="card bg-dots bg-dots-sm dot-demo">
+          <span class="t-label c-muted dot-demo-label">.bg-dots-sm</span>
+          <span class="t-xxs c-subtle dot-demo-sub">--dot-size: 1px (default)</span>
+        </div>
+
+        <div class="card bg-dots bg-dots-md dot-demo">
+          <span class="t-label c-muted dot-demo-label">.bg-dots-md</span>
+          <span class="t-xxs c-subtle dot-demo-sub">--dot-size: 1.5px</span>
+        </div>
+
+        <div class="card bg-dots bg-dots-lg dot-demo">
+          <span class="t-label c-muted dot-demo-label">.bg-dots-lg</span>
+          <span class="t-xxs c-subtle dot-demo-sub">--dot-size: 2px</span>
+        </div>
+
+      </div>
+
+      <!-- Color variants -->
+      <span class="t-label c-muted section-sublabel">Color</span>
+      <div class="g-4 mb-12">
+
+        <div class="card bg-dots bg-dots-ghost dot-demo">
+          <span class="t-label c-muted dot-demo-label">.bg-dots-ghost</span>
+          <span class="t-xxs c-subtle dot-demo-sub">ink-ghost (default)</span>
+        </div>
+
+        <div class="card bg-dots bg-dots-subtle dot-demo">
+          <span class="t-label c-muted dot-demo-label">.bg-dots-subtle</span>
+          <span class="t-xxs c-subtle dot-demo-sub">ink-subtle</span>
+        </div>
+
+        <div class="card bg-dots bg-dots-muted dot-demo">
+          <span class="t-label c-muted dot-demo-label">.bg-dots-muted</span>
+          <span class="t-xxs c-subtle dot-demo-sub">ink-muted</span>
+        </div>
+
+        <div class="card bg-dots bg-dots-signal dot-demo">
+          <span class="t-label c-muted dot-demo-label">.bg-dots-signal</span>
+          <span class="t-xxs c-subtle dot-demo-sub">signal red</span>
+        </div>
+
+      </div>
+
+      <!-- Custom override -->
+      <span class="t-label c-muted section-sublabel">Custom Override</span>
+      <div class="g-2">
+
+        <div class="card bg-dots"
+          style="min-height:140px; --dot-gap:14px; --dot-size:1.5px; --dot-color:hsl(var(--signal)); position:relative;">
+          <span class="t-label c-muted" style="position:absolute;bottom:1.25rem;left:1.25rem;">Custom via style
+            attr</span>
+          <div class="codeblock t-xxs"
+            style="position:absolute;bottom:3rem;left:1.25rem;right:1.25rem;padding:0.5rem 0.75rem;font-size:0.6rem;line-height:1.6;">
+            style="--dot-gap:14px; --dot-size:1.5px; --dot-color:hsl(var(--signal))"</div>
+        </div>
+
+        <div>
+          <div class="codeblock" style="margin-bottom:1rem;">
+            <span class="token-str">/* Combine any modifiers */</span>
+            &lt;div class="<span class="token-val">bg-dots bg-dots-loose bg-dots-lg bg-dots-signal</span>"&gt;
+
+            <span class="token-str">/* Override via CSS property */</span>
+            &lt;div class="<span class="token-val">bg-dots</span>" style="
+            <span class="token-key">--dot-gap</span>: <span class="token-val">24px</span>;
+            <span class="token-key">--dot-size</span>: <span class="token-val">2px</span>;
+            <span class="token-key">--dot-color</span>: <span class="token-val">hsl(var(--ink-subtle))</span>;
+            "&gt;
+
+            <span class="token-str">/* Or in CSS */</span>
+            <span class="token-key">.my-hero</span> {
+            --dot-gap: 40px;
+            --dot-color: hsl(var(--signal));
+            }
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Animations -->
+      <span class="t-label c-muted section-sublabel" style="margin-top:3rem; display:block;">Animation</span>
+
+      <!-- Scroll row -->
+      <div class="g-4" style="margin-bottom:1rem;">
+
+        <div class="card bg-dots bg-dots-scroll-x bg-dots-subtle" style="min-height:120px; position:relative;">
+          <span class="t-label c-muted" style="position:absolute;bottom:1rem;left:1rem;">.bg-dots-scroll-x</span>
+          <span class="t-xxs c-subtle" style="position:absolute;bottom:0.35rem;left:1rem;">scroll right — linear</span>
+        </div>
+
+        <div class="card bg-dots bg-dots-scroll-y bg-dots-subtle" style="min-height:120px; position:relative;">
+          <span class="t-label c-muted" style="position:absolute;bottom:1rem;left:1rem;">.bg-dots-scroll-y</span>
+          <span class="t-xxs c-subtle" style="position:absolute;bottom:0.35rem;left:1rem;">scroll down — linear</span>
+        </div>
+
+        <div class="card bg-dots bg-dots-scroll-diag bg-dots-subtle" style="min-height:120px; position:relative;">
+          <span class="t-label c-muted" style="position:absolute;bottom:1rem;left:1rem;">.bg-dots-scroll-diag</span>
+          <span class="t-xxs c-subtle" style="position:absolute;bottom:0.35rem;left:1rem;">drift diagonal —
+            linear</span>
+        </div>
+
+        <div class="card bg-dots bg-dots-scroll-x bg-dots-alt bg-dots-subtle"
+          style="min-height:120px; position:relative;">
+          <span class="t-label c-muted"
+            style="position:absolute;bottom:1rem;left:1rem;">.bg-dots-scroll-x.bg-dots-alt</span>
+          <span class="t-xxs c-subtle" style="position:absolute;bottom:0.35rem;left:1rem;">back &amp; forth —
+            alternate</span>
+        </div>
+
+      </div>
+
+      <!-- Pulse + signal -->
+      <div class="g-4 mb-12">
+
+        <div class="card bg-dots-pulse bg-dots-subtle" style="min-height:120px; position:relative;">
+          <span class="t-label c-muted" style="position:absolute;bottom:1rem;left:1rem;">.bg-dots-pulse</span>
+          <span class="t-xxs c-subtle" style="position:absolute;bottom:0.35rem;left:1rem;">staggered group pulse</span>
+        </div>
+
+        <div class="card bg-dots-pulse bg-dots-signal" style="min-height:120px; position:relative;">
+          <span class="t-label c-muted"
+            style="position:absolute;bottom:1rem;left:1rem;">.bg-dots-pulse.bg-dots-signal</span>
+          <span class="t-xxs c-subtle" style="position:absolute;bottom:0.35rem;left:1rem;">signal red variant</span>
+        </div>
+
+        <div class="card bg-dots bg-dots-scroll-x bg-dots-signal bg-dots-fast"
+          style="min-height:120px; position:relative;">
+          <span class="t-label c-muted" style="position:absolute;bottom:1rem;left:1rem;">.bg-dots-fast</span>
+          <span class="t-xxs c-subtle" style="position:absolute;bottom:0.35rem;left:1rem;">--dot-speed: 1.5s</span>
+        </div>
+
+        <div class="card bg-dots bg-dots-scroll-y bg-dots-alt bg-dots-signal"
+          style="min-height:120px; position:relative; --dot-speed:2.5s;">
+          <span class="t-label c-muted" style="position:absolute;bottom:1rem;left:1rem;">signal + alt</span>
+          <span class="t-xxs c-subtle" style="position:absolute;bottom:0.35rem;left:1rem;">--dot-speed: 2.5s</span>
+        </div>
+
+      </div>
+
+      <div style="margin-top:3rem; padding-top:2rem; border-top:1px solid hsl(var(--border));">
+        <div class="component-header">
+          <span class="t-label c-muted section-sublabel-lg">Code Reference</span>
+          <button class="code-toggle" onclick="toggleCode('dot-ref', this)" aria-expanded="false">&lt;/&gt;</button>
+        </div>
+        <div class="code-panel" id="code-dot-ref">
+          <div>
+            <pre
+              class="codeblock"><span class="token-str">/* Spacing variants — --dot-gap */</span>
+&lt;div class="<span class="token-val">bg-dots bg-dots-tight</span>"&gt;    <span class="token-str">/* 8px */</span>
+&lt;div class="<span class="token-val">bg-dots bg-dots-dense</span>"&gt;    <span class="token-str">/* 12px */</span>
+&lt;div class="<span class="token-val">bg-dots</span>"&gt;                 <span class="token-str">/* 20px default */</span>
+&lt;div class="<span class="token-val">bg-dots bg-dots-loose</span>"&gt;    <span class="token-str">/* 32px */</span>
+&lt;div class="<span class="token-val">bg-dots bg-dots-sparse</span>"&gt;   <span class="token-str">/* 56px */</span>
+
+<span class="token-str">/* Dot size variants — --dot-size */</span>
+&lt;div class="<span class="token-val">bg-dots bg-dots-xs</span>"&gt;   <span class="token-str">/* 0.5px */</span>
+&lt;div class="<span class="token-val">bg-dots bg-dots-sm</span>"&gt;   <span class="token-str">/* 1px default */</span>
+&lt;div class="<span class="token-val">bg-dots bg-dots-md</span>"&gt;   <span class="token-str">/* 1.5px */</span>
+&lt;div class="<span class="token-val">bg-dots bg-dots-lg</span>"&gt;   <span class="token-str">/* 2px */</span>
+
+<span class="token-str">/* Color variants — --dot-color */</span>
+&lt;div class="<span class="token-val">bg-dots bg-dots-ghost</span>"&gt;    <span class="token-str">/* ink-ghost (default) */</span>
+&lt;div class="<span class="token-val">bg-dots bg-dots-subtle</span>"&gt;   <span class="token-str">/* ink-subtle */</span>
+&lt;div class="<span class="token-val">bg-dots bg-dots-muted</span>"&gt;    <span class="token-str">/* ink-muted */</span>
+&lt;div class="<span class="token-val">bg-dots bg-dots-fg</span>"&gt;       <span class="token-str">/* foreground */</span>
+&lt;div class="<span class="token-val">bg-dots bg-dots-signal</span>"&gt;   <span class="token-str">/* signal red */</span>
+
+<span class="token-str">/* Animation variants — --dot-speed */</span>
+&lt;div class="<span class="token-val">bg-dots-pulse</span>"&gt;                             <span class="token-str">/* staggered pulse */</span>
+&lt;div class="<span class="token-val">bg-dots bg-dots-scroll-x</span>"&gt;                <span class="token-str">/* scroll right */</span>
+&lt;div class="<span class="token-val">bg-dots bg-dots-scroll-y</span>"&gt;                <span class="token-str">/* scroll down */</span>
+&lt;div class="<span class="token-val">bg-dots bg-dots-scroll-diag</span>"&gt;             <span class="token-str">/* diagonal drift */</span>
+&lt;div class="<span class="token-val">bg-dots bg-dots-scroll-x bg-dots-alt</span>"&gt;   <span class="token-str">/* back & forth */</span>
+
+<span class="token-str">/* Speed modifiers */</span>
+&lt;div class="<span class="token-val">bg-dots bg-dots-scroll-x bg-dots-slow</span>"&gt;  <span class="token-str">/* 10s */</span>
+&lt;div class="<span class="token-val">bg-dots bg-dots-scroll-x bg-dots-fast</span>"&gt;  <span class="token-str">/* 1.5s */</span>
+
+<span class="token-str">/* CSS variable override — all properties */</span>
+&lt;div class="<span class="token-val">bg-dots</span>" style="
+  <span class="token-key">--dot-gap</span>:   <span class="token-val">14px</span>;
+  <span class="token-key">--dot-size</span>:  <span class="token-val">1.5px</span>;
+  <span class="token-key">--dot-color</span>: <span class="token-val">hsl(var(--signal))</span>;
+  <span class="token-key">--dot-speed</span>: <span class="token-val">2s</span>;
+"&gt;
+
+<span class="token-str">/* Combine freely */</span>
+&lt;div class="<span class="token-val">bg-dots-pulse bg-dots-signal bg-dots-tight</span>"&gt;
+&lt;div class="<span class="token-val">bg-dots bg-dots-scroll-diag bg-dots-sparse bg-dots-fg bg-dots-slow</span>"&gt;</pre>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════════════════
+     TOKENS REFERENCE
+═══════════════════════════════════════════════════════════════════════════ -->
+  <section class="showcase-section">
+    <div class="container">
+      <h2 class="t-h1 section-heading">Token Reference</h2>
+
+      <div class="g-2">
+        <!-- Token format -->
+        <div>
+          <span class="t-label c-muted section-sublabel">CSS Variables — Dark Mode</span>
+          <div class="codeblock">
+            <span class="token-str">/* Raw HSL — wrap with hsl() when used */</span>
+            <span class="token-key">--background</span>: <span class="token-val">0 0% 0%</span>;
+            <span class="token-key">--foreground</span>: <span class="token-val">0 0% 100%</span>;
+            <span class="token-key">--surface-low</span>: <span class="token-val">0 0% 5.5%</span>;
+            <span class="token-key">--surface-card</span>: <span class="token-val">0 0% 11%</span>;
+            <span class="token-key">--surface-high</span>: <span class="token-val">0 0% 12%</span>;
+            <span class="token-key">--ink-muted</span>: <span class="token-val">0 0% 60%</span>;
+            <span class="token-key">--signal</span>: <span class="token-val">4 100% 60%</span>;
+            <span class="token-key">--border</span>: <span class="token-val">0 0% 100% / 0.08</span>;
+            <span class="token-key">--radius</span>: <span class="token-val">0.25rem</span>;
+
+            <span class="token-str">/* Usage */</span>
+            background: <span class="token-val">hsl(var(--surface-card))</span>;
+            color: <span class="token-val">hsl(var(--ink-muted))</span>;
+            <span class="token-str">/* Opacity */</span>
+            background: <span class="token-val">hsl(var(--signal) / 0.12)</span>;
+          </div>
+        </div>
+
+        <!-- Tailwind usage -->
+        <div>
+          <span class="t-label c-muted section-sublabel">Tailwind Class Usage</span>
+          <div class="codeblock">
+            <span class="token-str">/* Surfaces */</span>
+            <span class="token-key">bg-background</span> → page canvas
+            <span class="token-key">bg-surface-low</span> → section tint
+            <span class="token-key">bg-surface-card</span> → cards
+            <span class="token-key">bg-surface-high</span> → hover state
+
+            <span class="token-str">/* Text */</span>
+            <span class="token-key">text-ink</span> → primary
+            <span class="token-key">text-ink-muted</span> → secondary
+            <span class="token-key">text-ink-subtle</span> → tertiary
+
+            <span class="token-str">/* Signal */</span>
+            <span class="token-key">bg-signal</span> → signal red fill
+            <span class="token-key">text-signal</span> → signal red text
+
+            <span class="token-str">/* Theme */</span>
+            <span class="token-key">.dark</span> on &lt;html&gt; → dark mode
+            <span class="token-key">.light</span> on any element → force light subtree
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════════════════
+     INSTALLATION
+═══════════════════════════════════════════════════════════════════════════ -->
+  <section id="install" class="showcase-section">
+    <div class="container">
+      <h2 class="t-h1 section-heading-sm">Installation</h2>
+      <p class="t-body c-muted mb-8" style="max-width:560px;">
+        Copy <code class="inline-code">tailwind.config.js</code>
+        and <code class="inline-code">globals.css</code>
+        into your project.
+      </p>
+
+      <!-- Download latest -->
+      <div class="flex items-center gap-3 flex-wrap mb-10">
+        <span class="t-label c-subtle" style="letter-spacing:0.08em;" data-version>v1.0.0</span>
+        <span class="vr" style="height:1rem;"></span>
+        <a data-version-href="versions/{v}/globals.css" download="globals.css"
+          class="btn btn-secondary btn-sm">↓&nbsp;globals.css</a>
+        <a data-version-href="versions/{v}/tailwind.config.js" download="tailwind.config.js"
+          class="btn btn-secondary btn-sm">↓&nbsp;tailwind.config.js</a>
+        <a href="changelog.html" class="t-label c-muted ml-2" style="text-decoration:none; transition:color 100ms;"
+          onmouseover="this.style.color='var(--fg)'" onmouseout="this.style.color=''">All versions →</a>
+      </div>
+
+      <!-- Tab switcher -->
+      <div class="flex install-tabs">
+        <button class="install-tab install-tab-btn active" onclick="switchTab(this,'tab-vite')">Vite + React</button>
+        <button class="install-tab install-tab-btn" onclick="switchTab(this,'tab-next')">Next.js</button>
+        <button class="install-tab install-tab-btn" onclick="switchTab(this,'tab-vue')">Vue / Nuxt</button>
+        <button class="install-tab install-tab-btn" onclick="switchTab(this,'tab-ng')">Angular</button>
+        <button class="install-tab install-tab-btn" onclick="switchTab(this,'tab-html')">HTML</button>
+      </div>
+
+      <!-- ── Vite + React ──────────────────────────────────────────────── -->
+      <div id="tab-vite" class="install-panel active">
+        <div class="flex flex-col gap-8">
+          <div>
+            <div class="step-header">
+              <span class="badge badge-default">Step 1</span>
+              <span class="t-label c-muted">Bootstrap &amp; install deps</span>
+            </div>
+            <div class="codeblock">
+              <span class="token-str"># Create project</span>
+              <span class="token-key">npm create vite@latest</span> my-app <span class="token-val">-- --template
+                react-ts</span>
+              <span class="token-key">cd</span> my-app
+
+              <span class="token-str"># Install Tailwind v3</span>
+              <span class="token-key">npm install -D</span> tailwindcss postcss autoprefixer
+              <span class="token-key">npm install -D</span> tailwindcss-animate
+              <span class="token-key">npx tailwindcss init -p</span>
+
+              <span class="token-str"># Optional: shadcn/ui</span>
+              <span class="token-key">npx shadcn-ui@latest init</span>
+            </div>
+          </div>
+          <div>
+            <div class="step-header">
+              <span class="badge badge-default">Step 2</span>
+              <span class="t-label c-muted">Copy config files</span>
+            </div>
+            <div class="codeblock">
+              <span class="token-str"># Copy from Glyphwind design-system/</span>
+              <span class="token-str"># Rename to .cjs — Vite uses "type":"module" in package.json</span>
+              <span class="token-key">cp</span> glyphwind/tailwind.config.js ./tailwind.config.cjs
+              <span class="token-key">cp</span> glyphwind/globals.css ./src/globals.css
+
+              <span class="token-str"># If using shadcn/ui, update components.json to point to the .cjs file</span>
+              <span class="token-str"># "tailwindConfig": "tailwind.config.cjs"</span>
+            </div>
+          </div>
+          <div>
+            <div class="step-header">
+              <span class="badge badge-default">Step 3</span>
+              <span class="t-label c-muted">Import in entry point</span>
+            </div>
+            <div class="codeblock">
+              <span class="token-str">// src/main.tsx</span>
+              <span class="token-key">import</span> <span class="token-val">'./globals.css'</span>
+              <span class="token-key">import</span> React <span class="token-key">from</span> <span
+                class="token-val">'react'</span>
+              <span class="token-key">import</span> ReactDOM <span class="token-key">from</span> <span
+                class="token-val">'react-dom/client'</span>
+              <span class="token-key">import</span> App <span class="token-key">from</span> <span
+                class="token-val">'./App'</span>
+
+              ReactDOM.createRoot(document.getElementById(<span class="token-val">'root'</span>)!)
+              .render(&lt;App /&gt;)
+            </div>
+          </div>
+          <div>
+            <div class="step-header">
+              <span class="badge badge-default">Step 4</span>
+              <span class="t-label c-muted">Enable dark mode in index.html</span>
+            </div>
+            <div class="codeblock">
+              <span class="token-str">&lt;!-- index.html — add class="dark" for dark mode default --&gt;</span>
+              &lt;<span class="token-key">html</span> <span class="token-val">lang</span>=<span
+                class="token-str">"en"</span> <span class="token-val">class</span>=<span
+                class="token-str">"dark"</span>&gt;
+            </div>
+          </div>
+        </div>
+
+        <div class="info-note mt-8" style="max-width:560px;">
+          <svg width="14" height="14" fill="none" stroke="var(--fg-muted)" stroke-width="1.5" viewBox="0 0 24 24"
+            class="info-note-icon">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 16v-4m0-4h.01" />
+          </svg>
+          <span class="t-body-sm c-muted">With shadcn/ui, run <code class="inline-code">npx shadcn-ui@latest init</code>
+            then replace the generated
+            <code class="inline-code">globals.css</code> and <code class="inline-code">tailwind.config.js</code> with
+            the Glyphwind versions. All
+            shadcn component CSS variable names are preserved.</span>
+        </div>
+      </div>
+
+      <!-- ── Next.js ──────────────────────────────────────────────────── -->
+      <div id="tab-next" class="install-panel">
+        <div class="flex flex-col gap-8">
+          <div>
+            <div class="step-header">
+              <span class="badge badge-default">Step 1</span>
+              <span class="t-label c-muted">Create project</span>
+            </div>
+            <div class="codeblock">
+              <span class="token-key">npx create-next-app@latest</span> my-app \
+              <span class="token-val">--typescript --tailwind --eslint</span>
+              <span class="token-key">cd</span> my-app
+
+              <span class="token-str"># Install animation plugin</span>
+              <span class="token-key">npm install -D</span> tailwindcss-animate
+
+              <span class="token-str"># Optional: shadcn/ui</span>
+              <span class="token-key">npx shadcn-ui@latest init</span>
+            </div>
+          </div>
+          <div>
+            <div class="step-header">
+              <span class="badge badge-default">Step 2</span>
+              <span class="t-label c-muted">Replace generated files</span>
+            </div>
+            <div class="codeblock">
+              <span class="token-str"># Replace Next.js defaults</span>
+              <span class="token-key">cp</span> glyphwind/tailwind.config.js ./tailwind.config.js
+              <span class="token-key">cp</span> glyphwind/globals.css ./app/globals.css
+            </div>
+          </div>
+          <div>
+            <div class="step-header">
+              <span class="badge badge-default">Step 3</span>
+              <span class="t-label c-muted">Root layout (App Router)</span>
+            </div>
+            <div class="codeblock">
+              <span class="token-str">// app/layout.tsx</span>
+              <span class="token-key">import</span> <span class="token-val">'./globals.css'</span>
+
+              <span class="token-key">export default function</span> RootLayout({
+              children,
+              }: { children: React.ReactNode }) {
+              <span class="token-key">return</span> (
+              &lt;<span class="token-key">html</span> lang=<span class="token-val">"en"</span> className=<span
+                class="token-val">"dark"</span>&gt;
+              &lt;<span class="token-key">body</span>&gt;{children}&lt;/<span class="token-key">body</span>&gt;
+              &lt;/<span class="token-key">html</span>&gt;
+              )
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Vue / Nuxt ───────────────────────────────────────────────── -->
+      <div id="tab-vue" class="install-panel">
+        <div class="flex flex-col gap-8">
+          <div>
+            <div class="step-header">
+              <span class="badge badge-default">Step 1</span>
+              <span class="t-label c-muted">Create Nuxt 3 or Vue project</span>
+            </div>
+            <div class="codeblock">
+              <span class="token-str"># Nuxt 3</span>
+              <span class="token-key">npx nuxi@latest init</span> my-app
+              <span class="token-key">cd</span> my-app
+
+              <span class="token-str"># Add Tailwind module</span>
+              <span class="token-key">npx nuxi module add</span> @nuxtjs/tailwindcss
+              <span class="token-key">npm install -D</span> tailwindcss-animate
+            </div>
+          </div>
+          <div>
+            <div class="step-header">
+              <span class="badge badge-default">Step 2</span>
+              <span class="t-label c-muted">Copy Glyphwind files</span>
+            </div>
+            <div class="codeblock">
+              <span class="token-key">cp</span> glyphwind/tailwind.config.js ./tailwind.config.js
+              <span class="token-key">cp</span> glyphwind/globals.css ./assets/globals.css
+            </div>
+          </div>
+          <div>
+            <div class="step-header">
+              <span class="badge badge-default">Step 3</span>
+              <span class="t-label c-muted">nuxt.config.ts</span>
+            </div>
+            <div class="codeblock">
+              <span class="token-str">// nuxt.config.ts</span>
+              <span class="token-key">export default</span> defineNuxtConfig({
+              css: [<span class="token-val">'~/assets/globals.css'</span>],
+              app: {
+              htmlAttrs: { class: <span class="token-val">'dark'</span> }
+              }
+              })
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Angular ──────────────────────────────────────────────────── -->
+      <div id="tab-ng" class="install-panel">
+        <div class="flex flex-col gap-8">
+          <div>
+            <div class="step-header">
+              <span class="badge badge-default">Step 1</span>
+              <span class="t-label c-muted">Create project &amp; add Tailwind</span>
+            </div>
+            <div class="codeblock">
+              <span class="token-key">ng new</span> my-app --style=css
+              <span class="token-key">cd</span> my-app
+
+              <span class="token-str"># Install Tailwind v3</span>
+              <span class="token-key">npm install -D</span> tailwindcss postcss autoprefixer
+              <span class="token-key">npm install -D</span> tailwindcss-animate
+              <span class="token-key">npx tailwindcss init</span>
+            </div>
+          </div>
+          <div>
+            <div class="step-header">
+              <span class="badge badge-default">Step 2</span>
+              <span class="t-label c-muted">Copy files &amp; import</span>
+            </div>
+            <div class="codeblock">
+              <span class="token-key">cp</span> glyphwind/tailwind.config.js ./tailwind.config.js
+              <span class="token-key">cp</span> glyphwind/globals.css ./src/globals.css
+            </div>
+          </div>
+          <div>
+            <div class="step-header">
+              <span class="badge badge-default">Step 3</span>
+              <span class="t-label c-muted">styles.css + angular.json</span>
+            </div>
+            <div class="codeblock">
+              <span class="token-str">/* src/styles.css */</span>
+              <span class="token-key">@import</span> <span class="token-val">'./globals.css'</span>;
+              <span class="token-key">@tailwind</span> base;
+              <span class="token-key">@tailwind</span> components;
+              <span class="token-key">@tailwind</span> utilities;
+
+              <span class="token-str">// index.html — add dark class</span>
+              &lt;<span class="token-key">html</span> <span class="token-val">class</span>=<span
+                class="token-str">"dark"</span>&gt;
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Plain HTML ───────────────────────────────────────────────── -->
+      <div id="tab-html" class="install-panel">
+        <div class="flex flex-col gap-8">
+          <div>
+            <div class="step-header">
+              <span class="badge badge-default">Step 1</span>
+              <span class="t-label c-muted">Add to your HTML head</span>
+            </div>
+            <div class="codeblock">
+              <span class="token-str">&lt;!-- Fonts --&gt;</span>
+              &lt;<span class="token-key">link</span> href=<span class="token-str">"https://fonts.googleapis.com/css2?
+                family=Space+Grotesk:wght@300;400;500;600;700
+                &amp;family=Space+Mono:ital,wght@0,400;0,700;1,400
+                &amp;family=Doto:wght@100..900
+                &amp;display=swap"</span>
+              rel=<span class="token-str">"stylesheet"</span>&gt;
+
+              <span class="token-str">&lt;!-- Tailwind CDN v3 --&gt;</span>
+              &lt;<span class="token-key">script</span> src=<span
+                class="token-str">"https://cdn.tailwindcss.com"</span>&gt;&lt;/<span class="token-key">script</span>&gt;
+
+              <span class="token-str">&lt;!-- Glyphwind tokens (inline or linked) --&gt;</span>
+              &lt;<span class="token-key">link</span> rel=<span class="token-str">"stylesheet"</span> href=<span
+                class="token-str">"globals.css"</span>&gt;
+            </div>
+          </div>
+          <div>
+            <div class="step-header">
+              <span class="badge badge-default">Step 2</span>
+              <span class="t-label c-muted">Configure Tailwind &amp; enable dark</span>
+            </div>
+            <div class="codeblock">
+              &lt;<span class="token-key">script</span>&gt;
+              tailwind.config = {
+              darkMode: <span class="token-val">'class'</span>,
+              theme: {
+              extend: {
+              fontFamily: {
+              sans: [<span class="token-val">'Space Grotesk'</span>, <span class="token-val">'system-ui'</span>],
+              mono: [<span class="token-val">'Space Mono'</span>, <span class="token-val">'monospace'</span>],
+              dot: [<span class="token-val">'Doto'</span>, <span class="token-val">'Space Mono'</span>, <span
+                class="token-val">'monospace'</span>],
+              }
+              }
+              }
+              }
+              &lt;/<span class="token-key">script</span>&gt;
+
+              <span class="token-str">&lt;!-- Add class="dark" for dark mode --&gt;</span>
+              &lt;<span class="token-key">html</span> <span class="token-val">class</span>=<span
+                class="token-str">"dark"</span>&gt;
+            </div>
+          </div>
+        </div>
+        <div class="info-note mt-8" style="max-width:580px;">
+          <svg width="14" height="14" fill="none" stroke="var(--fg-muted)" stroke-width="1.5" viewBox="0 0 24 24"
+            class="info-note-icon">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 16v-4m0-4h.01" />
+          </svg>
+          <span class="t-body-sm c-muted">The CDN build does not support <code
+              class="inline-code">tailwind.config.js</code> custom tokens or plugins — <code
+              class="inline-code">tailwindcss-animate</code> will not work here. For production, use
+            the CLI with a build step (<code class="inline-code">npm install -D tailwindcss-animate</code>) to get
+            full design token and animation support via CSS custom properties in <code
+              class="inline-code">globals.css</code>.</span>
+        </div>
+      </div>
+
+      <!-- React Aria note -->
+      <div class="card mt-12" style="border-radius:3px; max-width:680px;">
+        <div class="row-sm mb-3">
+          <span class="t-label-md">React Aria compatibility</span>
+        </div>
+        <div class="codeblock">
+          <span class="token-key">npm install</span> react-aria-components
+
+          <span class="token-str">// Apply Glyphwind tokens via className prop</span>
+          <span class="token-key">import</span> { Button } <span class="token-key">from</span> <span
+            class="token-val">'react-aria-components'</span>
+
+          &lt;<span class="token-key">Button</span> className=<span class="token-val">"btn
+            btn-primary"</span>&gt;Save&lt;/<span class="token-key">Button</span>&gt;
+          &lt;<span class="token-key">Button</span> className=<span class="token-val">"btn btn-secondary
+            btn-icon"</span> aria-label=<span class="token-val">"Settings"</span>&gt;
+          &lt;<span class="token-key">SettingsIcon</span> /&gt;
+          &lt;/<span class="token-key">Button</span>&gt;
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="container flex justify-between items-center flex-wrap gap-4">
+      <div class="row-sm">
+        <span class="dot dot-sm"></span>
+        <span class="t-body font-semibold" style="letter-spacing:-0.01em;">GLYPHWIND</span>
+        <span class="t-label c-muted ml-2">Design System <span data-version>v1.0</span></span>
+      </div>
+      <div class="flex gap-8 items-center">
+        <span class="t-label c-muted">Analog Digitalist</span>
+        <span class="t-label c-muted">Tailwind CSS</span>
+        <span class="t-label c-muted">shadcn/ui · React Aria</span>
+        <a href="changelog.html" class="t-label c-muted" style="text-decoration:none; transition:color 100ms;"
+          onmouseover="this.style.color='var(--fg)'" onmouseout="this.style.color=''">Changelog →</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════════════════
+     THEME TOGGLE SCRIPT
+═══════════════════════════════════════════════════════════════════════════ -->
+  <script>
+    // ─── Dedent codeblocks ────────────────────────────────────────────────────
+    // white-space:pre preserves HTML source indentation as visible spaces.
+    // Strip the common leading indent from every codeblock's innerHTML.
+    document.querySelectorAll('.codeblock').forEach(block => {
+      const lines = block.innerHTML.split('\n');
+      const minIndent = lines
+        .filter(l => l.trim().length > 0)
+        .reduce((min, l) => Math.min(min, l.match(/^(\s*)/)[1].length), Infinity);
+      if (minIndent > 0 && minIndent < Infinity) {
+        block.innerHTML = lines
+          .map(l => l.slice(minIndent))
+          .join('\n')
+          .replace(/^\n+/, '');
+      }
+    });
+
+    // ─── Single source of truth for current version ───────────────────────────
+    const CURRENT_VERSION = '1.0.0';
+
+    // Stamp all [data-version] text nodes and [data-version-href] hrefs
+    document.querySelectorAll('[data-version]').forEach(el => {
+      el.textContent = 'v' + CURRENT_VERSION;
+    });
+    document.querySelectorAll('[data-version-href]').forEach(el => {
+      el.href = el.dataset.versionHref.replace('{v}', CURRENT_VERSION);
+    });
+
+    const html = document.documentElement;
+    const label = document.getElementById("theme-label");
+    const labelMob = document.getElementById("theme-label-mob");
+
+    function syncThemeLabels(isDark) {
+      const txt = isDark ? "LIGHT" : "DARK";
+      if (label) label.textContent = txt;
+      if (labelMob) labelMob.textContent = txt;
+    }
+
+    function toggleTheme() {
+      const isDark = html.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      syncThemeLabels(isDark);
+    }
+
+    // Init labels
+    syncThemeLabels(html.classList.contains('dark'));
+
+    // Mobile nav
+    function toggleMobileNav() {
+      const hamburger = document.getElementById('nav-hamburger');
+      const panel = document.getElementById('nav-mobile-panel');
+      hamburger.classList.toggle('open');
+      panel.classList.toggle('open');
+    }
+    function closeMobileNav() {
+      document.getElementById('nav-hamburger').classList.remove('open');
+      document.getElementById('nav-mobile-panel').classList.remove('open');
+    }
+    window.addEventListener('resize', () => { if (window.innerWidth > 640) closeMobileNav(); });
+
+    // Install tab switcher
+    function switchTab(btn, panelId) {
+      // Deactivate all tabs
+      document.querySelectorAll('.install-tab').forEach(t => t.classList.remove('active'));
+      // Hide all panels
+      document.querySelectorAll('.install-panel').forEach(p => p.classList.remove('active'));
+      // Activate clicked
+      btn.classList.add('active');
+      document.getElementById(panelId).classList.add('active');
+    }
+
+    // Code toggle
+    function toggleCode(id, btn) {
+      const panel = document.getElementById('code-' + id);
+      const isOpen = panel.classList.toggle('open');
+      btn.classList.toggle('active', isOpen);
+      btn.setAttribute('aria-expanded', String(isOpen));
+      btn.innerHTML = isOpen ? '&times; close' : '&lt;/&gt;';
+    }
+
+    // Smooth nav active state
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => link.classList.remove('active'));
+          const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+
+    sections.forEach(s => observer.observe(s));
+
+  </script>
+
+</body>
+
+</html>
