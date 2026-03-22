@@ -4,6 +4,8 @@ A precision-engineered, framework-agnostic design system built on Tailwind CSS. 
 
 **Version:** 1.0.0 &nbsp;|&nbsp; **Tailwind:** 3.4.17 &nbsp;|&nbsp; **License:** MIT
 
+**Sample implementations:** [github.com/brijeshcore/glyphwind-samples](https://github.com/brijeshcore/glyphwind-samples)
+
 ---
 
 ## Philosophy
@@ -287,6 +289,14 @@ Google Fonts (Space Grotesk, Space Mono, Doto) are loaded via CDN in `globals.cs
 ## Browser Support
 
 Any browser supporting CSS custom properties and `backdrop-filter`. Modern evergreen browsers recommended.
+
+---
+
+## Examples
+
+Real-world implementations and starter templates built with Glyphwind:
+
+**[github.com/brijeshcore/glyphwind-samples](https://github.com/brijeshcore/glyphwind-samples)**
 
 ---
 
