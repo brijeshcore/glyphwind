@@ -86,6 +86,16 @@ CSS utility classes: `.bg-surface`, `.bg-surface-low`, `.bg-surface-card`, `.bg-
 Short aliases: `.bg-base`, `.bg-low`, `.bg-card`, `.bg-high`, `.bg-highest`
 Tailwind (if configured): `bg-surface`, `bg-surface-low`, `bg-surface-card`, `bg-surface-high`, `bg-surface-highest`
 
+**Elevation scale classes** (token-based, respond to theme — force dark context with `class="dark"` on a subtree to always show the dark scale):
+
+| Class | Maps to | Use |
+|---|---|---|
+| `.bg-elev-0` | `--background` | Page void / absolute base |
+| `.bg-elev-1` | `--surface-low` | Foundation layer |
+| `.bg-elev-2` | `--surface-card` | Card / section layer |
+| `.bg-elev-3` | `--surface-high` | Interactive / hover layer |
+| `.bg-elev-4` | `--surface-highest` | Topmost layer |
+
 ### 4.2 Text Scale (Ink)
 
 | Token | Light hex | Dark hex | Usage |
@@ -95,7 +105,7 @@ Tailwind (if configured): `bg-surface`, `bg-surface-low`, `bg-surface-card`, `bg
 | `--ink-subtle` | `#999999` | `#4D4D4D` | Tertiary, placeholders |
 | `--ink-ghost` | `#C7C7C7` | `#292929` | Barely visible hints |
 
-Color utility classes: `.c-fg`, `.c-muted`, `.c-subtle`, `.c-signal`
+Color utility classes: `.c-fg`, `.c-ink`, `.c-muted`, `.c-subtle`, `.c-ghost`, `.c-signal`
 Background utilities: `.bg-foreground`, `.bg-ink-subtle`, `.bg-ink-ghost`
 
 ### 4.3 Signal Red (Accent)
@@ -173,6 +183,14 @@ All tokens use raw HSL, so shadcn components calling `hsl(var(--primary))` etc. 
 | `font-mono` | Space Mono → Roboto Mono | Data values, code, numbers, timestamps |
 | `font-dot` | Doto → Space Mono | **Special display components only** (see §5.4) |
 
+**CSS custom property variables** (defined in `:root`, use anywhere `font-family` is needed):
+```css
+font-family: var(--font-sans);   /* Space Grotesk — all UI text */
+font-family: var(--font-mono);   /* Space Mono — data & numbers only */
+font-family: var(--font-dot);    /* Doto — display headlines, max 3 words */
+```
+Always use the CSS variable or the Tailwind `font-sans/mono/dot` utility class. Never hardcode font stack strings in components.
+
 Google Fonts import:
 ```html
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Doto:wght@100..900&display=swap" rel="stylesheet" />
@@ -193,6 +211,8 @@ Google Fonts import:
 | `.t-label` | 10px | 500 | 0.10em | Uppercase labels (default) |
 | `.t-label-md` | 11px | 500 | 0.09em | Compact labels |
 | `.t-mono` | inherit | — | -0.01em | Space Mono + tabular-nums |
+| `.t-stat` | 24px | 600 | -0.015em | Dashboard metric headings (pair with `font-mono`) |
+| `.t-readout` | 28px | 700 | -0.02em | Large mono readouts — clocks, uptime, live values (pair with `font-mono`) |
 
 **Rules:**
 - Display type: Space Grotesk only, max 3 words, never in body flow
@@ -223,11 +243,20 @@ Use the `.dot-display` class family. **Never for body copy, navigation, or butto
 <!-- Color variants -->
 <span class="dot-display dot-display-lg dot-display-muted">v2.4.1</span>
 <span class="dot-display dot-display-lg dot-display-signal">LIVE</span>
+
+<!-- Weight variants (Doto is variable weight 100–900) -->
+<span class="dot-display dot-display-xl dot-display-thin">23:59</span>  <!-- weight 100, opacity 0.4 — ghost -->
+<span class="dot-display dot-display-xl dot-display-reg">23:59</span>   <!-- weight 400 — default -->
+<span class="dot-display dot-display-xl dot-display-bold">23:59</span>  <!-- weight 700 — emphasis -->
+
+<!-- Inline unit labels (muted, reduced size) -->
+<span class="dot-display dot-display-lg">99.98<span class="dot-display-unit-md">%</span></span>
+<span class="dot-display dot-display-lg">1,204<span class="dot-display-unit-sm"> /s</span></span>
 ```
 
 Approved use cases: clocks, uptime percentages, request counters, latency readouts, build/version stamps, hero display headlines (decorative, 3 words max).
 
-Doto has variable weight (100–900). Default is 400. Use 700 for emphasis, 100 for ghost.
+Doto has variable weight (100–900). Default is 400. Use `.dot-display-bold` (700) for emphasis, `.dot-display-thin` (100, 0.4 opacity) for ghost/inactive state.
 
 ---
 
@@ -318,8 +347,11 @@ Button rules:
 <!-- Disabled -->
 <input class="input" disabled />
 
-<!-- Monospace — for tokens, API keys -->
-<input class="input t-mono" type="text" placeholder="sk_live_..." />
+<!-- Focus / active state -->
+<input class="input input-active" type="text" value="Active value" />
+
+<!-- Monospace — for tokens, API keys (always add tracking-loose for readability) -->
+<input class="input t-mono tracking-loose" type="text" placeholder="sk_live_..." />
 ```
 
 ### 8.3 Cards
@@ -337,6 +369,9 @@ Button rules:
 <!-- Floating card (ambient shadow) -->
 <div class="card card-float">Content</div>
 
+<!-- Sharp corners — 3px radius, matches button sharpness -->
+<div class="card card-sharp">Content</div>
+
 <!-- Critical / signal state -->
 <div class="card card-signal">
   <div class="row-sm">
@@ -351,6 +386,7 @@ Button rules:
 Card rules:
 - No dividers inside cards — use spacing (`gap-6`, `mt-6`) between items
 - No drop shadows except `card-float` which uses a 64px ambient diffusion
+- `.card-sharp` (3px radius) is used when a card sits adjacent to buttons — the matching radius creates visual cohesion
 
 ### 8.4 Badges
 
@@ -371,10 +407,25 @@ Card rules:
 
 ```html
 <nav class="navbar">
-  <a href="/" class="nav-link">Overview</a>
-  <a href="/components" class="nav-link active">Components</a>
+  <!-- Brand — uses Doto font via .navbar-brand -->
+  <div class="row-sm">
+    <span class="dot dot-md animate-led"></span>
+    <span class="navbar-brand">BRAND</span>
+  </div>
+
+  <!-- Nav links -->
+  <div class="flex gap-7 ml-8">
+    <a href="/" class="nav-link">Overview</a>
+    <a href="/components" class="nav-link active">Components</a>
+  </div>
+
+  <!-- Footer / external links with hover transition -->
+  <a href="https://github.com/..." class="t-label link-hover">Source →</a>
 </nav>
 ```
+
+- `.navbar-brand` — applies Doto font (`var(--font-dot)`), 600 weight, 0.04em tracking. **Always use this class for the brand name — never `font-semibold` + inline letter-spacing.**
+- `.link-hover` — nav/footer link utility: removes text-decoration, applies `--ink-muted` color with `--duration-fast` color transition to foreground on hover. Use on any text link that needs subtle hover feedback.
 
 Navbar background uses `hsl(var(--surface-card) / 0.8)` with `backdrop-filter: blur(16px)` — do not override with hardcoded rgba.
 
@@ -414,10 +465,10 @@ Rules: Default color is signal red. Use `bg-ink-subtle` or `bg-ink-ghost` for in
     <table class="table">
       <thead>
         <tr class="tr-no-border">              <!-- removes top border on first row -->
-          <th class="th-inset-l">Service</th>  <!-- first col left inset -->
+          <th class="th-inset-l">Service</th>   <!-- first col left inset -->
           <th>Status</th>
-          <th class="col-num">Uptime</th>      <!-- right-align numbers -->
-          <th class="col-num td-inset-r">Latency</th>  <!-- last col right inset -->
+          <th class="col-num">Uptime</th>       <!-- right-align numbers -->
+          <th class="col-num th-inset-r">Latency</th>  <!-- last col right inset -->
         </tr>
       </thead>
       <tbody>
@@ -449,7 +500,7 @@ No divider lines between rows. Row hover shifts background tonal level automatic
 
 <!-- Critical / signal -->
 <div class="toast toast-signal">
-  <span class="dot dot-md animate-led-fast"></span>
+  <span class="dot dot-md animate-led-fast toast-icon toast-dot-nudge"></span>
   <div>
     <div class="font-medium c-signal mb-1">Critical Warning</div>
     <div class="t-body-sm c-muted">Alert detail.</div>
@@ -457,17 +508,68 @@ No divider lines between rows. Row hover shifts background tonal level automatic
 </div>
 ```
 
+- `.toast-icon` — `flex-shrink: 0; margin-top: 1px` — apply to any leading icon or dot inside a toast to prevent squishing and align with the first line of text.
+- `.toast-dot-nudge` — additional `margin-top: 2px` micro-adjustment specifically for the `.dot` LED indicator inside toasts, to optically centre it against label text.
+
 ### 8.9 Glass Panel
 
 ```html
-<div class="glass" style="padding: 1.5rem;">
-  Floating overlay content
+<!-- Wrapper: tinted surface background for contrast against the glass panel -->
+<div class="bg-surface-low p-12">
+
+  <!-- Glass panel with companion layout class -->
+  <div class="glass glass-content">
+    <div class="row-sm">
+      <span class="dot dot-sm animate-led"></span>
+      <span class="t-label c-signal">LIVE</span>
+    </div>
+    <div class="font-mono t-readout">23:41:07</div>
+    <div class="t-body c-muted">System uptime</div>
+  </div>
+
 </div>
 ```
 
-Use for: overlays, popovers, floating panels. Requires `backdrop-filter` support.
+- `.glass` — the core frosted glass style: semi-transparent surface-card background (75% opacity), `backdrop-filter: blur(20px)`, ghost border, default radius.
+- `.glass-content` — **companion layout class** providing `max-width: 320px`, `padding: 1.5rem`, `position: relative`. Always pair with `.glass` for correctly sized panels.
 
-### 8.10 Section Tag & Labels
+**Rule:** Never set `padding` on `.glass` via inline style. Use `.glass-content` or a Tailwind padding utility class.
+
+Use for: overlays, popovers, floating panels, dashboard widgets. Requires `backdrop-filter` support.
+
+### 8.10 Progress Bar
+
+```html
+<!-- Basic -->
+<div class="bg-surface-high progress-bar">
+  <div class="progress-fill w-1/2"></div>
+</div>
+
+<!-- With label -->
+<div class="row-between mb-2">
+  <span class="t-label c-muted">Memory Usage</span>
+  <span class="t-label t-mono c-muted">3.7 GB</span>
+</div>
+<div class="bg-surface-high progress-bar">
+  <div class="progress-fill progress-fill-demo"></div>  <!-- 47% demo fill -->
+</div>
+
+<!-- Full fill (100%) -->
+<div class="bg-surface-high progress-bar">
+  <div class="progress-fill w-full"></div>
+</div>
+
+<!-- Critical / signal state -->
+<div class="bg-surface-high progress-bar">
+  <div class="progress-fill progress-fill-signal"></div>
+</div>
+```
+
+- `.progress-bar` — track: `height: 3px`, `border-radius: 2px`, `overflow: hidden`. Always pair with a surface background (`bg-surface-high` recommended).
+- `.progress-fill` — fill: `height: 100%`, foreground color. Control width with Tailwind fraction utilities (`w-1/2`, `w-full`, `w-3/4` etc.).
+- `.progress-fill-signal` — fill variant using `hsl(var(--signal))` — use only for critical/error states.
+
+### 8.11 Section Tag & Labels
 
 ```html
 <!-- Above section headings -->
@@ -482,6 +584,26 @@ Use for: overlays, popovers, floating panels. Requires `backdrop-filter` support
 ---
 
 ## 9. Utility Classes
+
+### Color utilities
+
+| Class | Effect |
+|---|---|
+| `.c-fg` | `color: hsl(var(--foreground))` — primary foreground |
+| `.c-ink` | `color: hsl(var(--ink))` — primary ink (same as foreground) |
+| `.c-muted` | `color: hsl(var(--ink-muted))` — secondary text |
+| `.c-subtle` | `color: hsl(var(--ink-subtle))` — tertiary text |
+| `.c-ghost` | `color: hsl(var(--ink-ghost))` — barely visible |
+| `.c-signal` | `color: hsl(var(--signal))` — signal red |
+
+### Typography utilities
+
+| Class | Effect |
+|---|---|
+| `.tracking-loose` | `letter-spacing: 0.08em` — for monospace inputs, version tags |
+| `.tracking-snug` | `letter-spacing: -0.015em` — tight display text |
+
+### Structural utilities
 
 | Class | Effect |
 |---|---|
@@ -500,10 +622,16 @@ Use for: overlays, popovers, floating panels. Requires `backdrop-filter` support
 | `.transition-fast` | All properties at 80ms + system easing |
 | `.transition-default` | All properties at 150ms + system easing |
 | `.transition-slow` | All properties at 300ms + system easing |
+| `.link-hover` | Text link with `--ink-muted` color + fast hover transition to foreground |
+| `.btn-grow` | `flex: 1` — full-width button inside a flex cluster |
+| `.badge-center` | `align-self: center` — vertically centres a badge in a flex row |
+| `.card-sharp` | `border-radius: 3px` — sharper card corners matching button radius |
 
 ---
 
 ## 10. Layout Primitives
+
+### Flex utilities
 
 | Class | Effect |
 |---|---|
@@ -514,6 +642,27 @@ Use for: overlays, popovers, floating panels. Requires `backdrop-filter` support
 | `.stack-sm` | `flex` column, `0.5rem` gap |
 | `.cluster` | `flex` wrap, `0.75rem` gap |
 | `.cluster-sm` | `flex` wrap, `0.625rem` gap |
+
+### Max-width constraints
+
+Use these semantic classes to constrain text blocks and content panels. Never set `max-width` via inline styles.
+
+| Class | Max-width | Use |
+|---|---|---|
+| `.prose-width-sm` | 520px | Hero intros, tight prose, changelog hero |
+| `.prose-width` | 560px | Standard section intro text |
+| `.prose-width-lg` | 680px | Wider prose blocks |
+| `.content-card-sm` | 320px | Compact panels, narrow overlays |
+| `.content-card` | 420px | Form cards, narrow content cards |
+| `.content-card-lg` | 860px | Wide content cards, multi-column layouts |
+
+```html
+<!-- Example -->
+<p class="t-body c-muted prose-width">Section intro text that stays readable at all viewport widths.</p>
+<div class="card content-card">
+  <!-- Form or narrow card content -->
+</div>
+```
 
 ---
 
@@ -598,6 +747,8 @@ surface (#FCFCFC) → surface-low (#F6F3F2) → surface-card (#FFFFFF) → surfa
 ```
 
 To imply "floating" use `card-float`. Never use `shadow-md`, `shadow-lg`, or drop shadows.
+
+Use `.bg-elev-0` through `.bg-elev-4` to apply the elevation scale in components (see §4.1). To demonstrate or force the dark elevation scale in a light-mode context, wrap in `class="dark"` — CSS custom properties cascade through the DOM.
 
 ---
 
@@ -691,6 +842,10 @@ css: ['~/assets/globals.css']
 | Lower opacity for hover states | Shift background to next surface level (`--surface-high`) |
 | Use decorative animation | Motion only for state changes: hover, loading, success, error |
 | Animate width, height, padding, margin | Only animate `transform` and `opacity` |
+| Set padding on `.glass` via inline style | Use `.glass-content` or a Tailwind padding utility |
+| Use `navbar-brand` font via `font-semibold` + inline letter-spacing | Use `.navbar-brand` class — it applies Doto font, correct weight and tracking |
+| Set `max-width` via inline styles | Use `.prose-width-*` or `.content-card-*` semantic classes |
+| Hardcode font-family strings | Use `var(--font-sans)`, `var(--font-mono)`, `var(--font-dot)` |
 
 ---
 
@@ -713,3 +868,9 @@ When generating a new component with Glyphwind:
 - [ ] Entrances use `.animate-fade-up` or `.animate-scale-in`
 - [ ] Icon-only buttons have `title` or `aria-label`
 - [ ] Works in both light and dark mode without hardcoded values
+- [ ] No inline styles — every style via a class (globals, Tailwind, or scoped `<style>` block)
+- [ ] Font families via `var(--font-*)` or Tailwind `font-sans/mono/dot` — never hardcoded stacks
+- [ ] Max-width constraints use `.prose-width-*` or `.content-card-*` — never inline `max-width`
+- [ ] Glass panels use `.glass-content` for layout — never `style="padding:..."` on `.glass`
+- [ ] Brand/logo text uses `.navbar-brand` — never `font-semibold` + inline letter-spacing
+- [ ] Monospace inputs use `.tracking-loose` — never inline `letter-spacing`

@@ -183,7 +183,7 @@
       margin: 0;
       background: var(--bg);
       color: var(--fg);
-      font-family: 'Space Grotesk', system-ui, sans-serif;
+      font-family: var(--font-sans);
       font-size: 14px;
       line-height: 1.6;
       transition: background 0.25s ease, color 0.25s ease;
@@ -269,7 +269,7 @@
       border: 1px solid hsl(var(--border));
       border-radius: var(--radius);
       padding: 1rem 1.25rem;
-      font-family: 'Space Mono', monospace;
+      font-family: var(--font-mono);
       font-size: 0.75rem;
       line-height: 1.7;
       color: var(--fg-muted);
@@ -438,6 +438,12 @@
       border-top: 1px solid hsl(var(--border));
     }
 
+    .site-footer .footer-brand {
+      font-family: var(--font-dot);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
     /* Section with tinted background */
     .section-tinted {
       background-color: var(--bg-low);
@@ -561,7 +567,7 @@
       }
 
       /* Reduce hero padding */
-      section[style*="7rem"] {
+      .hero-section {
         padding-top: 4rem !important;
         padding-bottom: 3rem !important;
       }
@@ -842,7 +848,7 @@
 
     /* Inline code in prose */
     .inline-code {
-      font-family: 'Space Mono', monospace;
+      font-family: var(--font-mono);
       font-size: 0.8em;
       background: var(--bg-low);
       padding: 0.15em 0.4em;
@@ -871,6 +877,7 @@
 
     /* Navbar logo text */
     .navbar-brand {
+      font-family: var(--font-dot);
       font-weight: 600;
       letter-spacing: 0.04em;
       font-size: 1rem;
@@ -896,7 +903,7 @@
     }
 
     .code-toggle {
-      font-family: 'Space Mono', monospace;
+      font-family: var(--font-mono);
       font-size: 0.6rem;
       letter-spacing: 0.06em;
       color: var(--fg-muted);
@@ -931,6 +938,217 @@
     .code-panel>div {
       overflow: hidden;
     }
+
+    /* ─── Showcase-only classes (moved from globals.css) ─────────────────── */
+
+    /* Code-ref divider block */
+    .code-ref-block {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid hsl(var(--border));
+    }
+
+    /* Typography specimen sizes */
+    .type-display-lg {
+      font-size: clamp(2rem, 5vw, 4.5rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .type-title-lg {
+      font-size: 1.125rem;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    .type-mono-lg {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .type-mono-md {
+      font-size: 1.25rem;
+    }
+
+    /* Font card specimen sizes */
+    .font-specimen {
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1;
+      margin-bottom: 1.25rem;
+    }
+
+    .font-specimen-mono {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 1.25rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .font-specimen-dot {
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Dot display label column min-width */
+    .dot-label-col {
+      min-width: 80px;
+    }
+
+    .dot-label-col-lg {
+      min-width: 120px;
+    }
+
+    /* Spacing swatch demo sizes */
+    .swatch-1 {
+      width: 4px;
+      height: 4px;
+    }
+
+    .swatch-2 {
+      width: 8px;
+      height: 8px;
+    }
+
+    .swatch-4 {
+      width: 16px;
+      height: 16px;
+    }
+
+    .swatch-6 {
+      width: 24px;
+      height: 16px;
+    }
+
+    .swatch-8 {
+      width: 32px;
+      height: 16px;
+    }
+
+    .swatch-16 {
+      width: 64px;
+      height: 16px;
+    }
+
+    .swatch-32 {
+      width: 128px;
+      height: 16px;
+    }
+
+    /* Radius demo box sizes */
+    .radius-demo-sm {
+      width: 48px;
+      height: 48px;
+      background-color: hsl(var(--foreground));
+    }
+
+    .radius-demo-md {
+      width: 64px;
+      height: 64px;
+      background-color: hsl(var(--foreground));
+    }
+
+    .radius-demo-lg {
+      width: 80px;
+      height: 80px;
+      background-color: hsl(var(--foreground));
+    }
+
+    .radius-demo-full {
+      width: 24px;
+      height: 24px;
+      background-color: hsl(var(--signal));
+    }
+
+    /* Progress fill demo width */
+    .progress-fill-demo {
+      width: 47%;
+    }
+
+    /* Glass demo wrapper */
+    .glass-demo-wrapper {
+      position: relative;
+      padding: 3rem;
+      background-color: hsl(var(--surface-low));
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .glass-demo-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(255, 65, 50, 0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    /* Navbar demo override */
+    .navbar-demo {
+      position: relative;
+      border-bottom: 1px solid hsl(var(--border));
+    }
+
+    /* Table column widths for service status table */
+    .col-service {
+      width: 40%;
+    }
+
+    .col-status {
+      width: 18%;
+    }
+
+    .col-uptime {
+      width: 14%;
+    }
+
+    .col-latency {
+      width: 14%;
+    }
+
+    .col-check {
+      width: 14%;
+    }
+
+    /* Dot pattern custom demo card */
+    .dot-custom-demo {
+      min-height: 140px;
+      position: relative;
+      --dot-gap: 14px;
+      --dot-size: 1.5px;
+      --dot-color: hsl(var(--signal));
+    }
+
+    .dot-demo-code-overlay {
+      position: absolute;
+      bottom: 3rem;
+      left: 1.25rem;
+      right: 1.25rem;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.6rem;
+      line-height: 1.6;
+    }
+
+    .dot-demo-label-custom {
+      position: absolute;
+      bottom: 1.25rem;
+      left: 1.25rem;
+    }
+
+    /* Section sublabel with top spacing */
+    .section-sublabel-spaced {
+      display: block;
+      margin-top: 3rem;
+    }
+
+    /* Vertical rule size */
+    .vr-1rem {
+      height: 1rem;
+    }
   </style>
 </head>
 
@@ -942,7 +1160,7 @@
   <nav class="navbar">
     <div class="row-sm">
       <span class="dot dot-lg animate-led"></span>
-      <span class="navbar-brand font-dot">GLYPHWIND</span>
+      <span class="navbar-brand">GLYPHWIND</span>
     </div>
 
     <!-- Desktop nav links -->
@@ -990,7 +1208,7 @@
     <div class="container">
       <span class="t-label c-muted section-sublabel">Analog Digitalist Design System</span>
 
-      <h1 class="t-display mb-7" style="max-width:680px;">
+      <h1 class="t-display mb-7 prose-width-lg">
         Glyphwind<br>Design<br>System
       </h1>
 
@@ -1071,7 +1289,7 @@
 
       <!-- Accent — signal red shown in both contexts -->
       <span class="t-label c-muted section-sublabel">Signal Red — Functional Accent</span>
-      <div class="g-4 swatch-grid-4" style="max-width:540px;">
+      <div class="g-4 swatch-grid-4 prose-width">
         <div class="dark swatch bg-signal">
           <span class="t-label swatch-label-signal">dark mode</span>
           <span class="t-label swatch-label-signal-sm">#FF4132</span>
@@ -1086,44 +1304,43 @@
         </div>
         <div class="swatch swatch-glow-only">
           <div class="swatch-glow-overlay"></div>
-          <span class="t-label swatch-label-signal" style="position:relative;">glow only</span>
-          <span class="t-label swatch-label-signal-sm" style="position:relative;">box-shadow</span>
+          <span class="t-label swatch-label-signal relative">glow only</span>
+          <span class="t-label swatch-label-signal-sm relative">box-shadow</span>
         </div>
       </div>
 
       <span class="t-label c-muted section-sublabel">Elevation — Tonal Layering</span>
-      <div class="elevation-row">
-        <div class="elevation-item" style="background:#000000;">
-          <span class="t-label" style="color:rgba(255,255,255,0.65);">Level 0 — Base</span>
-          <span class="t-label t-mono" style="color:rgba(255,255,255,0.55);">#000000</span>
+      <div class="elevation-row dark">
+        <div class="elevation-item bg-elev-0">
+          <span class="t-label c-muted">Level 0 — Base</span>
+          <span class="t-label t-mono c-subtle">#000000</span>
         </div>
-        <div class="elevation-item" style="background:#0E0E0E;">
-          <span class="t-label" style="color:rgba(255,255,255,0.65);">Level 1 — Foundation</span>
-          <span class="t-label t-mono" style="color:rgba(255,255,255,0.55);">#0E0E0E</span>
+        <div class="elevation-item bg-elev-1">
+          <span class="t-label c-muted">Level 1 — Foundation</span>
+          <span class="t-label t-mono c-subtle">#0E0E0E</span>
         </div>
-        <div class="elevation-item" style="background:#1B1B1B;">
-          <span class="t-label" style="color:rgba(255,255,255,0.75);">Level 2 — Sections</span>
-          <span class="t-label t-mono" style="color:rgba(255,255,255,0.6);">#1B1B1B</span>
+        <div class="elevation-item bg-elev-2">
+          <span class="t-label c-fg">Level 2 — Sections</span>
+          <span class="t-label t-mono c-muted">#1B1B1B</span>
         </div>
-        <div class="elevation-item" style="background:#1F1F1F;">
-          <span class="t-label" style="color:rgba(255,255,255,0.4);">Level 3 — Cards</span>
-          <span class="t-label t-mono" style="color:rgba(255,255,255,0.65);">#1F1F1F</span>
+        <div class="elevation-item bg-elev-3">
+          <span class="t-label c-ghost">Level 3 — Cards</span>
+          <span class="t-label t-mono c-muted">#1F1F1F</span>
         </div>
-        <div class="elevation-item" style="background:#353535;">
-          <span class="t-label" style="color:rgba(255,255,255,0.5);">Level 4 — Hover / Highest</span>
-          <span class="t-label t-mono" style="color:rgba(255,255,255,0.75);">#353535</span>
+        <div class="elevation-item bg-elev-4">
+          <span class="t-label c-subtle">Level 4 — Hover / Highest</span>
+          <span class="t-label t-mono c-fg">#353535</span>
         </div>
       </div>
 
-      <div style="margin-top:3rem; padding-top:2rem; border-top:1px solid hsl(var(--border));">
+      <div class="code-ref-block">
         <div class="component-header">
           <span class="t-label c-muted section-sublabel-lg">Code Reference</span>
           <button class="code-toggle" onclick="toggleCode('colors-ref', this)" aria-expanded="false">&lt;/&gt;</button>
         </div>
         <div class="code-panel" id="code-colors-ref">
           <div>
-            <pre
-              class="codeblock"><span class="token-str">/* CSS custom properties — always wrap in hsl() */</span>
+            <pre class="codeblock"><span class="token-str">/* CSS custom properties — always wrap in hsl() */</span>
 background: <span class="token-val">hsl(var(--background))</span>;
 color:      <span class="token-val">hsl(var(--foreground))</span>;
 
@@ -1133,13 +1350,16 @@ background: <span class="token-val">hsl(var(--surface-low))</span>;        <span
 background: <span class="token-val">hsl(var(--surface))</span>;            <span class="token-str">/* #131313 base */</span>
 background: <span class="token-val">hsl(var(--surface-card))</span>;       <span class="token-str">/* #1B1B1B card */</span>
 background: <span class="token-val">hsl(var(--surface-high))</span>;       <span class="token-str">/* #1F1F1F raised */</span>
-background: <span class="token-val">hsl(var(--surface-highest))</span>;    <span class="token-str">/* #353535 hover */</span>
+background: <span class="token-val">hsl(var(--surface-highest))</span>;    <span class="token-str">/* #242424 hover */</span>
 
 <span class="token-str">/* Text scale */</span>
-color: <span class="token-val">hsl(var(--foreground))</span>;     <span class="token-str">/* #FFF primary */</span>
-color: <span class="token-val">hsl(var(--ink-muted))</span>;      <span class="token-str">/* #999 secondary */</span>
-color: <span class="token-val">hsl(var(--ink-subtle))</span>;     <span class="token-str">/* #4D4D4D tertiary */</span>
-color: <span class="token-val">hsl(var(--ink-ghost))</span>;      <span class="token-str">/* barely visible */</span>
+color: <span class="token-val">hsl(var(--foreground))</span>;     <span class="token-str">/* dark: #FFF  | light: #1B1B1B */</span>
+color: <span class="token-val">hsl(var(--ink-muted))</span>;      <span class="token-str">/* dark: #999  | light: #5E5E5E — secondary */</span>
+color: <span class="token-val">hsl(var(--ink-subtle))</span>;     <span class="token-str">/* dark: #4D4D4D | light: #999999 — tertiary */</span>
+color: <span class="token-val">hsl(var(--ink-ghost))</span>;      <span class="token-str">/* dark: #292929 | light: #C7C7C7 — barely visible */</span>
+
+<span class="token-str">/* Surface highest — hover state layer */</span>
+background: <span class="token-val">hsl(var(--surface-highest))</span>;  <span class="token-str">/* dark: #242424 | light: #E5E2E1 */</span>
 
 <span class="token-str">/* Signal red — LED dots, destructive actions, critical states only */</span>
 color:      <span class="token-val">hsl(var(--signal))</span>;
@@ -1169,7 +1389,20 @@ background: <span class="token-val">var(--bg-card)</span>;      <span class="tok
 background: <span class="token-val">var(--bg-high)</span>;      <span class="token-str">/* = hsl(--surface-high) */</span>
 color:      <span class="token-val">var(--fg)</span>;           <span class="token-str">/* = hsl(--foreground) */</span>
 color:      <span class="token-val">var(--fg-muted)</span>;     <span class="token-str">/* = hsl(--ink-muted) */</span>
-color:      <span class="token-val">var(--fg-subtle)</span>;    <span class="token-str">/* = hsl(--ink-subtle) */</span></pre>
+color:      <span class="token-val">var(--fg-subtle)</span>;    <span class="token-str">/* = hsl(--ink-subtle) */</span>
+
+<span class="token-str">/* Light mode — add class="light" to force light context on any subtree */</span>
+&lt;div class="<span class="token-val">light</span>"&gt;  <span class="token-str">/* forces light tokens regardless of page theme */</span>
+
+<span class="token-str">/* Light mode surface scale token values */</span>
+<span class="token-str">/* --background:    0 0% 99%   →  #FCFCFC — near white canvas */</span>
+<span class="token-str">/* --surface:       0 0% 99%   →  #FCFCFC — base */</span>
+<span class="token-str">/* --surface-low:   15 7% 96%  →  #F6F3F2 — sections */</span>
+<span class="token-str">/* --surface-card:  0 0% 100%  →  #FFFFFF — cards, lifted */</span>
+<span class="token-str">/* --surface-high:  15 4% 91%  →  #E8E4E3 — interactive hover */</span>
+<span class="token-str">/* --surface-highest: 15 4% 89% → #E5E2E1 — highest layer */</span>
+<span class="token-str">/* --ink-subtle:    0 0% 60%   →  #999999 — tertiary text */</span>
+<span class="token-str">/* --ink-ghost:     0 0% 78%   →  #C7C7C7 — barely visible */</span></pre>
           </div>
         </div>
       </div>
@@ -1187,48 +1420,42 @@ color:      <span class="token-val">var(--fg-subtle)</span>;    <span class="tok
       <!-- Typefaces -->
       <div class="g-3 mb-14">
 
-        <div class="card" style="border-radius:3px;">
+        <div class="card card-sharp">
           <div class="flex justify-between items-center mb-4">
-            <div class="t-label c-subtle" style="letter-spacing:0.08em;">font-sans · Space Grotesk</div>
+            <div class="t-label c-subtle tracking-loose">font-sans · Space Grotesk</div>
             <a href="https://fonts.google.com/specimen/Space+Grotesk" target="_blank" rel="noopener"
-              class="t-label c-subtle" style="text-decoration:none; transition:color 100ms;"
-              onmouseover="this.style.color='var(--fg)'" onmouseout="this.style.color=''">↗ Google Fonts</a>
+              class="t-label c-subtle link-hover">↗ Google Fonts</a>
           </div>
-          <div
-            style="font-family:'Space Grotesk',sans-serif; font-size:2rem; font-weight:600; letter-spacing:-0.025em; line-height:1; margin-bottom:1.25rem;">
+          <div class="font-sans font-specimen">
             Aa Bb Cc
           </div>
-          <div class="t-label c-muted" style="margin-bottom:0.375rem;">All UI text</div>
+          <div class="t-label c-muted mb-375">All UI text</div>
           <div class="t-label c-subtle">Labels · body · titles · headlines · display</div>
         </div>
 
-        <div class="card" style="border-radius:3px;">
+        <div class="card card-sharp">
           <div class="flex justify-between items-center mb-4">
-            <div class="t-label c-subtle" style="letter-spacing:0.08em;">font-mono · Space Mono</div>
+            <div class="t-label c-subtle tracking-loose">font-mono · Space Mono</div>
             <a href="https://fonts.google.com/specimen/Space+Mono" target="_blank" rel="noopener"
-              class="t-label c-subtle" style="text-decoration:none; transition:color 100ms;"
-              onmouseover="this.style.color='var(--fg)'" onmouseout="this.style.color=''">↗ Google Fonts</a>
+              class="t-label c-subtle link-hover">↗ Google Fonts</a>
           </div>
-          <div
-            style="font-family:'Space Mono',monospace; font-size:2rem; font-weight:700; letter-spacing:-0.02em; line-height:1; margin-bottom:1.25rem; font-variant-numeric:tabular-nums;">
+          <div class="font-mono font-specimen-mono">
             01:23:45
           </div>
-          <div class="t-label c-muted" style="margin-bottom:0.375rem;">Data & numbers only</div>
+          <div class="t-label c-muted mb-375">Data & numbers only</div>
           <div class="t-label c-subtle">Clocks · metrics · code · addresses · IDs</div>
         </div>
 
-        <div class="card" style="border-radius:3px;">
+        <div class="card card-sharp">
           <div class="flex justify-between items-center mb-4">
-            <div class="t-label c-subtle" style="letter-spacing:0.08em;">font-dot · Doto</div>
-            <a href="https://fonts.google.com/specimen/Doto" target="_blank" rel="noopener" class="t-label c-subtle"
-              style="text-decoration:none; transition:color 100ms;" onmouseover="this.style.color='var(--fg)'"
-              onmouseout="this.style.color=''">↗ Google Fonts</a>
+            <div class="t-label c-subtle tracking-loose">font-dot · Doto</div>
+            <a href="https://fonts.google.com/specimen/Doto" target="_blank" rel="noopener"
+              class="t-label c-subtle link-hover">↗ Google Fonts</a>
           </div>
-          <div
-            style="font-family:'Doto',monospace; font-size:2rem; font-weight:700; line-height:1; margin-bottom:1.25rem;">
+          <div class="font-dot font-specimen-dot">
             GLYPH
           </div>
-          <div class="t-label c-muted" style="margin-bottom:0.375rem;">Display headlines only</div>
+          <div class="t-label c-muted mb-375">Display headlines only</div>
           <div class="t-label c-subtle">Max 3 words · never body copy · never labels</div>
         </div>
 
@@ -1241,24 +1468,22 @@ color:      <span class="token-val">var(--fg-subtle)</span>;    <span class="tok
 
           <div class="type-row">
             <div class="t-label c-muted mb-2">display-lg · 4.5rem · −0.03em</div>
-            <div style="font-size:clamp(2rem,5vw,4.5rem); font-weight:700; letter-spacing:-0.03em; line-height:1;">
-              Glyphwind</div>
+            <div class="type-display-lg">Glyphwind</div>
           </div>
 
           <div class="type-row">
             <div class="t-label c-muted mb-2">headline-lg · 2rem · −0.02em</div>
-            <div style="font-size:2rem; font-weight:600; letter-spacing:-0.02em; line-height:1.15;">System Design</div>
+            <div class="t-h1">System Design</div>
           </div>
 
           <div class="type-row">
             <div class="t-label c-muted mb-2">headline-md · 1.5rem · −0.018em</div>
-            <div style="font-size:1.5rem; font-weight:600; letter-spacing:-0.018em; line-height:1.2;">Component Library
-            </div>
+            <div class="t-h2">Component Library</div>
           </div>
 
           <div class="type-row">
             <div class="t-label c-muted mb-2">title-lg · 1.125rem · 500</div>
-            <div style="font-size:1.125rem; font-weight:500; line-height:1.4;">Section Navigation</div>
+            <div class="type-title-lg">Section Navigation</div>
           </div>
 
           <div class="type-row">
@@ -1279,16 +1504,25 @@ color:      <span class="token-val">var(--fg-subtle)</span>;    <span class="tok
           <div class="card mb-6">
             <div class="t-label c-muted mb-4">Space Mono — tabular-nums</div>
             <div class="t-mono">
-              <div style="font-size:2rem; font-weight:700;">23:41:07</div>
-              <div style="font-size:1.25rem;" class="c-muted mt-1">+2.4% · 1,204,891</div>
+              <div class="type-mono-lg">23:41:07</div>
+              <div class="type-mono-md c-muted mt-1">+2.4% · 1,204,891</div>
               <div class="t-body c-subtle mt-1">0xA3F2·4·B1·9E</div>
             </div>
+          </div>
+
+          <span class="t-label c-muted section-sublabel-lg">Data &amp; Dashboard Typography</span>
+          <div class="card stack-sm">
+            <div class="t-label c-muted mb-2">t-stat · 1.5rem · 600 · −0.015em</div>
+            <div class="font-mono t-stat">3.7 GB</div>
+            <div class="divider mt-4 mb-4"></div>
+            <div class="t-label c-muted mb-2">t-readout · 1.75rem · 700 · −0.02em</div>
+            <div class="font-mono t-readout">23:41:07</div>
           </div>
 
         </div>
       </div>
 
-      <div style="margin-top:3rem; padding-top:2rem; border-top:1px solid hsl(var(--border));">
+      <div class="code-ref-block">
         <div class="component-header">
           <span class="t-label c-muted section-sublabel-lg">Code Reference</span>
           <button class="code-toggle" onclick="toggleCode('typography-ref', this)"
@@ -1318,11 +1552,28 @@ font-family: <span class="token-val">var(--font-dot)</span>;    <span class="tok
 &lt;span class="<span class="token-val">t-label-md</span>"&gt;LABEL&lt;/span&gt;  <span class="token-str">/* 0.75rem · 500 · uppercase · +0.07em */</span>
 &lt;code class="<span class="token-val">t-mono</span>"&gt;0xA3F2&lt;/code&gt;   <span class="token-str">/* Space Mono, tabular-nums */</span>
 
+<span class="token-str">/* Data & dashboard — t-stat and t-readout (always pair with font-mono) */</span>
+&lt;div class="<span class="token-val">font-mono t-stat</span>"&gt;3.7 GB&lt;/div&gt;        <span class="token-str">/* 1.5rem · 600 · -0.015em */</span>
+&lt;div class="<span class="token-val">font-mono t-readout</span>"&gt;23:41:07&lt;/div&gt;   <span class="token-str">/* 1.75rem · 700 · -0.02em */</span>
+
+<span class="token-str">/* Tracking utilities — letter-spacing overrides */</span>
+&lt;span class="<span class="token-val">tracking-loose</span>"&gt;...&lt;/span&gt;  <span class="token-str">/* letter-spacing: 0.08em — wide labels, API keys */</span>
+&lt;span class="<span class="token-val">tracking-snug</span>"&gt;...&lt;/span&gt;   <span class="token-str">/* letter-spacing: -0.015em — compact headings */</span>
+
 <span class="token-str">/* Color utilities — c-* classes */</span>
 &lt;span class="<span class="token-val">c-fg</span>"&gt;...&lt;/span&gt;       <span class="token-str">/* foreground */</span>
+&lt;span class="<span class="token-val">c-ink</span>"&gt;...&lt;/span&gt;       <span class="token-str">/* color: hsl(var(--ink)) — primary ink */</span>
 &lt;span class="<span class="token-val">c-muted</span>"&gt;...&lt;/span&gt;    <span class="token-str">/* ink-muted */</span>
 &lt;span class="<span class="token-val">c-subtle</span>"&gt;...&lt;/span&gt;   <span class="token-str">/* ink-subtle */</span>
-&lt;span class="<span class="token-val">c-signal</span>"&gt;...&lt;/span&gt;   <span class="token-str">/* signal red */</span></pre>
+&lt;span class="<span class="token-val">c-ghost</span>"&gt;...&lt;/span&gt;    <span class="token-str">/* color: hsl(var(--ink-ghost)) — barely visible */</span>
+&lt;span class="<span class="token-val">c-signal</span>"&gt;...&lt;/span&gt;   <span class="token-str">/* signal red */</span>
+
+<span class="token-str">/* Token-based elevation backgrounds — semantic surface aliases */</span>
+&lt;div class="<span class="token-val">bg-elev-0</span>"&gt;  <span class="token-str">/* background: hsl(var(--background)) — level 0 */</span>
+&lt;div class="<span class="token-val">bg-elev-1</span>"&gt;  <span class="token-str">/* background: hsl(var(--surface-low))  — level 1 */</span>
+&lt;div class="<span class="token-val">bg-elev-2</span>"&gt;  <span class="token-str">/* background: hsl(var(--surface-card)) — level 2 */</span>
+&lt;div class="<span class="token-val">bg-elev-3</span>"&gt;  <span class="token-str">/* background: hsl(var(--surface-high)) — level 3 */</span>
+&lt;div class="<span class="token-val">bg-elev-4</span>"&gt;  <span class="token-str">/* background: hsl(var(--surface-highest)) — level 4 */</span></pre>
           </div>
         </div>
       </div>
@@ -1341,16 +1592,16 @@ font-family: <span class="token-val">var(--font-dot)</span>;    <span class="tok
       <div class="g-dot-display mb-12">
 
         <div class="flex items-baseline gap-8 flex-wrap">
-          <div style="min-width:120px;">
+          <div class="dot-label-col-lg">
             <span class="t-label c-muted section-label">XL — 64px</span>
             <span class="dot-display dot-display-xl">23:59</span>
           </div>
           <div>
             <span class="t-label c-muted section-label">Weights</span>
             <div class="flex items-baseline gap-6 flex-wrap">
-              <span class="dot-display dot-display-xl" style="font-weight:100; opacity:0.4;">23:59</span>
-              <span class="dot-display dot-display-xl" style="font-weight:400;">23:59</span>
-              <span class="dot-display dot-display-xl" style="font-weight:700;">23:59</span>
+              <span class="dot-display dot-display-xl dot-display-thin">23:59</span>
+              <span class="dot-display dot-display-xl dot-display-reg">23:59</span>
+              <span class="dot-display dot-display-xl dot-display-bold">23:59</span>
             </div>
           </div>
         </div>
@@ -1360,22 +1611,22 @@ font-family: <span class="token-val">var(--font-dot)</span>;    <span class="tok
         <!-- Size ramp -->
         <div class="g-dot-sizes">
           <div class="flex items-center gap-8">
-            <span class="t-label c-muted" style="min-width:80px;">LG — 40px</span>
+            <span class="t-label c-muted dot-label-col">LG — 40px</span>
             <span class="dot-display dot-display-lg">99.98%</span>
             <span class="dot-display dot-display-lg dot-display-signal">LIVE</span>
           </div>
           <div class="flex items-center gap-8">
-            <span class="t-label c-muted" style="min-width:80px;">MD — 24px</span>
+            <span class="t-label c-muted dot-label-col">MD — 24px</span>
             <span class="dot-display dot-display-md">1,204 req/s</span>
             <span class="dot-display dot-display-md dot-display-muted">v2.4.1</span>
           </div>
           <div class="flex items-center gap-8">
-            <span class="t-label c-muted" style="min-width:80px;">SM — 16px</span>
+            <span class="t-label c-muted dot-label-col">SM — 16px</span>
             <span class="dot-display dot-display-sm">142ms</span>
             <span class="dot-display dot-display-sm dot-display-muted">BUILD 4821</span>
           </div>
           <div class="flex items-center gap-8">
-            <span class="t-label c-muted" style="min-width:80px;">XS — 12px</span>
+            <span class="t-label c-muted dot-label-col">XS — 12px</span>
             <span class="dot-display dot-display-xs">00:00:00</span>
             <span class="dot-display dot-display-xs dot-display-muted">UTC+5:30</span>
           </div>
@@ -1398,15 +1649,14 @@ font-family: <span class="token-val">var(--font-dot)</span>;    <span class="tok
             <!-- Uptime -->
             <div class="card stack-sm">
               <span class="t-label c-muted">Uptime</span>
-              <span class="dot-display dot-display-lg">99.98<span
-                  style="font-size:1.25rem; opacity:0.5;">%</span></span>
+              <span class="dot-display dot-display-lg">99.98<span class="dot-display-unit-md">%</span></span>
               <span class="dot-display dot-display-xs dot-display-muted">30d avg</span>
             </div>
 
             <!-- Request rate -->
             <div class="card stack-sm">
               <span class="t-label c-muted">Requests</span>
-              <span class="dot-display dot-display-lg">1,204<span style="font-size:1rem; opacity:0.5;"> /s</span></span>
+              <span class="dot-display dot-display-lg">1,204<span class="dot-display-unit-sm"> /s</span></span>
               <span class="dot-display dot-display-xs dot-display-signal">LIVE</span>
             </div>
 
@@ -1422,7 +1672,7 @@ font-family: <span class="token-val">var(--font-dot)</span>;    <span class="tok
 
       </div>
 
-      <div style="margin-top:3rem; padding-top:2rem; border-top:1px solid hsl(var(--border));">
+      <div class="code-ref-block">
         <div class="component-header">
           <span class="t-label c-muted section-sublabel-lg">Code Reference</span>
           <button class="code-toggle" onclick="toggleCode('dot-display-ref', this)"
@@ -1441,10 +1691,14 @@ font-family: <span class="token-val">var(--font-dot)</span>;    <span class="tok
 &lt;span class="<span class="token-val">dot-display dot-display-lg dot-display-signal</span>"&gt;LIVE&lt;/span&gt;   <span class="token-str">/* signal red */</span>
 &lt;span class="<span class="token-val">dot-display dot-display-md dot-display-muted</span>"&gt;v2.4.1&lt;/span&gt; <span class="token-str">/* ink-muted */</span>
 
-<span class="token-str">/* Weight variants — passed via style */</span>
-&lt;span class="<span class="token-val">dot-display dot-display-xl</span>" style="font-weight:100; opacity:0.4;"&gt;23:59&lt;/span&gt;
-&lt;span class="<span class="token-val">dot-display dot-display-xl</span>" style="font-weight:400;"&gt;23:59&lt;/span&gt;
-&lt;span class="<span class="token-val">dot-display dot-display-xl</span>" style="font-weight:700;"&gt;23:59&lt;/span&gt;
+<span class="token-str">/* Weight variants — use dedicated classes */</span>
+&lt;span class="<span class="token-val">dot-display dot-display-xl dot-display-thin</span>"&gt;23:59&lt;/span&gt;  <span class="token-str">/* weight: 100, opacity: 0.4 */</span>
+&lt;span class="<span class="token-val">dot-display dot-display-xl dot-display-reg</span>"&gt;23:59&lt;/span&gt;   <span class="token-str">/* weight: 400 */</span>
+&lt;span class="<span class="token-val">dot-display dot-display-xl dot-display-bold</span>"&gt;23:59&lt;/span&gt;  <span class="token-str">/* weight: 700 */</span>
+
+<span class="token-str">/* Inline unit sizes — append inside the display span */</span>
+&lt;span class="<span class="token-val">dot-display dot-display-lg</span>"&gt;99.98&lt;span class="<span class="token-val">dot-display-unit-md</span>"&gt;%&lt;/span&gt;&lt;/span&gt;   <span class="token-str">/* 1.25rem, 50% opacity */</span>
+&lt;span class="<span class="token-val">dot-display dot-display-lg</span>"&gt;1,204&lt;span class="<span class="token-val">dot-display-unit-sm</span>"&gt; /s&lt;/span&gt;&lt;/span&gt;  <span class="token-str">/* 1rem, 50% opacity */</span>
 
 <span class="token-str">/* In a card — typical dashboard pattern */</span>
 &lt;div class="<span class="token-val">card stack-sm</span>"&gt;
@@ -1495,43 +1749,43 @@ font-family: <span class="token-val">var(--font-dot)</span>;    <span class="tok
             <!-- spacing rows -->
             <div class="row">
               <span class="t-label c-muted spacing-label">4px</span>
-              <div class="spacing-swatch" style="width:4px; height:4px;"></div>
+              <div class="spacing-swatch swatch-1"></div>
               <div class="spacing-track"></div>
               <span class="t-label c-muted">spacing-1</span>
             </div>
             <div class="row">
               <span class="t-label c-muted spacing-label">8px</span>
-              <div class="spacing-swatch" style="width:8px; height:8px;"></div>
+              <div class="spacing-swatch swatch-2"></div>
               <div class="spacing-track"></div>
               <span class="t-label c-muted">spacing-2</span>
             </div>
             <div class="row">
               <span class="t-label c-muted spacing-label">16px</span>
-              <div class="spacing-swatch" style="width:16px; height:16px;"></div>
+              <div class="spacing-swatch swatch-4"></div>
               <div class="spacing-track"></div>
               <span class="t-label c-muted">spacing-4</span>
             </div>
             <div class="row">
               <span class="t-label c-muted spacing-label">24px</span>
-              <div class="spacing-swatch" style="width:24px; height:16px;"></div>
+              <div class="spacing-swatch swatch-6"></div>
               <div class="spacing-track"></div>
               <span class="t-label c-muted">spacing-6 · card padding</span>
             </div>
             <div class="row">
               <span class="t-label c-muted spacing-label">32px</span>
-              <div class="spacing-swatch" style="width:32px; height:16px;"></div>
+              <div class="spacing-swatch swatch-8"></div>
               <div class="spacing-track"></div>
               <span class="t-label c-muted">spacing-8 · section internal</span>
             </div>
             <div class="row">
               <span class="t-label c-muted spacing-label">64px</span>
-              <div class="spacing-swatch" style="width:64px; height:16px;"></div>
+              <div class="spacing-swatch swatch-16"></div>
               <div class="spacing-track"></div>
               <span class="t-label c-muted">spacing-16 · section gap</span>
             </div>
             <div class="row">
               <span class="t-label c-muted spacing-label">128px</span>
-              <div class="spacing-swatch" style="width:128px; height:16px;"></div>
+              <div class="spacing-swatch swatch-32"></div>
               <span class="t-label c-muted">spacing-32 · hero room</span>
             </div>
           </div>
@@ -1541,22 +1795,22 @@ font-family: <span class="token-val">var(--font-dot)</span>;    <span class="tok
           <span class="t-label c-muted section-sublabel-lg">Border Radius</span>
           <div class="flex items-end gap-6 mb-8">
             <div>
-              <div class="radius-sm" style="width:48px;height:48px;background:var(--fg);"></div>
+              <div class="radius-sm radius-demo-sm"></div>
               <div class="t-label c-muted mt-2">2px</div>
               <div class="t-label c-subtle">.radius-sm</div>
             </div>
             <div>
-              <div class="radius-md" style="width:64px;height:64px;background:var(--fg);"></div>
+              <div class="radius-md radius-demo-md"></div>
               <div class="t-label c-muted mt-2">4px</div>
               <div class="t-label c-subtle">.radius-md ✦ default</div>
             </div>
             <div>
-              <div class="radius-lg" style="width:80px;height:80px;background:var(--fg);"></div>
+              <div class="radius-lg radius-demo-lg"></div>
               <div class="t-label c-muted mt-2">6px</div>
               <div class="t-label c-subtle">.radius-lg · max</div>
             </div>
             <div>
-              <div class="radius-full" style="width:24px;height:24px;background:hsl(var(--signal));"></div>
+              <div class="radius-full radius-demo-full"></div>
               <div class="t-label c-muted mt-2">∞</div>
               <div class="t-label c-subtle">.radius-full · dots only</div>
             </div>
@@ -1564,7 +1818,7 @@ font-family: <span class="token-val">var(--font-dot)</span>;    <span class="tok
         </div>
       </div>
 
-      <div style="margin-top:3rem; padding-top:2rem; border-top:1px solid hsl(var(--border));">
+      <div class="code-ref-block">
         <div class="component-header">
           <span class="t-label c-muted section-sublabel-lg">Code Reference</span>
           <button class="code-toggle" onclick="toggleCode('spacing-ref', this)" aria-expanded="false">&lt;/&gt;</button>
@@ -1612,6 +1866,64 @@ background: <span class="token-val">hsl(var(--surface-highest))</span>; <span cl
           </div>
         </div>
       </div>
+
+      <!-- Layout Utilities — prose-width / content-card -->
+      <div class="code-ref-block">
+        <div class="component-header">
+          <span class="t-label c-muted section-sublabel-lg">Layout Utilities — Semantic Width Constraints</span>
+          <button class="code-toggle" onclick="toggleCode('layout-widths', this)"
+            aria-expanded="false">&lt;/&gt;</button>
+        </div>
+
+        <span class="t-label c-muted section-sublabel">Prose Width — constrain text blocks</span>
+        <div class="stack gap-2 mb-8">
+          <div class="prose-width-sm bg-surface-high radius-md p-3">
+            <span class="t-label c-muted">.prose-width-sm — 520px — hero intros, tight prose</span>
+          </div>
+          <div class="prose-width bg-surface-high radius-md p-3">
+            <span class="t-label c-muted">.prose-width — 560px — standard section intro</span>
+          </div>
+          <div class="prose-width-lg bg-surface-high radius-md p-3">
+            <span class="t-label c-muted">.prose-width-lg — 680px — wider prose blocks</span>
+          </div>
+        </div>
+
+        <span class="t-label c-muted section-sublabel">Content Card — constrain card / panel widths</span>
+        <div class="stack gap-2">
+          <div class="content-card-sm bg-surface-high radius-md p-3">
+            <span class="t-label c-muted">.content-card-sm — 320px — compact panels</span>
+          </div>
+          <div class="content-card bg-surface-high radius-md p-3">
+            <span class="t-label c-muted">.content-card — 420px — form cards, narrow content</span>
+          </div>
+          <div class="content-card-lg bg-surface-high radius-md p-3">
+            <span class="t-label c-muted">.content-card-lg — 860px — wide content cards</span>
+          </div>
+        </div>
+
+        <div class="code-panel" id="code-layout-widths">
+          <div>
+            <pre class="codeblock"><span class="token-str">/* Prose width — constrain text blocks to readable line lengths */</span>
+&lt;p class="<span class="token-val">prose-width-sm</span>"&gt;...&lt;/p&gt;   <span class="token-str">/* max-width: 520px — hero intros, tight prose */</span>
+&lt;p class="<span class="token-val">prose-width</span>"&gt;...&lt;/p&gt;      <span class="token-str">/* max-width: 560px — standard section intro */</span>
+&lt;p class="<span class="token-val">prose-width-lg</span>"&gt;...&lt;/p&gt;   <span class="token-str">/* max-width: 680px — wider prose blocks */</span>
+
+<span class="token-str">/* Content card — constrain card/panel widths */</span>
+&lt;div class="<span class="token-val">card content-card-sm</span>"&gt;...&lt;/div&gt;  <span class="token-str">/* max-width: 320px — compact panels */</span>
+&lt;div class="<span class="token-val">card content-card</span>"&gt;...&lt;/div&gt;     <span class="token-str">/* max-width: 420px — form cards */</span>
+&lt;div class="<span class="token-val">card content-card-lg</span>"&gt;...&lt;/div&gt;  <span class="token-str">/* max-width: 860px — wide content */</span>
+
+<span class="token-str">/* Combine with other layout primitives */</span>
+&lt;section&gt;
+  &lt;p class="<span class="token-val">t-body c-muted prose-width mb-8</span>"&gt;Section intro copy.&lt;/p&gt;
+  &lt;div class="<span class="token-val">card content-card</span>"&gt;
+    <span class="token-str">/* form or narrow panel content */</span>
+  &lt;/div&gt;
+&lt;/section&gt;</pre>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -1627,7 +1939,7 @@ background: <span class="token-val">hsl(var(--surface-highest))</span>; <span cl
       <!-- ── Glyphwind Indicator ─────────────────────────────────────────────── -->
       <div class="component-block">
         <div class="component-header">
-          <span class="t-label c-muted section-sublabel-lg">04.01 — Glyphwind Indicator</span>
+          <span class="t-label c-muted section-sublabel-lg">Glyphwind Indicator</span>
           <button class="code-toggle" onclick="toggleCode('indicator', this)" aria-expanded="false">&lt;/&gt;</button>
         </div>
 
@@ -1647,6 +1959,14 @@ background: <span class="token-val">hsl(var(--surface-highest))</span>; <span cl
           <div class="row">
             <span class="dot dot-lg bg-ink-subtle"></span>
             <span class="t-label c-muted">OFFLINE</span>
+          </div>
+          <div class="row">
+            <span class="dot dot-lg bg-ink-ghost"></span>
+            <span class="t-label c-muted">DISABLED · 8px</span>
+          </div>
+          <div class="section-tag">
+            <span class="dot dot-sm animate-led"></span>
+            <span class="t-label">LIVE FEED</span>
           </div>
         </div>
         <div class="code-panel" id="code-indicator">
@@ -1682,7 +2002,7 @@ background: <span class="token-val">hsl(var(--surface-highest))</span>; <span cl
       <!-- ── Buttons ─────────────────────────────────────────────────────── -->
       <div class="component-block">
         <div class="component-header">
-          <span class="t-label c-muted section-sublabel-lg">04.02 — Buttons</span>
+          <span class="t-label c-muted section-sublabel-lg">Buttons</span>
           <button class="code-toggle" onclick="toggleCode('buttons', this)" aria-expanded="false">&lt;/&gt;</button>
         </div>
 
@@ -1943,11 +2263,11 @@ background: <span class="token-val">hsl(var(--surface-highest))</span>; <span cl
       <!-- ── Inputs ──────────────────────────────────────────────────────── -->
       <div class="component-block">
         <div class="component-header">
-          <span class="t-label c-muted section-sublabel-lg">04.03 — Input Fields</span>
+          <span class="t-label c-muted section-sublabel-lg">Input Fields</span>
           <button class="code-toggle" onclick="toggleCode('inputs', this)" aria-expanded="false">&lt;/&gt;</button>
         </div>
 
-        <div class="g-3" style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; max-width:860px;">
+        <div class="g-3 content-card-lg">
           <!-- Default -->
           <div>
             <label class="t-label c-muted input-label">Default</label>
@@ -1979,9 +2299,12 @@ background: <span class="token-val">hsl(var(--surface-highest))</span>; <span cl
 &lt;input class="<span class="token-val">input error</span>" type="text" value="invalid value" /&gt;
 &lt;span class="<span class="token-val">input-error-msg</span>"&gt;Error message&lt;/span&gt;
 
+<span class="token-str">/* focus / active state */</span>
+&lt;input class="<span class="token-val">input input-active</span>" type="text" value="Active value" /&gt;
+
 <span class="token-str">/* monospace — for API keys, tokens */</span>
-&lt;input class="<span class="token-val">input t-mono</span>" type="text"
-  placeholder="sk_live_..." style="letter-spacing:0.04em;" /&gt;</pre>
+&lt;input class="<span class="token-val">input t-mono tracking-loose</span>" type="text"
+  placeholder="sk_live_..." /&gt;</pre>
           </div>
         </div>
       </div>
@@ -1989,7 +2312,7 @@ background: <span class="token-val">hsl(var(--surface-highest))</span>; <span cl
       <!-- ── Cards ──────────────────────────────────────────────────────── -->
       <div class="component-block">
         <div class="component-header">
-          <span class="t-label c-muted section-sublabel-lg">04.04 — Cards</span>
+          <span class="t-label c-muted section-sublabel-lg">Cards</span>
           <button class="code-toggle" onclick="toggleCode('cards', this)" aria-expanded="false">&lt;/&gt;</button>
         </div>
 
@@ -1997,8 +2320,7 @@ background: <span class="token-val">hsl(var(--surface-highest))</span>; <span cl
           <!-- Basic card -->
           <div class="card">
             <span class="t-label c-muted block mb-3">Service Status</span>
-            <div style="font-size:1.5rem; font-weight:600; letter-spacing:-0.015em;" class="mb-1">API Gateway
-            </div>
+            <div class="t-stat mb-1">API Gateway</div>
             <div class="flex items-center gap-2">
               <span class="dot dot-sm animate-led"></span>
               <span class="t-label c-muted">Healthy</span>
@@ -2008,11 +2330,9 @@ background: <span class="token-val">hsl(var(--surface-highest))</span>; <span cl
           <!-- Hover card -->
           <div class="card card-hover">
             <span class="t-label c-muted block mb-3">Memory Usage</span>
-            <div style="font-size:1.5rem; font-weight:600; letter-spacing:-0.015em; font-family:'Space Mono',monospace;"
-              class="mb-2">
-              3.7 GB</div>
-            <div class="bg-surface-high" style="height:3px; border-radius:2px; overflow:hidden;">
-              <div class="bg-foreground" style="height:100%; width:47%;"></div>
+            <div class="font-mono t-stat mb-2">3.7 GB</div>
+            <div class="bg-surface-high progress-bar">
+              <div class="progress-fill progress-fill-demo"></div>
             </div>
             <div class="flex justify-between mt-2">
               <span class="t-label c-muted">In use</span>
@@ -2029,6 +2349,42 @@ background: <span class="token-val">hsl(var(--surface-highest))</span>; <span cl
             <div class="font-medium mb-1">Disk Pressure</div>
             <div class="t-body c-muted">Node storage at 94%. Eviction policy will trigger soon.</div>
             <button class="btn btn-critical btn-sm mt-4">Acknowledge</button>
+          </div>
+
+          <!-- Flush card — no padding, wraps a table or image -->
+          <div class="card card-flush">
+            <div class="table-wrap">
+              <table class="table">
+                <thead>
+                  <tr class="tr-no-border">
+                    <th class="th-inset-l">Node</th>
+                    <th class="col-num td-inset-r">CPU</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="td-inset-l">node-01</td>
+                    <td class="t-mono col-num td-inset-r">12%</td>
+                  </tr>
+                  <tr>
+                    <td class="td-inset-l">node-02</td>
+                    <td class="t-mono col-num td-inset-r">74%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Float card — ambient shadow, for overlays and panels -->
+          <div class="card card-float">
+            <span class="t-label c-muted block mb-3">Float Panel</span>
+            <div class="t-body c-muted">Elevated with ambient light-leak shadow.</div>
+          </div>
+
+          <!-- Sharp card — 3px radius, matches button sharpness -->
+          <div class="card card-sharp">
+            <span class="t-label c-muted block mb-3">Sharp Radius</span>
+            <div class="t-body c-muted">3px border-radius matches button geometry.</div>
           </div>
         </div>
         <div class="code-panel" id="code-cards">
@@ -2048,6 +2404,9 @@ background: <span class="token-val">hsl(var(--surface-highest))</span>; <span cl
 <span class="token-str">/* float — elevated with light-leak, for overlays and panels */</span>
 &lt;div class="<span class="token-val">card card-float</span>"&gt;...&lt;/div&gt;
 
+<span class="token-str">/* sharp variant — 3px radius, matches button sharpness */</span>
+&lt;div class="<span class="token-val">card card-sharp</span>"&gt;...&lt;/div&gt;
+
 <span class="token-str">/* critical / signal state */</span>
 &lt;div class="<span class="token-val">card card-signal</span>"&gt;
   &lt;div class="<span class="token-val">row-sm</span>"&gt;
@@ -2064,14 +2423,14 @@ background: <span class="token-val">hsl(var(--surface-highest))</span>; <span cl
       <!-- ── Badges ─────────────────────────────────────────────────────── -->
       <div class="component-block">
         <div class="component-header">
-          <span class="t-label c-muted section-sublabel-lg">04.05 — Badges & Tags</span>
+          <span class="t-label c-muted section-sublabel-lg">Badges & Tags</span>
           <button class="code-toggle" onclick="toggleCode('badges', this)" aria-expanded="false">&lt;/&gt;</button>
         </div>
         <div class="cluster items-center">
           <span class="badge badge-default">Default</span>
           <span class="badge badge-outline">Outline</span>
           <span class="badge badge-active">
-            <span class="dot dot-sm" class="bg-white"></span>
+            <span class="dot dot-sm"></span>
             Active
           </span>
           <span class="badge badge-dim">
@@ -2108,7 +2467,7 @@ background: <span class="token-val">hsl(var(--surface-highest))</span>; <span cl
       <!-- ── Data Table ─────────────────────────────────────────────────── -->
       <div class="component-block">
         <div class="component-header">
-          <span class="t-label c-muted section-sublabel-lg">04.06 — Data Table</span>
+          <span class="t-label c-muted section-sublabel-lg">Data Table</span>
           <button class="code-toggle" onclick="toggleCode('table', this)" aria-expanded="false">&lt;/&gt;</button>
         </div>
 
@@ -2117,17 +2476,17 @@ background: <span class="token-val">hsl(var(--surface-highest))</span>; <span cl
             <table class="table">
               <thead>
                 <tr class="tr-no-border">
-                  <th class="th-inset-l" style="width:40%;">Service</th>
-                  <th style="width:18%;">Status</th>
-                  <th class="col-num" style="width:14%;">Uptime</th>
-                  <th class="col-num" style="width:14%;">Latency</th>
-                  <th class="col-num td-inset-r" style="width:14%;">Last Check</th>
+                  <th class="th-inset-l col-service">Service</th>
+                  <th class="col-status">Status</th>
+                  <th class="col-num col-uptime">Uptime</th>
+                  <th class="col-num col-latency">Latency</th>
+                  <th class="col-num th-inset-r col-check">Last Check</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td class="td-inset-l font-medium">api.glyphwind.dev</td>
-                  <td><span class="badge badge-active"><span class="dot dot-sm" class="bg-white"></span>Healthy</span>
+                  <td><span class="badge badge-active"><span class="dot dot-sm"></span>Healthy</span>
                   </td>
                   <td class="t-mono col-num c-fg">99.98%</td>
                   <td class="t-mono col-num c-fg">42 ms</td>
@@ -2135,7 +2494,7 @@ background: <span class="token-val">hsl(var(--surface-highest))</span>; <span cl
                 </tr>
                 <tr>
                   <td class="td-inset-l font-medium">auth.glyphwind.dev</td>
-                  <td><span class="badge badge-active"><span class="dot dot-sm" class="bg-white"></span>Healthy</span>
+                  <td><span class="badge badge-active"><span class="dot dot-sm"></span>Healthy</span>
                   </td>
                   <td class="t-mono col-num c-fg">99.91%</td>
                   <td class="t-mono col-num c-fg">78 ms</td>
@@ -2165,12 +2524,21 @@ background: <span class="token-val">hsl(var(--surface-highest))</span>; <span cl
 &lt;div class="<span class="token-val">table-wrap</span>"&gt;
   &lt;div class="<span class="token-val">card card-flush</span>"&gt;
     &lt;table class="<span class="token-val">table</span>"&gt;
+      <span class="token-str">/* colgroup — col-service 40%, col-status 18%, col-uptime 14%, col-latency 14%, col-check 14% */</span>
+      &lt;colgroup&gt;
+        &lt;col class="<span class="token-val">col-service</span>" /&gt;
+        &lt;col class="<span class="token-val">col-status</span>" /&gt;
+        &lt;col class="<span class="token-val">col-uptime</span>" /&gt;
+        &lt;col class="<span class="token-val">col-latency</span>" /&gt;
+        &lt;col class="<span class="token-val">col-check</span>" /&gt;
+      &lt;/colgroup&gt;
       &lt;thead&gt;
         &lt;tr class="<span class="token-val">tr-no-border</span>"&gt;  <span class="token-str">/* removes top border on first row */</span>
           &lt;th class="<span class="token-val">th-inset-l</span>"&gt;Service&lt;/th&gt;   <span class="token-str">/* first col inset */</span>
           &lt;th&gt;Status&lt;/th&gt;
           &lt;th class="<span class="token-val">col-num</span>"&gt;Uptime&lt;/th&gt;      <span class="token-str">/* right-align numbers */</span>
-          &lt;th class="<span class="token-val">col-num td-inset-r</span>"&gt;Latency&lt;/th&gt;  <span class="token-str">/* last col inset */</span>
+          &lt;th class="<span class="token-val">col-num</span>"&gt;Latency&lt;/th&gt;
+          &lt;th class="<span class="token-val">col-num th-inset-r</span>"&gt;Last Check&lt;/th&gt;  <span class="token-str">/* last col inset */</span>
         &lt;/tr&gt;
       &lt;/thead&gt;
       &lt;tbody&gt;
@@ -2179,21 +2547,24 @@ background: <span class="token-val">hsl(var(--surface-highest))</span>; <span cl
           &lt;td class="<span class="token-val">td-inset-l font-medium</span>"&gt;api.example.dev&lt;/td&gt;
           &lt;td&gt;&lt;span class="<span class="token-val">badge badge-active</span>"&gt;&lt;span class="<span class="token-val">dot dot-sm</span>"&gt;&lt;/span&gt; Healthy&lt;/span&gt;&lt;/td&gt;
           &lt;td class="<span class="token-val">t-mono col-num c-fg</span>"&gt;99.98%&lt;/td&gt;
-          &lt;td class="<span class="token-val">t-mono col-num c-fg td-inset-r</span>"&gt;42 ms&lt;/td&gt;
+          &lt;td class="<span class="token-val">t-mono col-num c-fg</span>"&gt;42 ms&lt;/td&gt;
+          &lt;td class="<span class="token-val">t-mono col-num c-muted td-inset-r</span>"&gt;00:00:04&lt;/td&gt;
         &lt;/tr&gt;
         <span class="token-str">/* degraded row — signal color on metric */</span>
         &lt;tr&gt;
           &lt;td class="<span class="token-val">td-inset-l font-medium</span>"&gt;cdn.example.dev&lt;/td&gt;
           &lt;td&gt;&lt;span class="<span class="token-val">badge badge-dim</span>"&gt;&lt;span class="<span class="token-val">dot dot-sm animate-led</span>"&gt;&lt;/span&gt; Degraded&lt;/span&gt;&lt;/td&gt;
           &lt;td class="<span class="token-val">t-mono col-num c-signal</span>"&gt;97.40%&lt;/td&gt;
-          &lt;td class="<span class="token-val">t-mono col-num c-fg td-inset-r</span>"&gt;214 ms&lt;/td&gt;
+          &lt;td class="<span class="token-val">t-mono col-num c-fg</span>"&gt;214 ms&lt;/td&gt;
+          &lt;td class="<span class="token-val">t-mono col-num c-muted td-inset-r</span>"&gt;00:00:47&lt;/td&gt;
         &lt;/tr&gt;
         <span class="token-str">/* offline row — muted all values */</span>
         &lt;tr&gt;
           &lt;td class="<span class="token-val">td-inset-l font-medium c-muted</span>"&gt;ws.example.dev&lt;/td&gt;
           &lt;td&gt;&lt;span class="<span class="token-val">badge badge-default</span>"&gt;Offline&lt;/span&gt;&lt;/td&gt;
           &lt;td class="<span class="token-val">t-mono col-num c-muted</span>"&gt;—&lt;/td&gt;
-          &lt;td class="<span class="token-val">t-mono col-num c-muted td-inset-r</span>"&gt;—&lt;/td&gt;
+          &lt;td class="<span class="token-val">t-mono col-num c-muted</span>"&gt;—&lt;/td&gt;
+          &lt;td class="<span class="token-val">t-mono col-num c-muted td-inset-r</span>"&gt;02:14:33&lt;/td&gt;
         &lt;/tr&gt;
       &lt;/tbody&gt;
     &lt;/table&gt;
@@ -2206,7 +2577,7 @@ background: <span class="token-val">hsl(var(--surface-highest))</span>; <span cl
       <!-- ── Toast ──────────────────────────────────────────────────────── -->
       <div class="component-block">
         <div class="component-header">
-          <span class="t-label c-muted section-sublabel-lg">04.07 — Toasts & Notifications</span>
+          <span class="t-label c-muted section-sublabel-lg">Toasts & Notifications</span>
           <button class="code-toggle" onclick="toggleCode('toast', this)" aria-expanded="false">&lt;/&gt;</button>
         </div>
         <div class="cluster">
@@ -2224,7 +2595,7 @@ background: <span class="token-val">hsl(var(--surface-highest))</span>; <span cl
 
           <!-- Signal toast -->
           <div class="toast toast-signal">
-            <span class="dot dot-md animate-led-fast toast-icon" style="margin-top:2px;"></span>
+            <span class="dot dot-md animate-led-fast toast-icon toast-dot-nudge"></span>
             <div>
               <div class="font-medium c-signal mb-1">Critical Warning</div>
               <div class="t-body-sm c-muted">Storage at 97%. Free up space now.</div>
@@ -2235,7 +2606,7 @@ background: <span class="token-val">hsl(var(--surface-highest))</span>; <span cl
           <div>
             <pre class="codeblock"><span class="token-str">/* default */</span>
 &lt;div class="<span class="token-val">toast</span>"&gt;
-  &lt;!-- icon svg --&gt;
+  &lt;!-- icon svg --&gt; <span class="token-str">/* add class="toast-icon" to svg */</span>
   &lt;div&gt;
     &lt;div class="<span class="token-val">font-medium mb-1</span>"&gt;Title&lt;/div&gt;
     &lt;div class="<span class="token-val">t-body-sm c-muted</span>"&gt;Supporting message.&lt;/div&gt;
@@ -2244,7 +2615,7 @@ background: <span class="token-val">hsl(var(--surface-highest))</span>; <span cl
 
 <span class="token-str">/* critical */</span>
 &lt;div class="<span class="token-val">toast toast-signal</span>"&gt;
-  &lt;span class="<span class="token-val">dot dot-md animate-led-fast</span>"&gt;&lt;/span&gt;
+  &lt;span class="<span class="token-val">dot dot-md animate-led-fast toast-icon toast-dot-nudge</span>"&gt;&lt;/span&gt;
   &lt;div&gt;
     &lt;div class="<span class="token-val">font-medium c-signal mb-1</span>"&gt;Critical Warning&lt;/div&gt;
     &lt;div class="<span class="token-val">t-body-sm c-muted</span>"&gt;Supporting message.&lt;/div&gt;
@@ -2257,12 +2628,12 @@ background: <span class="token-val">hsl(var(--surface-highest))</span>; <span cl
       <!-- ── Nav Example ────────────────────────────────────────────────── -->
       <div class="component-block">
         <div class="component-header">
-          <span class="t-label c-muted section-sublabel-lg">04.08 — Navigation Bar</span>
+          <span class="t-label c-muted section-sublabel-lg">Navigation Bar</span>
           <button class="code-toggle" onclick="toggleCode('navbar', this)" aria-expanded="false">&lt;/&gt;</button>
         </div>
 
         <div class="card-overflow">
-          <div class="navbar" style="position:relative; border-bottom:1px solid hsl(var(--border));">
+          <div class="navbar navbar-demo">
             <div class="row-sm">
               <span class="dot dot-md animate-led"></span>
               <span class="navbar-brand">STUDIO</span>
@@ -2284,18 +2655,23 @@ background: <span class="token-val">hsl(var(--surface-highest))</span>; <span cl
             <pre class="codeblock">&lt;nav class="<span class="token-val">navbar</span>"&gt;
   &lt;div class="<span class="token-val">row-sm</span>"&gt;
     &lt;span class="<span class="token-val">dot dot-md animate-led</span>"&gt;&lt;/span&gt;
-    &lt;span class="<span class="token-val">font-semibold</span>" style="letter-spacing:-0.01em;"&gt;BRAND&lt;/span&gt;
+    &lt;span class="<span class="token-val">navbar-brand</span>"&gt;STUDIO&lt;/span&gt;
   &lt;/div&gt;
   &lt;div class="<span class="token-val">flex gap-7 ml-8</span>"&gt;
     &lt;a class="<span class="token-val">nav-link active</span>" href="#"&gt;Overview&lt;/a&gt;
     &lt;a class="<span class="token-val">nav-link</span>" href="#"&gt;Components&lt;/a&gt;
     &lt;a class="<span class="token-val">nav-link</span>" href="#"&gt;Tokens&lt;/a&gt;
+    &lt;a class="<span class="token-val">nav-link</span>" href="#"&gt;Changelog&lt;/a&gt;
   &lt;/div&gt;
   &lt;div class="<span class="token-val">flex items-center gap-3 ml-auto</span>"&gt;
     &lt;button class="<span class="token-val">btn btn-ghost btn-sm</span>"&gt;Log in&lt;/button&gt;
     &lt;button class="<span class="token-val">btn btn-primary btn-sm</span>"&gt;Get Access&lt;/button&gt;
   &lt;/div&gt;
-&lt;/nav&gt;</pre>
+&lt;/nav&gt;
+
+<span class="token-str">/* .link-hover — nav/footer links with color transition (replaces JS hover handlers) */</span>
+&lt;a class="<span class="token-val">t-label link-hover</span>" href="#"&gt;Source →&lt;/a&gt;
+<span class="token-str">/* color: ink-muted → foreground on hover, transition-fast */</span></pre>
           </div>
         </div>
       </div>
@@ -2303,25 +2679,20 @@ background: <span class="token-val">hsl(var(--surface-highest))</span>; <span cl
       <!-- ── Glass Panel ────────────────────────────────────────────────── -->
       <div class="component-block">
         <div class="component-header">
-          <span class="t-label c-muted section-sublabel-lg">04.09 — Glass Panel</span>
+          <span class="t-label c-muted section-sublabel-lg">Glass Panel</span>
           <button class="code-toggle" onclick="toggleCode('glass', this)" aria-expanded="false">&lt;/&gt;</button>
         </div>
-        <div
-          style="position:relative; padding:3rem; background:var(--bg-low); border-radius:var(--radius); overflow:hidden;">
+        <div class="glass-demo-wrapper">
           <!-- Background texture hint -->
-          <div
-            style="position:absolute; inset:0; background:radial-gradient(circle at 30% 50%, rgba(255,65,50,0.04) 0%, transparent 60%); pointer-events:none;">
-          </div>
+          <div class="glass-demo-bg"></div>
 
           <!-- Floating glass panel -->
-          <div class="glass" style="max-width:320px; padding:1.5rem; position:relative;">
+          <div class="glass glass-content">
             <div class="row-sm mb-5">
               <span class="dot dot-sm animate-led"></span>
               <span class="t-label c-signal">LIVE FEED</span>
             </div>
-            <div
-              style="font-size:1.75rem; font-weight:700; letter-spacing:-0.02em; font-family:'Space Mono',monospace; margin-bottom:0.25rem;">
-              23:41:07</div>
+            <div class="font-mono t-readout">23:41:07</div>
             <div class="t-body c-muted">System uptime · Node 04</div>
             <div class="cluster mt-4">
               <button class="btn btn-primary btn-sm">View Details</button>
@@ -2332,15 +2703,14 @@ background: <span class="token-val">hsl(var(--surface-highest))</span>; <span cl
         <div class="code-panel" id="code-glass">
           <div>
             <pre class="codeblock"><span class="token-str">/* .glass works best over a textured/tinted background */</span>
-&lt;div style="background:hsl(var(--surface-low)); padding:3rem;"&gt;
-  &lt;div class="<span class="token-val">glass</span>" style="padding:1.5rem; max-width:320px;"&gt;
-    &lt;div class="<span class="token-val">row-sm mb-4</span>"&gt;
+<span class="token-str">/* .glass-content — companion layout class: max-width:320px, padding:1.5rem, position:relative */</span>
+&lt;div class="<span class="token-val">bg-surface-low p-12</span>"&gt;
+  &lt;div class="<span class="token-val">glass glass-content</span>"&gt;
+    &lt;div class="<span class="token-val">row-sm mb-5</span>"&gt;
       &lt;span class="<span class="token-val">dot dot-sm animate-led</span>"&gt;&lt;/span&gt;
       &lt;span class="<span class="token-val">t-label c-signal</span>"&gt;LIVE FEED&lt;/span&gt;
     &lt;/div&gt;
-    &lt;div class="<span class="token-val">t-mono</span>" style="font-size:1.75rem; font-weight:700;"&gt;
-      23:41:07
-    &lt;/div&gt;
+    &lt;div class="<span class="token-val">font-mono t-readout</span>"&gt;23:41:07&lt;/div&gt;
     &lt;div class="<span class="token-val">t-body c-muted</span>"&gt;System uptime · Node 04&lt;/div&gt;
     &lt;div class="<span class="token-val">cluster mt-4</span>"&gt;
       &lt;button class="<span class="token-val">btn btn-primary btn-sm</span>"&gt;View Details&lt;/button&gt;
@@ -2355,11 +2725,11 @@ background: <span class="token-val">hsl(var(--surface-highest))</span>; <span cl
       <!-- ── Form Example ───────────────────────────────────────────────── -->
       <div class="component-block">
         <div class="component-header">
-          <span class="t-label c-muted section-sublabel-lg">04.10 — Form Composition</span>
+          <span class="t-label c-muted section-sublabel-lg">Form Composition</span>
           <button class="code-toggle" onclick="toggleCode('form', this)" aria-expanded="false">&lt;/&gt;</button>
         </div>
 
-        <div class="card" style="max-width:420px;">
+        <div class="card content-card">
           <span class="t-label c-muted section-sublabel-lg">Create New Project</span>
 
           <div class="stack gap-4">
@@ -2369,17 +2739,17 @@ background: <span class="token-val">hsl(var(--surface-highest))</span>; <span cl
             </div>
             <div>
               <label class="input-label c-muted">API Key</label>
-              <input class="input t-mono" type="text" placeholder="sk_live_..." style="letter-spacing:0.04em;" />
+              <input class="input t-mono tracking-loose" type="text" placeholder="sk_live_..." />
             </div>
             <div class="cluster mt-2">
-              <button class="btn btn-primary" style="flex:1;">Create Project</button>
+              <button class="btn btn-primary btn-grow">Create Project</button>
               <button class="btn btn-ghost">Cancel</button>
             </div>
           </div>
         </div>
         <div class="code-panel" id="code-form">
           <div>
-            <pre class="codeblock">&lt;div class="<span class="token-val">card</span>" style="max-width:420px;"&gt;
+            <pre class="codeblock">&lt;div class="<span class="token-val">card content-card</span>"&gt;
   &lt;span class="<span class="token-val">t-label c-muted section-sublabel-lg</span>"&gt;Create New Project&lt;/span&gt;
 
   &lt;div class="<span class="token-val">stack gap-4</span>"&gt;
@@ -2389,14 +2759,84 @@ background: <span class="token-val">hsl(var(--surface-highest))</span>; <span cl
     &lt;/div&gt;
     &lt;div&gt;
       &lt;label class="<span class="token-val">input-label c-muted</span>"&gt;API Key&lt;/label&gt;
-      &lt;input class="<span class="token-val">input t-mono</span>" type="text"
-        placeholder="sk_live_..." style="letter-spacing:0.04em;" /&gt;
+      &lt;input class="<span class="token-val">input t-mono tracking-loose</span>" type="text" placeholder="sk_live_..." /&gt;
     &lt;/div&gt;
     &lt;div class="<span class="token-val">cluster mt-2</span>"&gt;
-      &lt;button class="<span class="token-val">btn btn-primary</span>" style="flex:1;"&gt;Create Project&lt;/button&gt;
+      &lt;button class="<span class="token-val">btn btn-primary btn-grow</span>"&gt;Create Project&lt;/button&gt;
       &lt;button class="<span class="token-val">btn btn-ghost</span>"&gt;Cancel&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
+&lt;/div&gt;</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Progress Bar ────────────────────────────────────────────────── -->
+      <div class="component-block">
+        <div class="component-header">
+          <span class="t-label c-muted section-sublabel-lg">Progress Bar</span>
+          <button class="code-toggle" onclick="toggleCode('progress-bar', this)"
+            aria-expanded="false">&lt;/&gt;</button>
+        </div>
+
+        <div class="stack gap-6 content-card">
+          <div>
+            <div class="row-between mb-2">
+              <span class="t-label c-muted">Memory Usage</span>
+              <span class="t-label c-muted t-mono">47%</span>
+            </div>
+            <div class="bg-surface-high progress-bar">
+              <div class="progress-fill progress-fill-demo"></div>
+            </div>
+          </div>
+          <div>
+            <div class="row-between mb-2">
+              <span class="t-label c-muted">Uptime</span>
+              <span class="t-label c-muted t-mono">99%</span>
+            </div>
+            <div class="bg-surface-high progress-bar">
+              <div class="progress-fill w-full"></div>
+            </div>
+          </div>
+          <div>
+            <div class="row-between mb-2">
+              <span class="t-label c-signal">Disk Pressure</span>
+              <span class="t-label c-signal t-mono">CRITICAL</span>
+            </div>
+            <div class="bg-surface-high progress-bar">
+              <div class="progress-fill progress-fill-signal"></div>
+            </div>
+          </div>
+        </div>
+        <div class="code-panel" id="code-progress-bar">
+          <div>
+            <pre class="codeblock"><span class="token-str">/* progress-bar — 3px track, overflow hidden */</span>
+&lt;div class="<span class="token-val">bg-surface-high progress-bar</span>"&gt;
+  &lt;div class="<span class="token-val">progress-fill</span>"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+<span class="token-str">/* control fill width with Tailwind or a named utility */</span>
+&lt;div class="<span class="token-val">bg-surface-high progress-bar</span>"&gt;
+  &lt;div class="<span class="token-val">progress-fill progress-fill-demo</span>"&gt;&lt;/div&gt;  <span class="token-str">/* 47% — showcase demo */</span>
+&lt;/div&gt;
+
+<span class="token-str">/* signal / critical fill */</span>
+&lt;div class="<span class="token-val">bg-surface-high progress-bar</span>"&gt;
+  &lt;div class="<span class="token-val">progress-fill progress-fill-signal</span>"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+<span class="token-str">/* full fill */</span>
+&lt;div class="<span class="token-val">bg-surface-high progress-bar</span>"&gt;
+  &lt;div class="<span class="token-val">progress-fill w-full</span>"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+<span class="token-str">/* typical pattern — label above */</span>
+&lt;div class="<span class="token-val">row-between mb-2</span>"&gt;
+  &lt;span class="<span class="token-val">t-label c-muted</span>"&gt;Memory Usage&lt;/span&gt;
+  &lt;span class="<span class="token-val">t-label c-muted t-mono</span>"&gt;47%&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="<span class="token-val">bg-surface-high progress-bar</span>"&gt;
+  &lt;div class="<span class="token-val">progress-fill progress-fill-demo</span>"&gt;&lt;/div&gt;
 &lt;/div&gt;</pre>
           </div>
         </div>
@@ -2457,6 +2897,21 @@ background: <span class="token-val">hsl(var(--surface-highest))</span>; <span cl
           <div id="fade-target" class="motion-entrance-box animate-fade-up"></div>
         </div>
 
+        <!-- Scale-in entrance -->
+        <div class="card demo-row">
+          <div>
+            <span class="t-body font-medium">Scale-In</span>
+            <span class="t-mono t-body c-muted ml-4">scale-in · 150ms</span>
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="
+            var el=document.getElementById('scale-target');
+            el.style.animation='none';
+            el.offsetHeight;
+            el.style.animation='scale-in 0.15s ease-out';
+          ">Replay</button>
+          <div id="scale-target" class="motion-entrance-box animate-scale-in"></div>
+        </div>
+
         <!-- LED pulse -->
         <div class="card demo-row">
           <div>
@@ -2495,7 +2950,7 @@ background: <span class="token-val">hsl(var(--surface-highest))</span>; <span cl
         </div>
       </div>
 
-      <div style="margin-top:3rem; padding-top:2rem; border-top:1px solid hsl(var(--border));">
+      <div class="code-ref-block">
         <div class="component-header">
           <span class="t-label c-muted section-sublabel-lg">Code Reference</span>
           <button class="code-toggle" onclick="toggleCode('motion-ref', this)" aria-expanded="false">&lt;/&gt;</button>
@@ -2571,6 +3026,11 @@ animation: <span class="token-val">led 1s ease-in-out infinite</span>;     <span
           <span class="t-xxs c-subtle dot-demo-sub">--dot-gap: 32px</span>
         </div>
 
+        <div class="card bg-dots bg-dots-sparse dot-demo">
+          <span class="t-label c-muted dot-demo-label">.bg-dots-sparse</span>
+          <span class="t-xxs c-subtle dot-demo-sub">--dot-gap: 56px</span>
+        </div>
+
       </div>
 
       <!-- Size variants -->
@@ -2618,6 +3078,11 @@ animation: <span class="token-val">led 1s ease-in-out infinite</span>;     <span
           <span class="t-xxs c-subtle dot-demo-sub">ink-muted</span>
         </div>
 
+        <div class="card bg-dots bg-dots-fg dot-demo">
+          <span class="t-label c-muted dot-demo-label">.bg-dots-fg</span>
+          <span class="t-xxs c-subtle dot-demo-sub">foreground color</span>
+        </div>
+
         <div class="card bg-dots bg-dots-signal dot-demo">
           <span class="t-label c-muted dot-demo-label">.bg-dots-signal</span>
           <span class="t-xxs c-subtle dot-demo-sub">signal red</span>
@@ -2629,20 +3094,20 @@ animation: <span class="token-val">led 1s ease-in-out infinite</span>;     <span
       <span class="t-label c-muted section-sublabel">Custom Override</span>
       <div class="g-2">
 
-        <div class="card bg-dots"
-          style="min-height:140px; --dot-gap:14px; --dot-size:1.5px; --dot-color:hsl(var(--signal)); position:relative;">
-          <span class="t-label c-muted" style="position:absolute;bottom:1.25rem;left:1.25rem;">Custom via style
-            attr</span>
-          <div class="codeblock t-xxs"
-            style="position:absolute;bottom:3rem;left:1.25rem;right:1.25rem;padding:0.5rem 0.75rem;font-size:0.6rem;line-height:1.6;">
-            style="--dot-gap:14px; --dot-size:1.5px; --dot-color:hsl(var(--signal))"</div>
+        <div class="card bg-dots dot-custom-demo">
+          <span class="t-label c-muted dot-demo-label-custom">Custom via style attr</span>
+          <div class="codeblock t-xxs dot-demo-code-overlay">
+            <span class="token-str">/* CSS custom property override — only valid use of style attr */</span>
+            style="--dot-gap:14px; --dot-size:1.5px; --dot-color:hsl(var(--signal))"
+          </div>
         </div>
 
         <div>
-          <div class="codeblock" style="margin-bottom:1rem;">
+          <div class="codeblock mb-4">
             <span class="token-str">/* Combine any modifiers */</span>
             &lt;div class="<span class="token-val">bg-dots bg-dots-loose bg-dots-lg bg-dots-signal</span>"&gt;
 
+            <span class="token-str">/* CSS custom property override — only valid use of style attr */</span>
             <span class="token-str">/* Override via CSS property */</span>
             &lt;div class="<span class="token-val">bg-dots</span>" style="
             <span class="token-key">--dot-gap</span>: <span class="token-val">24px</span>;
@@ -2661,33 +3126,29 @@ animation: <span class="token-val">led 1s ease-in-out infinite</span>;     <span
       </div>
 
       <!-- Animations -->
-      <span class="t-label c-muted section-sublabel" style="margin-top:3rem; display:block;">Animation</span>
+      <span class="t-label c-muted section-sublabel-spaced">Animation</span>
 
       <!-- Scroll row -->
-      <div class="g-4" style="margin-bottom:1rem;">
+      <div class="g-4 mb-4">
 
-        <div class="card bg-dots bg-dots-scroll-x bg-dots-subtle" style="min-height:120px; position:relative;">
-          <span class="t-label c-muted" style="position:absolute;bottom:1rem;left:1rem;">.bg-dots-scroll-x</span>
-          <span class="t-xxs c-subtle" style="position:absolute;bottom:0.35rem;left:1rem;">scroll right — linear</span>
+        <div class="card bg-dots bg-dots-scroll-x bg-dots-subtle dot-card">
+          <span class="t-label c-muted dot-demo-label">.bg-dots-scroll-x</span>
+          <span class="t-xxs c-subtle dot-demo-sub">scroll right — linear</span>
         </div>
 
-        <div class="card bg-dots bg-dots-scroll-y bg-dots-subtle" style="min-height:120px; position:relative;">
-          <span class="t-label c-muted" style="position:absolute;bottom:1rem;left:1rem;">.bg-dots-scroll-y</span>
-          <span class="t-xxs c-subtle" style="position:absolute;bottom:0.35rem;left:1rem;">scroll down — linear</span>
+        <div class="card bg-dots bg-dots-scroll-y bg-dots-subtle dot-card">
+          <span class="t-label c-muted dot-demo-label">.bg-dots-scroll-y</span>
+          <span class="t-xxs c-subtle dot-demo-sub">scroll down — linear</span>
         </div>
 
-        <div class="card bg-dots bg-dots-scroll-diag bg-dots-subtle" style="min-height:120px; position:relative;">
-          <span class="t-label c-muted" style="position:absolute;bottom:1rem;left:1rem;">.bg-dots-scroll-diag</span>
-          <span class="t-xxs c-subtle" style="position:absolute;bottom:0.35rem;left:1rem;">drift diagonal —
-            linear</span>
+        <div class="card bg-dots bg-dots-scroll-diag bg-dots-subtle dot-card">
+          <span class="t-label c-muted dot-demo-label">.bg-dots-scroll-diag</span>
+          <span class="t-xxs c-subtle dot-demo-sub">drift diagonal — linear</span>
         </div>
 
-        <div class="card bg-dots bg-dots-scroll-x bg-dots-alt bg-dots-subtle"
-          style="min-height:120px; position:relative;">
-          <span class="t-label c-muted"
-            style="position:absolute;bottom:1rem;left:1rem;">.bg-dots-scroll-x.bg-dots-alt</span>
-          <span class="t-xxs c-subtle" style="position:absolute;bottom:0.35rem;left:1rem;">back &amp; forth —
-            alternate</span>
+        <div class="card bg-dots bg-dots-scroll-x bg-dots-alt bg-dots-subtle dot-card">
+          <span class="t-label c-muted dot-demo-label">.bg-dots-scroll-x.bg-dots-alt</span>
+          <span class="t-xxs c-subtle dot-demo-sub">back &amp; forth — alternate</span>
         </div>
 
       </div>
@@ -2695,32 +3156,29 @@ animation: <span class="token-val">led 1s ease-in-out infinite</span>;     <span
       <!-- Pulse + signal -->
       <div class="g-4 mb-12">
 
-        <div class="card bg-dots-pulse bg-dots-subtle" style="min-height:120px; position:relative;">
-          <span class="t-label c-muted" style="position:absolute;bottom:1rem;left:1rem;">.bg-dots-pulse</span>
-          <span class="t-xxs c-subtle" style="position:absolute;bottom:0.35rem;left:1rem;">staggered group pulse</span>
+        <div class="card bg-dots-pulse bg-dots-subtle dot-card">
+          <span class="t-label c-muted dot-demo-label">.bg-dots-pulse</span>
+          <span class="t-xxs c-subtle dot-demo-sub">staggered group pulse</span>
         </div>
 
-        <div class="card bg-dots-pulse bg-dots-signal" style="min-height:120px; position:relative;">
-          <span class="t-label c-muted"
-            style="position:absolute;bottom:1rem;left:1rem;">.bg-dots-pulse.bg-dots-signal</span>
-          <span class="t-xxs c-subtle" style="position:absolute;bottom:0.35rem;left:1rem;">signal red variant</span>
+        <div class="card bg-dots-pulse bg-dots-signal dot-card">
+          <span class="t-label c-muted dot-demo-label">.bg-dots-pulse.bg-dots-signal</span>
+          <span class="t-xxs c-subtle dot-demo-sub">signal red variant</span>
         </div>
 
-        <div class="card bg-dots bg-dots-scroll-x bg-dots-signal bg-dots-fast"
-          style="min-height:120px; position:relative;">
-          <span class="t-label c-muted" style="position:absolute;bottom:1rem;left:1rem;">.bg-dots-fast</span>
-          <span class="t-xxs c-subtle" style="position:absolute;bottom:0.35rem;left:1rem;">--dot-speed: 1.5s</span>
+        <div class="card bg-dots bg-dots-scroll-x bg-dots-signal bg-dots-fast dot-card">
+          <span class="t-label c-muted dot-demo-label">.bg-dots-fast</span>
+          <span class="t-xxs c-subtle dot-demo-sub">--dot-speed: 1.5s</span>
         </div>
 
-        <div class="card bg-dots bg-dots-scroll-y bg-dots-alt bg-dots-signal"
-          style="min-height:120px; position:relative; --dot-speed:2.5s;">
-          <span class="t-label c-muted" style="position:absolute;bottom:1rem;left:1rem;">signal + alt</span>
-          <span class="t-xxs c-subtle" style="position:absolute;bottom:0.35rem;left:1rem;">--dot-speed: 2.5s</span>
+        <div class="card bg-dots bg-dots-scroll-y bg-dots-alt bg-dots-signal dot-card-custom">
+          <span class="t-label c-muted dot-demo-label">signal + alt</span>
+          <span class="t-xxs c-subtle dot-demo-sub">--dot-speed: 2.5s</span>
         </div>
 
       </div>
 
-      <div style="margin-top:3rem; padding-top:2rem; border-top:1px solid hsl(var(--border));">
+      <div class="code-ref-block">
         <div class="component-header">
           <span class="t-label c-muted section-sublabel-lg">Code Reference</span>
           <button class="code-toggle" onclick="toggleCode('dot-ref', this)" aria-expanded="false">&lt;/&gt;</button>
@@ -2728,7 +3186,15 @@ animation: <span class="token-val">led 1s ease-in-out infinite</span>;     <span
         <div class="code-panel" id="code-dot-ref">
           <div>
             <pre
-              class="codeblock"><span class="token-str">/* Spacing variants — --dot-gap */</span>
+              class="codeblock"><span class="token-str">/* dot-card — sets min-height:120px + position:relative for dot pattern cards */</span>
+&lt;div class="<span class="token-val">card bg-dots dot-card</span>"&gt;
+  <span class="token-str">/* content positioned absolutely using .dot-demo-label */</span>
+&lt;/div&gt;
+
+<span class="token-str">/* dot-card-custom — same as dot-card but overrides --dot-speed to 2.5s */</span>
+&lt;div class="<span class="token-val">card bg-dots dot-card-custom</span>"&gt;&lt;/div&gt;
+
+<span class="token-str">/* Spacing variants — --dot-gap */</span>
 &lt;div class="<span class="token-val">bg-dots bg-dots-tight</span>"&gt;    <span class="token-str">/* 8px */</span>
 &lt;div class="<span class="token-val">bg-dots bg-dots-dense</span>"&gt;    <span class="token-str">/* 12px */</span>
 &lt;div class="<span class="token-val">bg-dots</span>"&gt;                 <span class="token-str">/* 20px default */</span>
@@ -2759,6 +3225,7 @@ animation: <span class="token-val">led 1s ease-in-out infinite</span>;     <span
 &lt;div class="<span class="token-val">bg-dots bg-dots-scroll-x bg-dots-slow</span>"&gt;  <span class="token-str">/* 10s */</span>
 &lt;div class="<span class="token-val">bg-dots bg-dots-scroll-x bg-dots-fast</span>"&gt;  <span class="token-str">/* 1.5s */</span>
 
+<span class="token-str">/* CSS custom property override — only valid use of style attr */</span>
 <span class="token-str">/* CSS variable override — all properties */</span>
 &lt;div class="<span class="token-val">bg-dots</span>" style="
   <span class="token-key">--dot-gap</span>:   <span class="token-val">14px</span>;
@@ -2844,7 +3311,7 @@ animation: <span class="token-val">led 1s ease-in-out infinite</span>;     <span
   <section id="install" class="showcase-section">
     <div class="container">
       <h2 class="t-h1 section-heading-sm">Installation</h2>
-      <p class="t-body c-muted mb-8" style="max-width:560px;">
+      <p class="t-body c-muted mb-8 prose-width">
         Copy <code class="inline-code">tailwind.config.js</code>
         and <code class="inline-code">globals.css</code>
         into your project.
@@ -2852,14 +3319,13 @@ animation: <span class="token-val">led 1s ease-in-out infinite</span>;     <span
 
       <!-- Download latest -->
       <div class="flex items-center gap-3 flex-wrap mb-10">
-        <span class="t-label c-subtle" style="letter-spacing:0.08em;" data-version>v1.0.0</span>
-        <span class="vr" style="height:1rem;"></span>
+        <span class="t-label c-subtle tracking-loose" data-version>v1.0.0</span>
+        <span class="vr vr-1rem"></span>
         <a data-version-href="versions/{v}/globals.css" download="globals.css"
           class="btn btn-secondary btn-sm">↓&nbsp;globals.css</a>
         <a data-version-href="versions/{v}/tailwind.config.js" download="tailwind.config.js"
           class="btn btn-secondary btn-sm">↓&nbsp;tailwind.config.js</a>
-        <a href="changelog.html" class="t-label c-muted ml-2" style="text-decoration:none; transition:color 100ms;"
-          onmouseover="this.style.color='var(--fg)'" onmouseout="this.style.color=''">All versions →</a>
+        <a href="changelog.html" class="t-label link-hover ml-2">All versions →</a>
       </div>
 
       <!-- Tab switcher -->
@@ -2942,7 +3408,7 @@ animation: <span class="token-val">led 1s ease-in-out infinite</span>;     <span
           </div>
         </div>
 
-        <div class="info-note mt-8" style="max-width:560px;">
+        <div class="info-note mt-8 prose-width">
           <svg width="14" height="14" fill="none" stroke="var(--fg-muted)" stroke-width="1.5" viewBox="0 0 24 24"
             class="info-note-icon">
             <circle cx="12" cy="12" r="10" />
@@ -3159,7 +3625,7 @@ animation: <span class="token-val">led 1s ease-in-out infinite</span>;     <span
             </div>
           </div>
         </div>
-        <div class="info-note mt-8" style="max-width:580px;">
+        <div class="info-note mt-8 prose-width">
           <svg width="14" height="14" fill="none" stroke="var(--fg-muted)" stroke-width="1.5" viewBox="0 0 24 24"
             class="info-note-icon">
             <circle cx="12" cy="12" r="10" />
@@ -3175,7 +3641,7 @@ animation: <span class="token-val">led 1s ease-in-out infinite</span>;     <span
       </div>
 
       <!-- React Aria note -->
-      <div class="card mt-12" style="border-radius:3px; max-width:680px;">
+      <div class="card card-sharp prose-width-lg mt-12">
         <div class="row-sm mb-3">
           <span class="t-label-md">React Aria compatibility</span>
         </div>
@@ -3205,19 +3671,14 @@ animation: <span class="token-val">led 1s ease-in-out infinite</span>;     <span
     <div class="container flex justify-between items-center flex-wrap gap-4">
       <div class="row-sm">
         <span class="dot dot-sm"></span>
-        <span class="font-dot font-semibold" style="letter-spacing:0.04em;">GLYPHWIND</span>
+        <span class="footer-brand">GLYPHWIND</span>
         <span class="t-label c-muted ml-2">Design System</span>
       </div>
       <div class="flex gap-8 items-center">
         <span class="t-label c-muted">Analog Digitalist</span>
-        <a href="https://github.com/brijeshcore/glyphwind" class="t-label c-muted"
-          style="text-decoration:none; transition:color 100ms;" onmouseover="this.style.color='var(--fg)'"
-          onmouseout="this.style.color=''">Source →</a>
-        <a href="https://github.com/brijeshcore/glyphwind-samples" class="t-label c-muted"
-          style="text-decoration:none; transition:color 100ms;" onmouseover="this.style.color='var(--fg)'"
-          onmouseout="this.style.color=''">Samples →</a>
-        <a href="changelog.html" class="t-label c-muted" style="text-decoration:none; transition:color 100ms;"
-          onmouseover="this.style.color='var(--fg)'" onmouseout="this.style.color=''">Changelog →</a>
+        <a href="https://github.com/brijeshcore/glyphwind" class="t-label link-hover">Source →</a>
+        <a href="https://github.com/brijeshcore/glyphwind-samples" class="t-label link-hover">Samples →</a>
+        <a href="changelog.html" class="t-label link-hover">Changelog →</a>
       </div>
     </div>
   </footer>

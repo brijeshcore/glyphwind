@@ -135,7 +135,7 @@
       margin: 0;
       background: var(--bg);
       color: var(--fg);
-      font-family: 'Space Grotesk', system-ui, sans-serif;
+      font-family: var(--font-sans);
       font-size: 14px;
       line-height: 1.6;
       transition: background 0.25s ease, color 0.25s ease;
@@ -179,9 +179,15 @@
     }
 
     .navbar-brand {
+      font-family: var(--font-dot);
       font-weight: 600;
-      letter-spacing: -0.01em;
-      font-size: 0.9375rem;
+      letter-spacing: 0.04em;
+      font-size: 1rem;
+    }
+    .site-footer .footer-brand {
+      font-family: var(--font-dot);
+      font-weight: 600;
+      letter-spacing: 0.04em;
     }
 
     .section-sublabel {
@@ -224,7 +230,7 @@
     }
 
     .version-number {
-      font-family: 'Space Mono', monospace;
+      font-family: var(--font-mono);
       font-size: 1.25rem;
       font-weight: 700;
       letter-spacing: -0.02em;
@@ -232,7 +238,7 @@
     }
 
     .version-date {
-      font-family: 'Space Mono', monospace;
+      font-family: var(--font-mono);
       font-size: 0.75rem;
       color: var(--fg-muted);
       font-variant-numeric: tabular-nums;
@@ -402,6 +408,24 @@
         display: flex !important;
       }
     }
+
+    /* ─── Changelog-only classes (moved from globals.css) ────────────────── */
+
+    /* Changelog hero text max-width */
+    .max-w-cl-hero { max-width: 520px; }
+
+    /* Changelog pre font-size (error fallback) */
+    .t-pre-error {
+      font-size: 0.75rem;
+      color: hsl(var(--ink-muted));
+      margin: 0;
+    }
+
+    /* Badge font-size override for tailwind version badge */
+    .badge-twver {
+      align-self: center;
+      font-size: 0.6rem;
+    }
   </style>
 </head>
 
@@ -413,7 +437,7 @@
   <nav class="navbar">
     <div class="row-sm">
       <span class="dot dot-lg animate-led"></span>
-      <span class="navbar-brand font-dot">GLYPHWIND</span>
+      <span class="navbar-brand">GLYPHWIND</span>
     </div>
 
     <div id="nav-links" class="flex items-center gap-7 ml-auto">
@@ -445,11 +469,11 @@
     <div class="container">
       <span class="t-label c-muted section-sublabel">Glyphwind / Changelog</span>
       <h1 class="t-display mb-7">Release<br>Notes</h1>
-      <p class="t-body c-muted" style="max-width:520px;">
+      <p class="t-body c-muted max-w-cl-hero">
         Version history for Glyphwind Design System. Download any release's
-        <code style="font-family:'Space Mono',monospace; font-size:0.85em;">globals.css</code>
+        <code class="font-mono t-code-sm">globals.css</code>
         and
-        <code style="font-family:'Space Mono',monospace; font-size:0.85em;">tailwind.config.js</code>
+        <code class="font-mono t-code-sm">tailwind.config.js</code>
         directly.
       </p>
     </div>
@@ -475,11 +499,10 @@
     <div class="container flex justify-between items-center flex-wrap gap-4">
       <div class="row-sm">
         <span class="dot dot-sm"></span>
-        <span class="font-dot font-semibold" style="letter-spacing:0.04em;">GLYPHWIND</span>
+        <span class="footer-brand">GLYPHWIND</span>
         <span class="t-label c-muted ml-2">Design System</span>
       </div>
-      <a href="index.html" class="t-label c-muted" style="text-decoration:none; transition:color 100ms;"
-        onmouseover="this.style.color='var(--fg)'" onmouseout="this.style.color=''">← Back to Showcase</a>
+      <a href="index.html" class="t-label link-hover">← Back to Showcase</a>
     </div>
   </footer>
 
@@ -543,8 +566,8 @@
         entry.innerHTML = `
           <div class="flex items-baseline gap-4 flex-wrap mb-1">
             <span class="version-number">v${v.version}</span>
-            <span class="${badgeCls}" style="text-transform:uppercase; align-self:center;">${tag}</span>
-            ${twVer ? `<span class="badge badge-dim" style="align-self:center; font-family:'Space Mono',monospace; font-size:0.6rem;">${twVer}</span>` : ''}
+            <span class="${badgeCls} badge-center">${tag}</span>
+            ${twVer ? `<span class="badge badge-dim font-mono badge-twver">${twVer}</span>` : ''}
             <span class="version-date ml-auto">${v.date}</span>
           </div>
 
@@ -581,7 +604,7 @@
               Unable to load version data — this page requires a web server.
             </p>
             <p class="t-body-sm c-subtle mb-2">Run locally with:</p>
-            <pre style="font-family:'Space Mono',monospace; font-size:0.75rem; color:var(--fg-muted); margin:0;">npx serve .</pre>
+            <pre class="font-mono t-pre-error">npx serve .</pre>
           </div>
         `;
       }

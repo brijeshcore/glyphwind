@@ -73,6 +73,11 @@
   --radius-lg:   0.375rem;  /* 6px — max for containers */
   --radius-full: 9999px;    /* full — dots only */
 
+  /* Font families */
+  --font-sans: "Space Grotesk", Inter, system-ui, sans-serif;
+  --font-mono: "Space Mono", "Roboto Mono", monospace;
+  --font-dot:  "Doto", "Space Mono", monospace;
+
   /* Motion */
   --ease:             cubic-bezier(0.4, 0, 0.2, 1);
   --duration-fast:    80ms;   /* hover, focus, color flips */
@@ -153,7 +158,7 @@ html {
 body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
-  font-family: "Space Grotesk", Inter, system-ui, sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.875rem;
   line-height: 1.6;
   /* Smooth theme transitions */
@@ -162,7 +167,7 @@ body {
 
 /* Mono numbers for data/clocks — prevents layout jitter */
 .mono-nums {
-  font-family: "Space Mono", monospace;
+  font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.01em;
 }
@@ -491,7 +496,7 @@ a {
   text-transform: uppercase;
   color: hsl(var(--ink-muted));
   text-align: left;
-  padding: 0 0.75rem 0.875rem;
+  padding: 0.625rem 0.75rem;
   white-space: nowrap;
 }
 
@@ -523,6 +528,7 @@ a {
 }
 
 /* Last column inset — breathing room on the right edge */
+.table .th-inset-r,
 .table .td-inset-r {
   padding-right: 1.5rem;
 }
@@ -559,7 +565,7 @@ a {
 /* ── Dot Display — Doto font, special components only ──────────────────── */
 /* Use for: clocks, counters, build stamps, metric readouts. Never body copy. */
 .dot-display {
-  font-family: 'Doto', 'Space Mono', monospace;
+  font-family: var(--font-dot);
   font-weight: 400;
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.05em;
@@ -660,12 +666,25 @@ a {
 .t-body-sm { font-size: 0.8rem; font-weight: 400; line-height: 1.55; }
 .t-label { font-size: 0.625rem; font-weight: 500; letter-spacing: 0.10em; text-transform: uppercase; }
 .t-label-md { font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase; }
-.t-mono { font-family: 'Space Mono', monospace; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+.t-mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+.t-readout {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.25rem;
+}
+.t-stat {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
 
 /* Foreground color utilities */
 .c-fg     { color: hsl(var(--foreground)); }
+.c-ink    { color: hsl(var(--ink)); }
 .c-muted  { color: hsl(var(--ink-muted)); }
 .c-subtle { color: hsl(var(--ink-subtle)); }
+.c-ghost  { color: hsl(var(--ink-ghost)); }
 .c-signal { color: hsl(var(--signal)); }
 
 /* Background utilities — surface scale (short aliases) */
@@ -860,3 +879,101 @@ a {
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
+/* ─── Component Extensions ────────────────────────────────────────────────── */
+
+/* ── Card sharp — 3px radius (buttons use 3px; typography cards match) ── */
+.card-sharp { border-radius: 3px; }
+
+/* ── Elevation swatches — semantic surface tokens ────────────────────────── */
+.bg-elev-0 { background-color: hsl(var(--background)); }
+.bg-elev-1 { background-color: hsl(var(--surface-low)); }
+.bg-elev-2 { background-color: hsl(var(--surface-card)); }
+.bg-elev-3 { background-color: hsl(var(--surface-high)); }
+.bg-elev-4 { background-color: hsl(var(--surface-highest)); }
+
+/* ── Progress bar ─────────────────────────────────────────────────────────── */
+.progress-bar {
+  height: 3px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background-color: hsl(var(--foreground));
+}
+
+/* ── Progress fill signal — signal red fill for critical state ───────────── */
+.progress-fill-signal {
+  height: 100%;
+  background-color: hsl(var(--signal));
+}
+
+/* ─── Layout Utilities ────────────────────────────────────────────────────── */
+
+/* ── Semantic max-width classes ──────────────────────────────────────────── */
+.prose-width-sm  { max-width: 520px; }   /* hero intros, tight prose */
+.prose-width     { max-width: 560px; }   /* standard section intro text */
+.prose-width-lg  { max-width: 680px; }   /* wider prose blocks */
+.content-card    { max-width: 420px; }   /* form cards, narrow content cards */
+.content-card-sm { max-width: 320px; }   /* compact panels */
+.content-card-lg { max-width: 860px; }   /* wide content cards */
+
+/* ── Button flex-grow (full-width in a cluster) ─────────────────────────── */
+.btn-grow { flex: 1; }
+
+/* ── Toast icon nudge ─────────────────────────────────────────────────────── */
+.toast-dot-nudge { margin-top: 2px; }
+
+/* ── Dot display weight variants ─────────────────────────────────────────── */
+.dot-display-thin  { font-weight: 100; opacity: 0.4; }
+.dot-display-reg   { font-weight: 400; }
+.dot-display-bold  { font-weight: 700; }
+
+/* ── Dot display inline unit size variants ───────────────────────────────── */
+.dot-display-unit-md { font-size: 1.25rem; opacity: 0.5; }
+.dot-display-unit-sm { font-size: 1rem;    opacity: 0.5; }
+
+/* ── Animated dot demo card (min-height + relative) ─────────────────────── */
+.dot-card {
+  min-height: 120px;
+  position: relative;
+}
+
+/* Speed override for a single card */
+.dot-card-custom {
+  min-height: 120px;
+  position: relative;
+  --dot-speed: 2.5s;
+}
+
+/* ── Glass content panel positioning ────────────────────────────────────── */
+.glass-content {
+  max-width: 320px;
+  padding: 1.5rem;
+  position: relative;
+}
+
+/* ── Link hover — nav/footer links with color transition ─────────────────── */
+/* Replaces onmouseover/onmouseout JS hover handlers                          */
+.link-hover {
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease);
+  color: hsl(var(--ink-muted));
+}
+.link-hover:hover {
+  color: hsl(var(--foreground));
+}
+
+/* ── Changelog code font-size ───────────────────────────────────────────── */
+.t-code-sm { font-size: 0.85em; }
+
+/* ── Badge self-align center ─────────────────────────────────────────────── */
+.badge-center { align-self: center; }
+
+/* ── Font label tracking ─────────────────────────────────────────────────── */
+.tracking-loose { letter-spacing: 0.08em;  }
+.tracking-snug  { letter-spacing: -0.015em; }
+
+/* ── Label margin bottom utilities ──────────────────────────────────────── */
+.mb-375 { margin-bottom: 0.375rem; }
