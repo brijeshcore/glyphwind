@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="icon" type="image/png" href="icon.png" />
   <script>
     (function () {
@@ -29,6 +30,8 @@
   <meta property="og:description"
     content="A precision-crafted Tailwind CSS design system with semantic tokens, dot-matrix typography, and a strict 4px grid." />
   <meta property="og:site_name" content="Glyphwind" />
+  <meta property="og:see_also" content="https://github.com/brijeshcore/glyphwind" />
+  <meta property="og:see_also" content="https://github.com/brijeshcore/glyphwind-samples" />
 
   <!-- Twitter / X Card -->
   <meta name="twitter:card" content="summary" />
@@ -38,8 +41,11 @@
 
   <!-- Author identity -->
   <meta name="creator" content="Brijesh Chowdary Lavu" />
+  <meta name="source" content="https://github.com/brijeshcore/glyphwind" />
   <link rel="me" href="https://www.linkedin.com/in/brijeshcl/" />
   <link rel="me" href="https://github.com/brijeshcore" />
+  <link rel="source" href="https://github.com/brijeshcore/glyphwind" />
+  <link rel="related" href="https://github.com/brijeshcore/glyphwind-samples" />
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-4L05CHV00B"></script>
@@ -866,8 +872,8 @@
     /* Navbar logo text */
     .navbar-brand {
       font-weight: 600;
-      letter-spacing: -0.01em;
-      font-size: 0.9375rem;
+      letter-spacing: 0.04em;
+      font-size: 1rem;
     }
 
     /* Toast icon nudge */
@@ -936,7 +942,7 @@
   <nav class="navbar">
     <div class="row-sm">
       <span class="dot dot-lg animate-led"></span>
-      <span class="navbar-brand">GLYPHWIND</span>
+      <span class="navbar-brand font-dot">GLYPHWIND</span>
     </div>
 
     <!-- Desktop nav links -->
@@ -3199,13 +3205,17 @@ animation: <span class="token-val">led 1s ease-in-out infinite</span>;     <span
     <div class="container flex justify-between items-center flex-wrap gap-4">
       <div class="row-sm">
         <span class="dot dot-sm"></span>
-        <span class="t-body font-semibold" style="letter-spacing:-0.01em;">GLYPHWIND</span>
-        <span class="t-label c-muted ml-2">Design System <span data-version>v1.0</span></span>
+        <span class="font-dot font-semibold" style="letter-spacing:0.04em;">GLYPHWIND</span>
+        <span class="t-label c-muted ml-2">Design System</span>
       </div>
       <div class="flex gap-8 items-center">
         <span class="t-label c-muted">Analog Digitalist</span>
-        <span class="t-label c-muted">Tailwind CSS</span>
-        <span class="t-label c-muted">shadcn/ui · React Aria</span>
+        <a href="https://github.com/brijeshcore/glyphwind" class="t-label c-muted"
+          style="text-decoration:none; transition:color 100ms;" onmouseover="this.style.color='var(--fg)'"
+          onmouseout="this.style.color=''">Source →</a>
+        <a href="https://github.com/brijeshcore/glyphwind-samples" class="t-label c-muted"
+          style="text-decoration:none; transition:color 100ms;" onmouseover="this.style.color='var(--fg)'"
+          onmouseout="this.style.color=''">Samples →</a>
         <a href="changelog.html" class="t-label c-muted" style="text-decoration:none; transition:color 100ms;"
           onmouseover="this.style.color='var(--fg)'" onmouseout="this.style.color=''">Changelog →</a>
       </div>
