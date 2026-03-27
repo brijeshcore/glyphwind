@@ -1160,17 +1160,20 @@ a {
   --dot-color: hsl(var(--ink-ghost));
   --dot-inset: 2px;
   position: relative;
+  isolation: isolate;
 }
 
 /* ::before carries the actual background.                                   */
 /* inset keeps it off the border; background-position:center ensures the    */
 /* dot grid is symmetric — equal margins on all 4 sides, no clipping.       */
+/* z-index:0 keeps it behind content within the isolate stacking context.   */
 .bg-dots::before,
 .bg-dots-pulse::before {
   content: '';
   position: absolute;
   inset: var(--dot-inset);
   pointer-events: none;
+  z-index: -1;
 }
 
 .bg-dots::before {
