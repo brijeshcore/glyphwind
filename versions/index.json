@@ -1,5 +1,15 @@
 [
   {
+    "version": "1.0.1",
+    "date": "2026-03-27",
+    "tag": "badge-tokens",
+    "tailwindVersion": "3.4.17",
+    "changes": [
+      "badge-active now inverts the theme: foreground bg with background text (black in dark, white in light)",
+      "Added badge-signal: solid signal red fill, preserving the original badge-active appearance"
+    ]
+  },
+  {
     "version": "1.0.0",
     "date": "2026-03-22",
     "tag": "initial",
