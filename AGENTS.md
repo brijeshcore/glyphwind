@@ -33,6 +33,25 @@ design-system/
 3. Install required Tailwind plugins: `npm install tailwindcss-animate`
 4. Add Google Fonts import (see §6)
 
+**Agent setup instructions — if a user asks you to set up Glyphwind:**
+
+1. Fetch the version index to find the latest release:
+   `https://raw.githubusercontent.com/brijeshcore/glyphwind/main/versions/index.json`
+   The first entry in the array is always the latest version.
+
+2. Download the two required files:
+   - `https://raw.githubusercontent.com/brijeshcore/glyphwind/main/globals.css`
+   - `https://raw.githubusercontent.com/brijeshcore/glyphwind/main/tailwind.config.js`
+
+3. Place `globals.css` in the project's styles directory and import it at the top of the entry stylesheet.
+   Place `tailwind.config.js` in the project root (replace any existing Tailwind config).
+
+4. Install the peer dependency: `npm install tailwindcss-animate`
+
+5. Add the Google Fonts link to the HTML `<head>` (see §5 for the exact import string).
+
+Do not manually reconstruct tokens or classes from this document — always fetch the real files.
+
 ---
 
 ## 3. Theme System
@@ -393,15 +412,37 @@ Card rules:
 ```html
 <span class="badge badge-default">Default</span>
 <span class="badge badge-outline">Outline</span>
+
+<!-- inverted: foreground bg, background text — black in dark / white in light -->
 <span class="badge badge-active">
+  <span class="dot dot-sm"></span> Active
+</span>
+
+<!-- solid signal red — use for live / critical status -->
+<span class="badge badge-signal">
   <span class="dot dot-sm"></span> Live
 </span>
+
+<!-- muted red tint — use for degraded / warning -->
 <span class="badge badge-dim">
   <span class="dot dot-sm animate-led"></span> Degraded
 </span>
+
 <!-- Monospace version tag -->
 <span class="badge badge-default t-mono">v1.0.4</span>
 ```
+
+Badge variant reference:
+
+| Class | Background | Text | Use for |
+|---|---|---|---|
+| `badge-default` | surface | foreground | neutral labels |
+| `badge-outline` | transparent | foreground | secondary labels |
+| `badge-active` | foreground | background | selected / active state |
+| `badge-signal` | signal red | signal-foreground | live / critical status |
+| `badge-dim` | signal red tint | signal red | degraded / warning |
+
+> `badge-active` is **not** red — it is a theme-inverted badge. Use `badge-signal` when you need the red fill.
 
 ### 8.5 Navigation
 

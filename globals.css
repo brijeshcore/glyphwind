@@ -17,129 +17,174 @@
 
 /* ─── Light Theme (Analog Precision) ──────────────────────────────────────── */
 /* .light forces light theme on any subtree regardless of page theme */
-:root, .light {
+:root,
+.light {
   /* Backgrounds */
-  --background:    0 0% 99%;            /* #FCFCFC — near white canvas */
-  --foreground:    0 0% 11%;            /* #1B1B1B — deep black text */
+  --background: 0 0% 99%;
+  /* #FCFCFC — near white canvas */
+  --foreground: 0 0% 11%;
+  /* #1B1B1B — deep black text */
 
   /* Surface hierarchy — stacked technical sheets */
-  --surface:         0 0% 99%;          /* base */
-  --surface-low:     15 7% 96%;         /* sections */
-  --surface-card:    0 0% 100%;         /* cards, lifted */
-  --surface-high:    15 4% 91%;         /* interactive hover */
-  --surface-highest: 15 4% 89%;         /* highest layer */
+  --surface: 0 0% 99%;
+  /* base */
+  --surface-low: 15 7% 96%;
+  /* sections */
+  --surface-card: 0 0% 100%;
+  /* cards, lifted */
+  --surface-high: 15 4% 91%;
+  /* interactive hover */
+  --surface-highest: 15 4% 89%;
+  /* highest layer */
 
   /* Text scale */
-  --ink:        0 0% 11%;               /* #1B1B1B */
-  --ink-muted:  0 0% 37%;               /* #5E5E5E — secondary metadata */
-  --ink-subtle: 0 0% 60%;               /* #999999 — tertiary */
-  --ink-ghost:  0 0% 78%;               /* #C7C7C7 — barely visible */
+  --ink: 0 0% 11%;
+  /* #1B1B1B */
+  --ink-muted: 0 0% 37%;
+  /* #5E5E5E — secondary metadata */
+  --ink-subtle: 0 0% 60%;
+  /* #999999 — tertiary */
+  --ink-ghost: 0 0% 78%;
+  /* #C7C7C7 — barely visible */
 
   /* Signal red — "The Recording Red" */
-  --signal:            359 97% 37%;     /* #BB0307 */
-  --signal-foreground: 0 0% 100%;       /* white on red */
+  --signal: 359 97% 37%;
+  /* #BB0307 */
+  --signal-foreground: 0 0% 100%;
+  /* white on red */
 
   /* Borders — ghost borders only, never 100% opaque */
-  --border: 0 0% 11% / 0.09;            /* rgba(27,27,27,0.09) */
-  --input:  15 4% 89%;                  /* #E5E2E1 */
-  --ring:   0 0% 11%;                   /* #1B1B1B — focus ring = foreground */
+  --border: 0 0% 11% / 0.09;
+  /* rgba(27,27,27,0.09) */
+  --input: 15 4% 89%;
+  /* #E5E2E1 */
+  --ring: 0 0% 11%;
+  /* #1B1B1B — focus ring = foreground */
 
   /* ── shadcn/ui aliases ─────────────────────────────────────────────────── */
-  --primary:             0 0% 11%;
-  --primary-foreground:  0 0% 100%;
+  --primary: 0 0% 11%;
+  --primary-foreground: 0 0% 100%;
 
-  --secondary:           15 7% 96%;
+  --secondary: 15 7% 96%;
   --secondary-foreground: 0 0% 11%;
 
-  --muted:               15 7% 96%;
-  --muted-foreground:    0 0% 37%;
+  --muted: 15 7% 96%;
+  --muted-foreground: 0 0% 37%;
 
-  --accent:              359 97% 37%;
-  --accent-foreground:   0 0% 100%;
+  --accent: 359 97% 37%;
+  --accent-foreground: 0 0% 100%;
 
-  --destructive:         359 97% 37%;
+  --destructive: 359 97% 37%;
   --destructive-foreground: 0 0% 100%;
 
-  --popover:             0 0% 100%;
-  --popover-foreground:  0 0% 11%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 11%;
 
-  --card:                0 0% 100%;
-  --card-foreground:     0 0% 11%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 11%;
 
   /* Geometry */
-  --radius:      0.25rem;   /* 4px — default */
-  --radius-sm:   0.125rem;  /* 2px — badges, tight UI */
-  --radius-md:   0.25rem;   /* 4px — cards, default */
-  --radius-lg:   0.375rem;  /* 6px — max for containers */
-  --radius-full: 9999px;    /* full — dots only */
+  --radius: 0.25rem;
+  /* 4px — default */
+  --radius-sm: 0.125rem;
+  /* 2px — badges, tight UI */
+  --radius-md: 0.25rem;
+  /* 4px — cards, default */
+  --radius-lg: 0.375rem;
+  /* 6px — max for containers */
+  --radius-full: 9999px;
+  /* full — dots only */
 
   /* Font families */
   --font-sans: "Space Grotesk", Inter, system-ui, sans-serif;
   --font-mono: "Space Mono", "Roboto Mono", monospace;
-  --font-dot:  "Doto", "Space Mono", monospace;
+  --font-dot: "Doto", "Space Mono", monospace;
 
   /* Motion */
-  --ease:             cubic-bezier(0.4, 0, 0.2, 1);
-  --duration-fast:    80ms;   /* hover, focus, color flips */
-  --duration-default: 150ms;  /* state changes, backgrounds */
-  --duration-slow:    300ms;  /* layout shifts, panels */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 80ms;
+  /* hover, focus, color flips */
+  --duration-default: 150ms;
+  /* state changes, backgrounds */
+  --duration-slow: 300ms;
+  /* layout shifts, panels */
 }
 
 /* ─── Dark Theme (Analog Digitalist) ──────────────────────────────────────── */
 .dark {
   /* Backgrounds */
-  --background:  0 0% 0%;               /* #000000 — the Void */
-  --foreground:  0 0% 100%;             /* #FFFFFF — Pure Light */
+  --background: 0 0% 0%;
+  /* #000000 — the Void */
+  --foreground: 0 0% 100%;
+  /* #FFFFFF — Pure Light */
 
   /* Surface hierarchy — nested physical trays */
-  --surface:         0 0% 0%;           /* deep base */
-  --surface-low:     0 0% 5.5%;         /* #0E0E0E — foundation */
-  --surface-card:    0 0% 11%;          /* #1B1B1B — sections / sidebar */
-  --surface-high:    0 0% 12%;          /* #1F1F1F — cards / modules */
-  --surface-highest: 0 0% 14%;          /* #242424 — hover state */
+  --surface: 0 0% 0%;
+  /* deep base */
+  --surface-low: 0 0% 5.5%;
+  /* #0E0E0E — foundation */
+  --surface-card: 0 0% 11%;
+  /* #1B1B1B — sections / sidebar */
+  --surface-high: 0 0% 12%;
+  /* #1F1F1F — cards / modules */
+  --surface-highest: 0 0% 14%;
+  /* #242424 — hover state */
 
   /* Text scale */
-  --ink:        0 0% 100%;              /* #FFFFFF */
-  --ink-muted:  0 0% 60%;               /* #999999 — secondary */
-  --ink-subtle: 0 0% 30%;               /* #4D4D4D — tertiary */
-  --ink-ghost:  0 0% 16%;               /* #292929 — barely visible */
+  --ink: 0 0% 100%;
+  /* #FFFFFF */
+  --ink-muted: 0 0% 60%;
+  /* #999999 — secondary */
+  --ink-subtle: 0 0% 30%;
+  /* #4D4D4D — tertiary */
+  --ink-ghost: 0 0% 16%;
+  /* #292929 — barely visible */
 
   /* Signal red — "Critical Warning" */
-  --signal:            4 100% 60%;      /* #FF4132 */
+  --signal: 4 100% 60%;
+  /* #FF4132 */
   --signal-foreground: 0 0% 100%;
 
   /* Borders */
-  --border: 0 0% 100% / 0.08;           /* rgba(255,255,255,0.08) — ghost */
-  --input:  0 0% 12%;                   /* #1F1F1F */
-  --ring:   0 0% 83%;                   /* #D4D4D4 — focus ring */
+  --border: 0 0% 100% / 0.08;
+  /* rgba(255,255,255,0.08) — ghost */
+  --input: 0 0% 12%;
+  /* #1F1F1F */
+  --ring: 0 0% 83%;
+  /* #D4D4D4 — focus ring */
 
   /* ── shadcn/ui aliases ─────────────────────────────────────────────────── */
-  --primary:             0 0% 100%;
-  --primary-foreground:  0 0% 0%;
+  --primary: 0 0% 100%;
+  --primary-foreground: 0 0% 0%;
 
-  --secondary:           0 0% 11%;
+  --secondary: 0 0% 11%;
   --secondary-foreground: 0 0% 100%;
 
-  --muted:               0 0% 11%;
-  --muted-foreground:    0 0% 60%;
+  --muted: 0 0% 11%;
+  --muted-foreground: 0 0% 60%;
 
-  --accent:              4 100% 60%;
-  --accent-foreground:   0 0% 100%;
+  --accent: 4 100% 60%;
+  --accent-foreground: 0 0% 100%;
 
-  --destructive:         4 100% 60%;
+  --destructive: 4 100% 60%;
   --destructive-foreground: 0 0% 100%;
 
-  --popover:             0 0% 5.5%;
-  --popover-foreground:  0 0% 100%;
+  --popover: 0 0% 5.5%;
+  --popover-foreground: 0 0% 100%;
 
-  --card:                0 0% 11%;
-  --card-foreground:     0 0% 100%;
+  --card: 0 0% 11%;
+  --card-foreground: 0 0% 100%;
 
-  --radius:      0.25rem;   /* 4px — default */
-  --radius-sm:   0.125rem;  /* 2px — badges, tight UI */
-  --radius-md:   0.25rem;   /* 4px — cards, default */
-  --radius-lg:   0.375rem;  /* 6px — max for containers */
-  --radius-full: 9999px;    /* full — dots only */
+  --radius: 0.25rem;
+  /* 4px — default */
+  --radius-sm: 0.125rem;
+  /* 2px — badges, tight UI */
+  --radius-md: 0.25rem;
+  /* 4px — cards, default */
+  --radius-lg: 0.375rem;
+  /* 6px — max for containers */
+  --radius-full: 9999px;
+  /* full — dots only */
 }
 
 /* ─── Base Styles ─────────────────────────────────────────────────────────── */
@@ -173,7 +218,10 @@ body {
 }
 
 /* Headings — tight tracking */
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.15;
@@ -199,10 +247,23 @@ a {
 }
 
 /* Scrollbar */
-::-webkit-scrollbar        { width: 4px; height: 4px; }
-::-webkit-scrollbar-track  { background: hsl(var(--surface)); }
-::-webkit-scrollbar-thumb  { background: hsl(var(--surface-high)); border-radius: 2px; }
-::-webkit-scrollbar-thumb:hover { background: hsl(var(--ink-subtle)); }
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--surface));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--surface-high));
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--ink-subtle));
+}
 
 /* ─── Component Layer ─────────────────────────────────────────────────────── */
 
@@ -214,15 +275,47 @@ a {
   border-radius: 9999px;
   background-color: hsl(var(--signal));
 }
-.glyphwind-dot-sm  { width: 4px;  height: 4px;  }   /* default indicator */
-.glyphwind-dot-md  { width: 6px;  height: 6px;  }
-.glyphwind-dot-lg  { width: 8px;  height: 8px;  }   /* header REC indicator */
+
+.glyphwind-dot-sm {
+  width: 4px;
+  height: 4px;
+}
+
+/* default indicator */
+.glyphwind-dot-md {
+  width: 6px;
+  height: 6px;
+}
+
+.glyphwind-dot-lg {
+  width: 8px;
+  height: 8px;
+}
+
+/* header REC indicator */
 
 /* Dot aliases — shorthand for .glyphwind-dot */
-.dot    { display: inline-block; flex-shrink: 0; border-radius: 9999px; background-color: hsl(var(--signal)); }
-.dot-sm { width: 4px; height: 4px; }
-.dot-md { width: 6px; height: 6px; }
-.dot-lg { width: 8px; height: 8px; }
+.dot {
+  display: inline-block;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  background-color: hsl(var(--signal));
+}
+
+.dot-sm {
+  width: 4px;
+  height: 4px;
+}
+
+.dot-md {
+  width: 6px;
+  height: 6px;
+}
+
+.dot-lg {
+  width: 8px;
+  height: 8px;
+}
 
 /* ── Section Tag — dot-matrix label above headings ─────────────────────── */
 .section-tag {
@@ -242,7 +335,8 @@ a {
   justify-content: center;
   gap: 0.4375rem;
   padding: 0.5625rem 1.125rem;
-  border-radius: 3px; /* Deliberately sharper than card radius */
+  border-radius: 3px;
+  /* Deliberately sharper than card radius */
   font-family: inherit;
   font-size: 0.8125rem;
   font-weight: 500;
@@ -250,12 +344,12 @@ a {
   letter-spacing: 0.025em;
   white-space: nowrap;
   cursor: pointer;
-  transition: opacity    var(--duration-fast) var(--ease),
-              background var(--duration-fast) var(--ease),
-              border-color var(--duration-fast) var(--ease),
-              color      var(--duration-fast) var(--ease),
-              box-shadow var(--duration-fast) var(--ease),
-              transform  var(--duration-fast) var(--ease);
+  transition: opacity var(--duration-fast) var(--ease),
+    background var(--duration-fast) var(--ease),
+    border-color var(--duration-fast) var(--ease),
+    color var(--duration-fast) var(--ease),
+    box-shadow var(--duration-fast) var(--ease),
+    transform var(--duration-fast) var(--ease);
   border: none;
   outline: none;
   text-decoration: none;
@@ -263,10 +357,12 @@ a {
   user-select: none;
   -webkit-user-select: none;
 }
+
 .btn:disabled {
   opacity: 0.38;
   pointer-events: none;
 }
+
 .btn:active:not(:disabled) {
   transform: translateY(1px);
 }
@@ -276,7 +372,11 @@ a {
   background-color: hsl(var(--foreground));
   color: hsl(var(--background));
 }
-.btn-primary:hover:not(:disabled) { opacity: 0.88; }
+
+.btn-primary:hover:not(:disabled) {
+  opacity: 0.88;
+}
+
 .btn-primary:focus-visible {
   outline: 1.5px solid hsl(var(--foreground));
   outline-offset: 2px;
@@ -288,6 +388,7 @@ a {
   color: hsl(var(--foreground));
   box-shadow: inset 0 0 0 1px hsl(var(--border));
 }
+
 .btn-secondary:hover:not(:disabled) {
   background-color: hsl(var(--surface-high));
   box-shadow: inset 0 0 0 1px hsl(var(--foreground) / 0.15);
@@ -298,6 +399,7 @@ a {
   background-color: transparent;
   color: hsl(var(--ink-muted));
 }
+
 .btn-ghost:hover:not(:disabled) {
   background-color: hsl(var(--surface-card));
   color: hsl(var(--foreground));
@@ -308,14 +410,39 @@ a {
   background-color: hsl(var(--signal));
   color: hsl(var(--signal-foreground));
 }
-.btn-critical:hover:not(:disabled) { opacity: 0.88; }
-.btn-critical:active:not(:disabled) { opacity: 0.8; }
+
+.btn-critical:hover:not(:disabled) {
+  opacity: 0.88;
+}
+
+.btn-critical:active:not(:disabled) {
+  opacity: 0.8;
+}
 
 /* Sizes */
-.btn-xs  { padding: 0.3125rem 0.625rem; font-size: 0.75rem; gap: 0.375rem; }
-.btn-sm  { padding: 0.4375rem 0.875rem; font-size: 0.8125rem; gap: 0.375rem; }
-.btn-lg  { padding: 0.6875rem 1.5rem;   font-size: 0.9375rem; gap: 0.5rem; }
-.btn-xl  { padding: 0.875rem 2rem;      font-size: 1rem; gap: 0.5rem; }
+.btn-xs {
+  padding: 0.3125rem 0.625rem;
+  font-size: 0.75rem;
+  gap: 0.375rem;
+}
+
+.btn-sm {
+  padding: 0.4375rem 0.875rem;
+  font-size: 0.8125rem;
+  gap: 0.375rem;
+}
+
+.btn-lg {
+  padding: 0.6875rem 1.5rem;
+  font-size: 0.9375rem;
+  gap: 0.5rem;
+}
+
+.btn-xl {
+  padding: 0.875rem 2rem;
+  font-size: 1rem;
+  gap: 0.5rem;
+}
 
 /* Icon button */
 .btn-icon {
@@ -323,14 +450,28 @@ a {
   aspect-ratio: 1;
   gap: 0;
 }
-.btn-icon.btn-xs { padding: 0.3125rem; }
-.btn-icon.btn-sm { padding: 0.4375rem; }
-.btn-icon.btn-lg { padding: 0.6875rem; }
+
+.btn-icon.btn-xs {
+  padding: 0.3125rem;
+}
+
+.btn-icon.btn-sm {
+  padding: 0.4375rem;
+}
+
+.btn-icon.btn-lg {
+  padding: 0.6875rem;
+}
 
 /* Loading state */
-.btn-loading { pointer-events: none; opacity: 0.7; }
+.btn-loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
 .btn-loading .btn-spinner {
-  width: 0.875rem; height: 0.875rem;
+  width: 0.875rem;
+  height: 0.875rem;
   border: 1.5px solid currentColor;
   border-top-color: transparent;
   border-radius: 9999px;
@@ -360,11 +501,27 @@ a {
   outline: none;
   -webkit-appearance: none;
 }
-.input::placeholder { color: hsl(var(--ink-subtle)); }
-.input:focus        { border-color: hsl(var(--foreground)); }
-.input:disabled     { opacity: 0.4; cursor: not-allowed; }
-.input.error        { border-color: hsl(var(--signal)); }
-.input.error:focus  { border-color: hsl(var(--signal)); }
+
+.input::placeholder {
+  color: hsl(var(--ink-subtle));
+}
+
+.input:focus {
+  border-color: hsl(var(--foreground));
+}
+
+.input:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.input.error {
+  border-color: hsl(var(--signal));
+}
+
+.input.error:focus {
+  border-color: hsl(var(--signal));
+}
 
 /* Input label */
 .input-label {
@@ -376,11 +533,13 @@ a {
   color: hsl(var(--ink-muted));
   margin-bottom: 0.375rem;
 }
+
 .input-hint {
   font-size: 0.75rem;
   color: hsl(var(--ink-subtle));
   margin-top: 0.375rem;
 }
+
 .input-error-msg {
   font-size: 0.75rem;
   color: hsl(var(--signal));
@@ -401,6 +560,7 @@ a {
   transition: background-color var(--duration-fast) var(--ease);
   cursor: pointer;
 }
+
 .card-hover:hover {
   background-color: hsl(var(--surface-high));
 }
@@ -408,13 +568,13 @@ a {
 /* Float card — ambient shadow for dark, subtle for light */
 .card-float {
   box-shadow: 0 0 64px 0 hsl(var(--foreground) / 0.05),
-              inset 0 0 0 1px hsl(var(--border));
+    inset 0 0 0 1px hsl(var(--border));
 }
 
 /* Signal card — critical/error state, signal red border + ambient glow */
 .card-signal {
   box-shadow: inset 0 0 0 1px hsl(var(--signal) / 0.35),
-              0 0 32px 0 hsl(var(--signal) / 0.07);
+    0 0 32px 0 hsl(var(--signal) / 0.07);
 }
 
 /* ── Badges & Tags ──────────────────────────────────────────────────────── */
@@ -431,20 +591,29 @@ a {
   line-height: 1.6;
   white-space: nowrap;
 }
-.badge-default  {
+
+.badge-default {
   background-color: hsl(var(--surface-high));
   color: hsl(var(--ink-muted));
 }
-.badge-outline  {
+
+.badge-outline {
   background-color: transparent;
   color: hsl(var(--foreground));
   box-shadow: inset 0 0 0 1px hsl(var(--border));
 }
-.badge-active   {
+
+.badge-active {
+  background-color: hsl(var(--foreground));
+  color: hsl(var(--background));
+}
+
+.badge-signal {
   background-color: hsl(var(--signal));
   color: hsl(var(--signal-foreground));
 }
-.badge-dim      {
+
+.badge-dim {
   background-color: hsl(var(--signal) / 0.12);
   color: hsl(var(--signal));
 }
@@ -475,8 +644,12 @@ a {
   transition: color var(--duration-fast) var(--ease);
   padding: 0.25rem 0;
 }
-.nav-link:hover    { color: hsl(var(--foreground)); }
-.nav-link.active   {
+
+.nav-link:hover {
+  color: hsl(var(--foreground));
+}
+
+.nav-link.active {
   color: hsl(var(--foreground));
   border-bottom: 1px solid hsl(var(--foreground));
 }
@@ -557,9 +730,10 @@ a {
   max-width: 22rem;
   animation: fade-up 0.18s ease-out;
 }
+
 .toast-signal {
   box-shadow: inset 0 0 0 1px hsl(var(--signal) / 0.30),
-              0 0 24px 0 hsl(var(--signal) / 0.08);
+    0 0 24px 0 hsl(var(--signal) / 0.08);
 }
 
 /* ── Dot Display — Doto font, special components only ──────────────────── */
@@ -583,11 +757,31 @@ a {
 }
 
 /* Size scale */
-.dot-display-xs  { font-size: 0.75rem;  }   /* 12px — inline labels */
-.dot-display-sm  { font-size: 1rem;     }   /* 16px — compact metrics */
-.dot-display-md  { font-size: 1.5rem;   }   /* 24px — dashboard values */
-.dot-display-lg  { font-size: 2.5rem;   }   /* 40px — hero clock/counter */
-.dot-display-xl  { font-size: 4rem;     }   /* 64px — full display */
+.dot-display-xs {
+  font-size: 0.75rem;
+}
+
+/* 12px — inline labels */
+.dot-display-sm {
+  font-size: 1rem;
+}
+
+/* 16px — compact metrics */
+.dot-display-md {
+  font-size: 1.5rem;
+}
+
+/* 24px — dashboard values */
+.dot-display-lg {
+  font-size: 2.5rem;
+}
+
+/* 40px — hero clock/counter */
+.dot-display-xl {
+  font-size: 4rem;
+}
+
+/* 64px — full display */
 
 /* ── Glass panel — for floating overlays ───────────────────────────────── */
 .glass {
@@ -641,6 +835,7 @@ a {
   text-transform: uppercase;
   color: hsl(var(--ink-muted));
 }
+
 .label-md {
   font-size: 0.6875rem;
   font-weight: 500;
@@ -656,23 +851,86 @@ a {
 }
 
 /* Typography scale utilities */
-.t-display { font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
-.t-h1 { font-size: 2rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; }
-.t-h2 { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.018em; line-height: 1.2; }
-.t-h3 { font-size: 1.25rem; font-weight: 600; letter-spacing: -0.01em; line-height: 1.25; }
-.t-h4 { font-size: 1.0625rem; font-weight: 500; letter-spacing: -0.005em; line-height: 1.3; }
-.t-body-lg { font-size: 1rem; font-weight: 400; line-height: 1.65; }
-.t-body { font-size: 0.875rem; font-weight: 400; line-height: 1.6; }
-.t-body-sm { font-size: 0.8rem; font-weight: 400; line-height: 1.55; }
-.t-label { font-size: 0.625rem; font-weight: 500; letter-spacing: 0.10em; text-transform: uppercase; }
-.t-label-md { font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase; }
-.t-mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+.t-display {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.t-h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.t-h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.018em;
+  line-height: 1.2;
+}
+
+.t-h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+.t-h4 {
+  font-size: 1.0625rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  line-height: 1.3;
+}
+
+.t-body-lg {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+.t-body {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.t-body-sm {
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.55;
+}
+
+.t-label {
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+}
+
+.t-label-md {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.t-mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
 .t-readout {
   font-size: 1.75rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   margin-bottom: 0.25rem;
 }
+
 .t-stat {
   font-size: 1.5rem;
   font-weight: 600;
@@ -680,78 +938,206 @@ a {
 }
 
 /* Foreground color utilities */
-.c-fg     { color: hsl(var(--foreground)); }
-.c-ink    { color: hsl(var(--ink)); }
-.c-muted  { color: hsl(var(--ink-muted)); }
-.c-subtle { color: hsl(var(--ink-subtle)); }
-.c-ghost  { color: hsl(var(--ink-ghost)); }
-.c-signal { color: hsl(var(--signal)); }
+.c-fg {
+  color: hsl(var(--foreground));
+}
+
+.c-ink {
+  color: hsl(var(--ink));
+}
+
+.c-muted {
+  color: hsl(var(--ink-muted));
+}
+
+.c-subtle {
+  color: hsl(var(--ink-subtle));
+}
+
+.c-ghost {
+  color: hsl(var(--ink-ghost));
+}
+
+.c-signal {
+  color: hsl(var(--signal));
+}
 
 /* Background utilities — surface scale (short aliases) */
-.bg-base    { background-color: hsl(var(--background)); }
-.bg-low     { background-color: hsl(var(--surface-low)); }
-.bg-card    { background-color: hsl(var(--surface-card)); }
-.bg-high    { background-color: hsl(var(--surface-high)); }
-.bg-highest { background-color: hsl(var(--surface-highest)); }
-.bg-signal  { background-color: hsl(var(--signal)); }
+.bg-base {
+  background-color: hsl(var(--background));
+}
+
+.bg-low {
+  background-color: hsl(var(--surface-low));
+}
+
+.bg-card {
+  background-color: hsl(var(--surface-card));
+}
+
+.bg-high {
+  background-color: hsl(var(--surface-high));
+}
+
+.bg-highest {
+  background-color: hsl(var(--surface-highest));
+}
+
+.bg-signal {
+  background-color: hsl(var(--signal));
+}
 
 /* Background utilities — verbose aliases (match Tailwind config names) */
-.bg-surface         { background-color: hsl(var(--surface)); }
-.bg-surface-low     { background-color: hsl(var(--surface-low)); }
-.bg-surface-card    { background-color: hsl(var(--surface-card)); }
-.bg-surface-high    { background-color: hsl(var(--surface-high)); }
-.bg-surface-highest { background-color: hsl(var(--surface-highest)); }
-.bg-foreground      { background-color: hsl(var(--foreground)); }
-.bg-background      { background-color: hsl(var(--background)); }
+.bg-surface {
+  background-color: hsl(var(--surface));
+}
+
+.bg-surface-low {
+  background-color: hsl(var(--surface-low));
+}
+
+.bg-surface-card {
+  background-color: hsl(var(--surface-card));
+}
+
+.bg-surface-high {
+  background-color: hsl(var(--surface-high));
+}
+
+.bg-surface-highest {
+  background-color: hsl(var(--surface-highest));
+}
+
+.bg-foreground {
+  background-color: hsl(var(--foreground));
+}
+
+.bg-background {
+  background-color: hsl(var(--background));
+}
 
 /* Ink background utilities — for LED dot color overrides */
-.bg-ink-subtle { background-color: hsl(var(--ink-subtle)); }
-.bg-ink-ghost  { background-color: hsl(var(--ink-ghost)); }
+.bg-ink-subtle {
+  background-color: hsl(var(--ink-subtle));
+}
+
+.bg-ink-ghost {
+  background-color: hsl(var(--ink-ghost));
+}
 
 /* Animation utilities */
-.animate-led      { animation: led-pulse 2.4s ease-in-out infinite; }
-.animate-led-fast { animation: led-pulse 1s ease-in-out infinite; }
-.animate-fade-up  { animation: fade-up 0.18s ease-out; }
-.animate-scale-in { animation: scale-in 0.15s ease-out; }
+.animate-led {
+  animation: led-pulse 2.4s ease-in-out infinite;
+}
+
+.animate-led-fast {
+  animation: led-pulse 1s ease-in-out infinite;
+}
+
+.animate-fade-up {
+  animation: fade-up 0.18s ease-out;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.15s ease-out;
+}
 
 /* ─── Border Radius Utilities ────────────────────────────────────────────── */
-.radius-sm   { border-radius: var(--radius-sm);   }  /* 2px — badges, tight UI */
-.radius-md   { border-radius: var(--radius-md);   }  /* 4px — cards, default */
-.radius-lg   { border-radius: var(--radius-lg);   }  /* 6px — max for containers */
-.radius-full { border-radius: var(--radius-full); }  /* 9999px — dots only */
+.radius-sm {
+  border-radius: var(--radius-sm);
+}
+
+/* 2px — badges, tight UI */
+.radius-md {
+  border-radius: var(--radius-md);
+}
+
+/* 4px — cards, default */
+.radius-lg {
+  border-radius: var(--radius-lg);
+}
+
+/* 6px — max for containers */
+.radius-full {
+  border-radius: var(--radius-full);
+}
+
+/* 9999px — dots only */
 
 /* ─── Transition Utilities ───────────────────────────────────────────────── */
 /* Apply to any element that needs timed state changes                        */
-.transition-fast    { transition: background var(--duration-fast)    var(--ease),
-                                  color      var(--duration-fast)    var(--ease),
-                                  transform  var(--duration-fast)    var(--ease),
-                                  opacity    var(--duration-fast)    var(--ease); }
-.transition-default { transition: background var(--duration-default) var(--ease),
-                                  color      var(--duration-default) var(--ease),
-                                  transform  var(--duration-default) var(--ease),
-                                  opacity    var(--duration-default) var(--ease); }
-.transition-slow    { transition: background var(--duration-slow)    var(--ease),
-                                  color      var(--duration-slow)    var(--ease),
-                                  transform  var(--duration-slow)    var(--ease),
-                                  opacity    var(--duration-slow)    var(--ease); }
+.transition-fast {
+  transition: background var(--duration-fast) var(--ease),
+    color var(--duration-fast) var(--ease),
+    transform var(--duration-fast) var(--ease),
+    opacity var(--duration-fast) var(--ease);
+}
+
+.transition-default {
+  transition: background var(--duration-default) var(--ease),
+    color var(--duration-default) var(--ease),
+    transform var(--duration-default) var(--ease),
+    opacity var(--duration-default) var(--ease);
+}
+
+.transition-slow {
+  transition: background var(--duration-slow) var(--ease),
+    color var(--duration-slow) var(--ease),
+    transform var(--duration-slow) var(--ease),
+    opacity var(--duration-slow) var(--ease);
+}
 
 /* ─── Layout Primitives ───────────────────────────────────────────────────── */
 
 /* Card variant — flush (no padding, overflow hidden; for tables/images inside cards) */
-.card-flush { padding: 0; overflow: hidden; }
+.card-flush {
+  padding: 0;
+  overflow: hidden;
+}
 
 /* Row — flex row, vertically centered */
-.row         { display: flex; align-items: center; gap: 1rem; }
-.row-sm      { display: flex; align-items: center; gap: 0.625rem; }
-.row-between { display: flex; align-items: center; justify-content: space-between; }
+.row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.row-sm {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.row-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
 /* Stack — vertical flex */
-.stack    { display: flex; flex-direction: column; }
-.stack-sm { display: flex; flex-direction: column; gap: 0.5rem; }
+.stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.stack-sm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
 
 /* Cluster — flex wrap (button groups, badge lists, tag clouds) */
-.cluster    { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-.cluster-sm { display: flex; flex-wrap: wrap; gap: 0.625rem; }
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.cluster-sm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+}
 
 /* ── Dot Pattern — Nothing-inspired dot matrix backgrounds ─────────────── */
 /*                                                                           */
@@ -761,77 +1147,185 @@ a {
 /*    <div class="bg-dots bg-dots-signal">        red dots                   */
 /*    <div class="bg-dots bg-dots-loose bg-dots-md bg-dots-subtle">         */
 /*                                                                           */
-/*  Override directly:                                                       */
-/*    style="--dot-gap:24px; --dot-size:1.5px; --dot-color:#FF4132"         */
+/*  The dot pattern renders on ::before, inset from all edges.              */
+/*  Content on the element is never affected.                               */
+/*  Override inset:  style="--dot-inset:12px"                               */
+/*  Override vars:   style="--dot-gap:24px; --dot-size:1.5px"               */
 
-.bg-dots {
-  --dot-size:  1px;
-  --dot-gap:   20px;
+/* Shared setup: both classes need position:relative and the CSS vars */
+.bg-dots,
+.bg-dots-pulse {
+  --dot-size: 1px;
+  --dot-gap: 20px;
   --dot-color: hsl(var(--ink-ghost));
-  background-image: radial-gradient(
-    circle,
-    var(--dot-color) var(--dot-size),
-    transparent var(--dot-size)
-  );
-  background-size: var(--dot-gap) var(--dot-gap);
+  --dot-inset: 2px;
+  position: relative;
+}
+
+/* ::before carries the actual background.                                   */
+/* inset keeps it off the border; background-position:center ensures the    */
+/* dot grid is symmetric — equal margins on all 4 sides, no clipping.       */
+.bg-dots::before,
+.bg-dots-pulse::before {
+  content: '';
+  position: absolute;
+  inset: var(--dot-inset);
+  pointer-events: none;
+}
+
+.bg-dots::before {
+  background-image: radial-gradient(circle,
+      var(--dot-color) var(--dot-size),
+      transparent var(--dot-size));
+  background-size:     var(--dot-gap) var(--dot-gap);
+  background-position: center center;
 }
 
 /* ── Spacing variants ─── */
-.bg-dots-tight  { --dot-gap:  8px; }
-.bg-dots-dense  { --dot-gap: 12px; }
-.bg-dots-loose  { --dot-gap: 32px; }
-.bg-dots-sparse { --dot-gap: 56px; }
+.bg-dots-tight {
+  --dot-gap: 8px;
+}
+
+.bg-dots-dense {
+  --dot-gap: 12px;
+}
+
+.bg-dots-loose {
+  --dot-gap: 32px;
+}
+
+.bg-dots-sparse {
+  --dot-gap: 56px;
+}
 
 /* ── Dot size variants ─── */
-.bg-dots-xs { --dot-size: 0.5px; }
-.bg-dots-sm { --dot-size: 1px;   }
-.bg-dots-md { --dot-size: 1.5px; }
-.bg-dots-lg { --dot-size: 2px;   }
+.bg-dots-xs {
+  --dot-size: 0.5px;
+}
+
+.bg-dots-sm {
+  --dot-size: 1px;
+}
+
+.bg-dots-md {
+  --dot-size: 1.5px;
+}
+
+.bg-dots-lg {
+  --dot-size: 2px;
+}
 
 /* ── Color variants ─── */
-.bg-dots-ghost  { --dot-color: hsl(var(--ink-ghost));  }   /* default */
-.bg-dots-subtle { --dot-color: hsl(var(--ink-subtle)); }
-.bg-dots-muted  { --dot-color: hsl(var(--ink-muted));  }
-.bg-dots-fg     { --dot-color: hsl(var(--foreground)); }
-.bg-dots-signal { --dot-color: hsl(var(--signal));     }
+.bg-dots-ghost {
+  --dot-color: hsl(var(--ink-ghost));
+}
+
+/* default */
+.bg-dots-subtle {
+  --dot-color: hsl(var(--ink-subtle));
+}
+
+.bg-dots-muted {
+  --dot-color: hsl(var(--ink-muted));
+}
+
+.bg-dots-fg {
+  --dot-color: hsl(var(--foreground));
+}
+
+.bg-dots-signal {
+  --dot-color: hsl(var(--signal));
+}
 
 /* ── Animation speed ─── */
 /* Override: style="--dot-speed:2s"                                          */
-.bg-dots-slow   { --dot-speed: 10s; }
-.bg-dots-fast   { --dot-speed: 1.5s; }
+.bg-dots-slow {
+  --dot-speed: 10s;
+}
+
+.bg-dots-fast {
+  --dot-speed: 1.5s;
+}
 
 /* ── Animation variants ─── */
-/* Scrolling: animates background-position — GPU-accelerated, safe for content */
-.bg-dots-scroll-x    { animation: dots-scroll-x    var(--dot-speed, 4s) linear infinite; }
-.bg-dots-scroll-y    { animation: dots-scroll-y    var(--dot-speed, 4s) linear infinite; }
-.bg-dots-scroll-diag { animation: dots-scroll-diag var(--dot-speed, 6s) linear infinite; }
+/* Animations target ::before — GPU-accelerated, content untouched           */
+.bg-dots-scroll-x::before {
+  animation: dots-scroll-x var(--dot-speed, 4s) linear infinite;
+}
+
+.bg-dots-scroll-y::before {
+  animation: dots-scroll-y var(--dot-speed, 4s) linear infinite;
+}
+
+.bg-dots-scroll-diag::before {
+  animation: dots-scroll-diag var(--dot-speed, 6s) linear infinite;
+}
 
 /* Alt: reverses direction each cycle. Combine with any scroll variant.      */
-.bg-dots-alt { animation-direction: alternate; animation-timing-function: ease-in-out; }
+.bg-dots-alt::before {
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+}
 
 @keyframes dots-scroll-x {
-  from { background-position: 0 0; }
-  to   { background-position: var(--dot-gap) 0; }
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: var(--dot-gap) 0;
+  }
 }
+
 @keyframes dots-scroll-y {
-  from { background-position: 0 0; }
-  to   { background-position: 0 var(--dot-gap); }
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 0 var(--dot-gap);
+  }
 }
+
 @keyframes dots-scroll-diag {
-  from { background-position: 0 0; }
-  to   { background-position: var(--dot-gap) var(--dot-gap); }
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: var(--dot-gap) var(--dot-gap);
+  }
 }
+
 /* ── Per-group animatable opacity for .bg-dots-pulse ───────────────────── */
 /* Each @property controls one quadrant of the 2×2 sub-grid.               */
 /* Slightly different durations + irrational offsets → never fully in sync. */
-@property --dot-pa { syntax: '<percentage>'; inherits: false; initial-value: 5%;  }
-@property --dot-pb { syntax: '<percentage>'; inherits: false; initial-value: 5%;  }
-@property --dot-pc { syntax: '<percentage>'; inherits: false; initial-value: 5%;  }
-@property --dot-pd { syntax: '<percentage>'; inherits: false; initial-value: 5%;  }
+@property --dot-pa {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 5%;
+}
 
-.bg-dots-pulse {
-  /* Override the base bg-dots gradient with 4 independent sub-grid layers. */
-  /* Each layer covers 1/4 of the dots (2× gap, offset to tile without gaps). */
+@property --dot-pb {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 5%;
+}
+
+@property --dot-pc {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 5%;
+}
+
+@property --dot-pd {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 5%;
+}
+
+/* Background + animation both live on ::before — inset handles edge clearance */
+.bg-dots-pulse::before {
   background-image:
     radial-gradient(circle, color-mix(in srgb, var(--dot-color, hsl(var(--ink-ghost))) var(--dot-pa), transparent) var(--dot-size, 1px), transparent var(--dot-size, 1px)),
     radial-gradient(circle, color-mix(in srgb, var(--dot-color, hsl(var(--ink-ghost))) var(--dot-pb), transparent) var(--dot-size, 1px), transparent var(--dot-size, 1px)),
@@ -843,10 +1337,10 @@ a {
     calc(var(--dot-gap, 20px) * 2) calc(var(--dot-gap, 20px) * 2),
     calc(var(--dot-gap, 20px) * 2) calc(var(--dot-gap, 20px) * 2);
   background-position:
-    0px                         0px,
-    var(--dot-gap, 20px)        0px,
-    0px                         var(--dot-gap, 20px),
-    var(--dot-gap, 20px)        var(--dot-gap, 20px);
+    calc(50% - var(--dot-gap, 20px) / 2) calc(50% - var(--dot-gap, 20px) / 2),
+    calc(50% + var(--dot-gap, 20px) / 2) calc(50% - var(--dot-gap, 20px) / 2),
+    calc(50% - var(--dot-gap, 20px) / 2) calc(50% + var(--dot-gap, 20px) / 2),
+    calc(50% + var(--dot-gap, 20px) / 2) calc(50% + var(--dot-gap, 20px) / 2);
   animation:
     dot-pa calc(var(--dot-speed, 4s) * 0.93) ease-in-out infinite 0s,
     dot-pb calc(var(--dot-speed, 4s) * 1.03) ease-in-out infinite calc(var(--dot-speed, 4s) * -0.27),
@@ -854,43 +1348,158 @@ a {
     dot-pd calc(var(--dot-speed, 4s) * 1.08) ease-in-out infinite calc(var(--dot-speed, 4s) * -0.79);
 }
 
-@keyframes dot-pa { 0%, 15%  { --dot-pa: 5%;   } 35%, 55% { --dot-pa: 100%; } 75%, 100% { --dot-pa: 5%;   } }
-@keyframes dot-pb { 0%, 15%  { --dot-pb: 5%;   } 35%, 55% { --dot-pb: 100%; } 75%, 100% { --dot-pb: 5%;   } }
-@keyframes dot-pc { 0%, 15%  { --dot-pc: 5%;   } 35%, 55% { --dot-pc: 100%; } 75%, 100% { --dot-pc: 5%;   } }
-@keyframes dot-pd { 0%, 15%  { --dot-pd: 5%;   } 35%, 55% { --dot-pd: 100%; } 75%, 100% { --dot-pd: 5%;   } }
+@keyframes dot-pa {
+
+  0%,
+  15% {
+    --dot-pa: 5%;
+  }
+
+  35%,
+  55% {
+    --dot-pa: 100%;
+  }
+
+  75%,
+  100% {
+    --dot-pa: 5%;
+  }
+}
+
+@keyframes dot-pb {
+
+  0%,
+  15% {
+    --dot-pb: 5%;
+  }
+
+  35%,
+  55% {
+    --dot-pb: 100%;
+  }
+
+  75%,
+  100% {
+    --dot-pb: 5%;
+  }
+}
+
+@keyframes dot-pc {
+
+  0%,
+  15% {
+    --dot-pc: 5%;
+  }
+
+  35%,
+  55% {
+    --dot-pc: 100%;
+  }
+
+  75%,
+  100% {
+    --dot-pc: 5%;
+  }
+}
+
+@keyframes dot-pd {
+
+  0%,
+  15% {
+    --dot-pd: 5%;
+  }
+
+  35%,
+  55% {
+    --dot-pd: 100%;
+  }
+
+  75%,
+  100% {
+    --dot-pd: 5%;
+  }
+}
 
 /* ─── Keyframes (non-Tailwind fallback) ───────────────────────────────────── */
 @keyframes led-pulse {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.25; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.25;
+  }
 }
+
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(6px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
 @keyframes scale-in {
-  from { opacity: 0; transform: scale(0.97); }
-  to   { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
+
 @keyframes scan {
-  0%   { transform: translateY(-100%); }
-  100% { transform: translateY(100%); }
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
 }
+
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ─── Component Extensions ────────────────────────────────────────────────── */
 
 /* ── Card sharp — 3px radius (buttons use 3px; typography cards match) ── */
-.card-sharp { border-radius: 3px; }
+.card-sharp {
+  border-radius: 3px;
+}
 
 /* ── Elevation swatches — semantic surface tokens ────────────────────────── */
-.bg-elev-0 { background-color: hsl(var(--background)); }
-.bg-elev-1 { background-color: hsl(var(--surface-low)); }
-.bg-elev-2 { background-color: hsl(var(--surface-card)); }
-.bg-elev-3 { background-color: hsl(var(--surface-high)); }
-.bg-elev-4 { background-color: hsl(var(--surface-highest)); }
+.bg-elev-0 {
+  background-color: hsl(var(--background));
+}
+
+.bg-elev-1 {
+  background-color: hsl(var(--surface-low));
+}
+
+.bg-elev-2 {
+  background-color: hsl(var(--surface-card));
+}
+
+.bg-elev-3 {
+  background-color: hsl(var(--surface-high));
+}
+
+.bg-elev-4 {
+  background-color: hsl(var(--surface-highest));
+}
 
 /* ── Progress bar ─────────────────────────────────────────────────────────── */
 .progress-bar {
@@ -898,6 +1507,7 @@ a {
   border-radius: 2px;
   overflow: hidden;
 }
+
 .progress-fill {
   height: 100%;
   background-color: hsl(var(--foreground));
@@ -912,27 +1522,71 @@ a {
 /* ─── Layout Utilities ────────────────────────────────────────────────────── */
 
 /* ── Semantic max-width classes ──────────────────────────────────────────── */
-.prose-width-sm  { max-width: 520px; }   /* hero intros, tight prose */
-.prose-width     { max-width: 560px; }   /* standard section intro text */
-.prose-width-lg  { max-width: 680px; }   /* wider prose blocks */
-.content-card    { max-width: 420px; }   /* form cards, narrow content cards */
-.content-card-sm { max-width: 320px; }   /* compact panels */
-.content-card-lg { max-width: 860px; }   /* wide content cards */
+.prose-width-sm {
+  max-width: 520px;
+}
+
+/* hero intros, tight prose */
+.prose-width {
+  max-width: 560px;
+}
+
+/* standard section intro text */
+.prose-width-lg {
+  max-width: 680px;
+}
+
+/* wider prose blocks */
+.content-card {
+  max-width: 420px;
+}
+
+/* form cards, narrow content cards */
+.content-card-sm {
+  max-width: 320px;
+}
+
+/* compact panels */
+.content-card-lg {
+  max-width: 860px;
+}
+
+/* wide content cards */
 
 /* ── Button flex-grow (full-width in a cluster) ─────────────────────────── */
-.btn-grow { flex: 1; }
+.btn-grow {
+  flex: 1;
+}
 
 /* ── Toast icon nudge ─────────────────────────────────────────────────────── */
-.toast-dot-nudge { margin-top: 2px; }
+.toast-dot-nudge {
+  margin-top: 2px;
+}
 
 /* ── Dot display weight variants ─────────────────────────────────────────── */
-.dot-display-thin  { font-weight: 100; opacity: 0.4; }
-.dot-display-reg   { font-weight: 400; }
-.dot-display-bold  { font-weight: 700; }
+.dot-display-thin {
+  font-weight: 100;
+  opacity: 0.4;
+}
+
+.dot-display-reg {
+  font-weight: 400;
+}
+
+.dot-display-bold {
+  font-weight: 700;
+}
 
 /* ── Dot display inline unit size variants ───────────────────────────────── */
-.dot-display-unit-md { font-size: 1.25rem; opacity: 0.5; }
-.dot-display-unit-sm { font-size: 1rem;    opacity: 0.5; }
+.dot-display-unit-md {
+  font-size: 1.25rem;
+  opacity: 0.5;
+}
+
+.dot-display-unit-sm {
+  font-size: 1rem;
+  opacity: 0.5;
+}
 
 /* ── Animated dot demo card (min-height + relative) ─────────────────────── */
 .dot-card {
@@ -961,19 +1615,31 @@ a {
   transition: color var(--duration-fast) var(--ease);
   color: hsl(var(--ink-muted));
 }
+
 .link-hover:hover {
   color: hsl(var(--foreground));
 }
 
 /* ── Changelog code font-size ───────────────────────────────────────────── */
-.t-code-sm { font-size: 0.85em; }
+.t-code-sm {
+  font-size: 0.85em;
+}
 
 /* ── Badge self-align center ─────────────────────────────────────────────── */
-.badge-center { align-self: center; }
+.badge-center {
+  align-self: center;
+}
 
 /* ── Font label tracking ─────────────────────────────────────────────────── */
-.tracking-loose { letter-spacing: 0.08em;  }
-.tracking-snug  { letter-spacing: -0.015em; }
+.tracking-loose {
+  letter-spacing: 0.08em;
+}
+
+.tracking-snug {
+  letter-spacing: -0.015em;
+}
 
 /* ── Label margin bottom utilities ──────────────────────────────────────── */
-.mb-375 { margin-bottom: 0.375rem; }
+.mb-375 {
+  margin-bottom: 0.375rem;
+}

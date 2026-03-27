@@ -1,6 +1,8 @@
 # Glyphwind
 
-A precision-engineered, framework-agnostic design system built on Tailwind CSS. Glyphwind delivers an **Analog Digitalist** aesthetic — high contrast, radical reduction, and a mechanical precision feel — through a comprehensive token system, semantic CSS custom properties, and production-ready component classes.
+Glyphwind is a carefully crafted design system built on Tailwind CSS that works with any framework. It leans into an **Analog Digitalist** aesthetic.
+
+Under the hood, it’s powered by a robust set of design tokens, semantic CSS variables, and ready-to-use component classes.
 
 **Version:** 1.0.0 &nbsp;|&nbsp; **Tailwind:** 3.4.17 &nbsp;|&nbsp; **License:** MIT
 
@@ -193,7 +195,8 @@ Three font families via Google Fonts:
 ```html
 <span class="badge badge-default">Default</span>
 <span class="badge badge-outline">Outline</span>
-<span class="badge badge-active"><span class="dot dot-sm"></span> Live</span>
+<span class="badge badge-active"><span class="dot dot-sm"></span> Active</span>   <!-- inverted: black in dark, white in light -->
+<span class="badge badge-signal"><span class="dot dot-sm"></span> Live</span>    <!-- solid signal red -->
 <span class="badge badge-dim"><span class="dot dot-sm animate-led"></span> Degraded</span>
 ```
 

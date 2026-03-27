@@ -2433,9 +2433,12 @@ background: <span class="token-val">hsl(var(--surface-highest))</span>; <span cl
             <span class="dot dot-sm"></span>
             Active
           </span>
+          <span class="badge badge-signal">
+            Signal
+          </span>
           <span class="badge badge-dim">
             <span class="dot dot-sm"></span>
-            Signal
+            Dim
           </span>
           <span class="badge badge-default t-mono">v1.0.4</span>
           <span class="badge badge-default">BETA</span>
@@ -2452,7 +2455,13 @@ background: <span class="token-val">hsl(var(--surface-highest))</span>; <span cl
   Active
 &lt;/span&gt;
 
-<span class="token-str">/* degraded / signal */</span>
+<span class="token-str">/* solid signal red */</span>
+&lt;span class="<span class="token-val">badge badge-signal</span>"&gt;
+  &lt;span class="<span class="token-val">dot dot-sm</span>"&gt;&lt;/span&gt;
+  Live
+&lt;/span&gt;
+
+<span class="token-str">/* degraded / muted red */</span>
 &lt;span class="<span class="token-val">badge badge-dim</span>"&gt;
   &lt;span class="<span class="token-val">dot dot-sm animate-led</span>"&gt;&lt;/span&gt;
   Degraded
@@ -2486,15 +2495,15 @@ background: <span class="token-val">hsl(var(--surface-highest))</span>; <span cl
               <tbody>
                 <tr>
                   <td class="td-inset-l font-medium">api.glyphwind.dev</td>
-                  <td><span class="badge badge-active"><span class="dot dot-sm"></span>Healthy</span>
+                  <td><span class="badge badge-active">Healthy</span>
                   </td>
-                  <td class="t-mono col-num c-fg">99.98%</td>
+                  <td class="t-mono col-num c-fg">49.98%</td>
                   <td class="t-mono col-num c-fg">42 ms</td>
                   <td class="t-mono col-num c-muted td-inset-r">00:00:04</td>
                 </tr>
                 <tr>
                   <td class="td-inset-l font-medium">auth.glyphwind.dev</td>
-                  <td><span class="badge badge-active"><span class="dot dot-sm"></span>Healthy</span>
+                  <td><span class="badge badge-signal">Critical</span>
                   </td>
                   <td class="t-mono col-num c-fg">99.91%</td>
                   <td class="t-mono col-num c-fg">78 ms</td>
@@ -3319,7 +3328,7 @@ animation: <span class="token-val">led 1s ease-in-out infinite</span>;     <span
 
       <!-- Download latest -->
       <div class="flex items-center gap-3 flex-wrap mb-10">
-        <span class="t-label c-subtle tracking-loose" data-version>v1.0.0</span>
+        <span class="t-label c-subtle tracking-loose" data-version>v1.0.1</span>
         <span class="vr vr-1rem"></span>
         <a data-version-href="versions/{v}/globals.css" download="globals.css"
           class="btn btn-secondary btn-sm">↓&nbsp;globals.css</a>
@@ -3705,14 +3714,14 @@ animation: <span class="token-val">led 1s ease-in-out infinite</span>;     <span
     });
 
     // ─── Single source of truth for current version ───────────────────────────
-    const CURRENT_VERSION = '1.0.0';
+    const CURRENT_VERSION = '1.0.1';
 
     // Stamp all [data-version] text nodes and [data-version-href] hrefs
     document.querySelectorAll('[data-version]').forEach(el => {
       el.textContent = 'v' + CURRENT_VERSION;
     });
     document.querySelectorAll('[data-version-href]').forEach(el => {
-      el.href = el.dataset.versionHref.replace('{v}', CURRENT_VERSION);
+      el.href = el.dataset.versionHref.replace('{v}', 'v' + CURRENT_VERSION);
     });
 
     const html = document.documentElement;
